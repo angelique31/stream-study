@@ -20,6 +20,6 @@
     "babel-plugin-styled-components": "^2.1.4"
   },
   "engines": {
-    "node": "16.13.1"
+    "node": "20.6.1"
   }
 }
