@@ -2,16 +2,18 @@ import EmailBar from "@/components/HomeAuthLinks/EmailBar/EmailBar";
 import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
 import SignInButton from "@/components/HomeAuthLinks/SignInButton/SignInButton";
 
-function home() {
+import { LandingContainer } from "./landingPage.styled";
+
+function landingPage() {
   return (
-    <div>
+    <LandingContainer>
       <LogoLink />
       <SignInButton />
       <EmailBar />
       <h1>Accueil</h1>
       <p>Bienvenue sur la page accueil!</p>
-    </div>
+    </LandingContainer>
   );
 }
 
-export default home;
+export default landingPage;
