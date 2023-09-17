@@ -6,6 +6,10 @@ import {
   LandingContainer,
   LogoNavigation,
   ButtonContainer,
+  ContentContainer,
+  MainTitle,
+  Subtitle,
+  StyledParagraph,
 } from "../components/HomeAuthLinks/landingPage.styled";
 import DropdownButton from "@/components/HomeAuthLinks/DropdownButton/DropdownButton";
 
@@ -19,9 +23,16 @@ function landingPage() {
           <SignInButton />
         </ButtonContainer>
       </LogoNavigation>
-      <EmailBar />
-      <h1>Accueil</h1>
-      <p>Bienvenue sur la page accueil!</p>
+      <ContentContainer>
+        <MainTitle>Films et séries en illimité, et bien plus</MainTitle>
+        <Subtitle>Où que vous soyez. Annulez à tout moment.</Subtitle>
+        <StyledParagraph>
+          Prêt à regarder Study Netifly ? Saisissez votre adresse e-mail pour
+          vous abonner ou réactiver votre abonnement.
+        </StyledParagraph>
+
+        <EmailBar />
+      </ContentContainer>
     </LandingContainer>
   );
 }

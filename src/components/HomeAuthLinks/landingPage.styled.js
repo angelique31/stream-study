@@ -18,11 +18,36 @@ export const LogoNavigation = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 100px;
+
+  padding: 20px 50px 100px;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+`;
+
+export const ContentContainer = styled.div`
+  margin: 108px 53px;
+  text-align: center;
+`;
+
+export const MainTitle = styled.h1`
+  font-size: 3rem;
+  font-weight: 900;
+  color: white;
+`;
+
+export const Subtitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+`;
+
+export const StyledParagraph = styled.p`
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
 `;
