@@ -30,10 +30,10 @@ const DropdownButton = () => {
         </DropdownItem>
 
         <DropdownItem
-          onClick={() => handleLanguageClick("Anglais")}
-          selected={selectedLanguage === "Anglais"} // Passe 'true' si c'est la langue sélectionnée, sinon 'false'>
+          onClick={() => handleLanguageClick("English")}
+          selected={selectedLanguage === "English"} // Passe 'true' si c'est la langue sélectionnée, sinon 'false'>
         >
-          Anglais
+          English
         </DropdownItem>
       </DropdownContent>
     </DropdownContainer>

@@ -19,7 +19,7 @@ export const LogoNavigation = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  padding: 20px 50px 100px;
+  padding: 20px 130px 80px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -34,7 +34,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const MainTitle = styled.h1`
-  font-size: 3rem;
+  font-size: 3.3rem;
   font-weight: 900;
   color: white;
 `;
@@ -43,6 +43,13 @@ export const Subtitle = styled.h2`
   font-size: 1.5rem;
   font-weight: 400;
   color: white;
+  margin: 1rem 0 0;
+`;
+
+export const CenteredContentContainer = styled.div`
+  padding: 0 2rem;
+  width: 80%;
+  margin: auto;
 `;
 
 export const StyledParagraph = styled.p`
@@ -50,4 +57,5 @@ export const StyledParagraph = styled.p`
   font-weight: 400;
   line-height: 1.5;
   color: white;
+  margin: 1.5rem 0 0;
 `;
