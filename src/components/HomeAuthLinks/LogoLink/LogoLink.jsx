@@ -1,7 +1,14 @@
-import Link from "next/link";
+import { UnderlineLink, StyledLink } from "./LogoLink.styled";
+// import Link from "next/link";
 
 function LogoLink() {
-  return <Link href="/">Study Netifly</Link>;
+  return (
+    <div>
+      <UnderlineLink href="/" passHref>
+        <StyledLink>Study Netifly</StyledLink>
+      </UnderlineLink>
+    </div>
+  );
 }
 
 export default LogoLink;
