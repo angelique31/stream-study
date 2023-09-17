@@ -5,6 +5,7 @@ import SignInButton from "@/components/HomeAuthLinks/SignInButton/SignInButton";
 import {
   LandingContainer,
   LogoNavigation,
+  ButtonContainer,
 } from "../components/HomeAuthLinks/landingPage.styled";
 import DropdownButton from "@/components/HomeAuthLinks/DropdownButton/DropdownButton";
 
@@ -13,10 +14,10 @@ function landingPage() {
     <LandingContainer>
       <LogoNavigation>
         <LogoLink />
-        <div>
+        <ButtonContainer>
           <DropdownButton />
           <SignInButton />
-        </div>
+        </ButtonContainer>
       </LogoNavigation>
       <EmailBar />
       <h1>Accueil</h1>

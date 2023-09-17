@@ -6,32 +6,50 @@ export const DropdownContainer = styled.div`
 `;
 
 export const DropdownButton = styled.button`
-  background-color: #3498db;
+  background: rgba(22, 22, 22, 0.7);
+  padding-right: 0.75rem;
+  border: 1px solid rgba(128, 128, 128, 0.7);
   color: white;
-  padding: 10px 16px;
+  padding: 10px 36px;
   font-size: 16px;
-  border: none;
+  font-family: "Roboto", sans-serif;
   cursor: pointer;
   border-radius: 4px;
-  outline: none;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+  }
 `;
 
 export const DropdownContent = styled.div`
   display: ${(props) => (props.show ? "block" : "none")};
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  min-width: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
   border-radius: 4px;
 `;
 
 export const DropdownItem = styled.a`
-  color: black;
-  padding: 12px 16px;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  background-color: ${(props) => (props.selected ? "#4c9fe7" : "white")};
+  padding: 5px 16px;
   text-decoration: none;
   display: block;
   &:hover {
-    background-color: #f1f1f1;
+    background-color: #4c9fe7;
+    cursor: pointer;
   }
 `;
