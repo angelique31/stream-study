@@ -7,15 +7,20 @@ export const DropdownContainer = styled.div`
 
 export const DropdownButton = styled.button`
   background: rgba(22, 22, 22, 0.7);
-  padding-right: 0.75rem;
+
   border: 1px solid rgba(128, 128, 128, 0.7);
   color: white;
-  padding: 10px 36px;
+  padding: 10px 26px 10px 15px;
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   cursor: pointer;
   border-radius: 4px;
   position: relative;
+  @media (max-width: 600px) {
+    span {
+      display: none;
+    }
+  }
   &::after {
     content: "";
     position: absolute;
@@ -28,6 +33,11 @@ export const DropdownButton = styled.button`
     border-right: 5px solid transparent;
     border-top: 5px solid white;
   }
+`;
+export const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
 `;
 
 export const DropdownContent = styled.div`

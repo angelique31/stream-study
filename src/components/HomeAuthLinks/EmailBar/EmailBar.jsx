@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
+
 import Link from "next/link";
 import {
   AuthFormContainer,
@@ -9,7 +9,7 @@ import {
   StyledLinkExtended,
 } from "./EmailBar.styled";
 
-import ArrowRight from "../../../assets/icons/arrow-right.svg";
+import ArrowRightIcon from "../../../assets/icons/ArrowRightIcon";
 
 function EmailBar() {
   const [email, setEmail] = useState("");
@@ -34,7 +34,8 @@ function EmailBar() {
           />
           <Link href="/auth/signup/signup-details" passHref>
             <StyledLinkExtended type="submit">
-              Commencer <Image src={ArrowRight} alt="arrow right" />
+              Commencer
+              <ArrowRightIcon />
             </StyledLinkExtended>
           </Link>
         </EmailFormContainer>

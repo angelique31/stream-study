@@ -18,25 +18,44 @@ export const LogoNavigation = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 20px 130px 80px;
+  padding: 20px 2rem;
+  @media (max-width: 400px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+  @media (max-width: 900px) {
+    gap: 10px;
+  }
 `;
 
 export const ContentContainer = styled.div`
-  margin: 108px 53px;
+  margin: 90px 53px;
   text-align: center;
+  @media (max-width: 900px) {
+    margin: 150px 53px;
+  }
+  @media (max-width: 600px) {
+    margin: 100px 53px;
+  }
+  @media (max-width: 450px) {
+    margin: 51px 10px;
+  }
 `;
 
 export const MainTitle = styled.h1`
   font-size: 3.3rem;
   font-weight: 900;
   color: white;
+  @media (max-width: 900px) {
+    font-size: 2rem;
+    font-weight: 700;
+  }
 `;
 
 export const Subtitle = styled.h2`
@@ -44,12 +63,18 @@ export const Subtitle = styled.h2`
   font-weight: 400;
   color: white;
   margin: 1rem 0 0;
+  @media (max-width: 900px) {
+    font-size: 1.125rem;
+  }
 `;
 
 export const CenteredContentContainer = styled.div`
   padding: 0 2rem;
   width: 80%;
   margin: auto;
+  @media (max-width: 750px) {
+    padding: 0;
+  }
 `;
 
 export const StyledParagraph = styled.p`
@@ -58,4 +83,7 @@ export const StyledParagraph = styled.p`
   line-height: 1.5;
   color: white;
   margin: 1.5rem 0 0;
+  @media (max-width: 900px) {
+    font-size: 1.125rem;
+  }
 `;

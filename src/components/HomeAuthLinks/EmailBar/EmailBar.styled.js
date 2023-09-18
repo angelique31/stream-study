@@ -12,6 +12,10 @@ export const EmailFormContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  @media (max-width: 780px) {
+    flex-direction: column;
+    gap: 15px;
+  }
 `;
 
 export const EmailInput = styled.input`
@@ -27,6 +31,9 @@ export const EmailInput = styled.input`
     font-size: 1rem;
     font-weight: 400;
   }
+  @media (max-width: 780px) {
+    width: 100%;
+  }
 `;
 
 export const StyledLinkExtended = styled(StyledLink)`
@@ -37,4 +44,8 @@ export const StyledLinkExtended = styled(StyledLink)`
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  @media (max-width: 780px) {
+    font-size: 1.1rem;
+    padding: 10px 16px;
+  }
 `;

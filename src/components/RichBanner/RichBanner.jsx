@@ -12,7 +12,7 @@ import {
   StyledLink,
 } from "./RichBanner.styled";
 import PopCorn from "../../assets/pop-corn.png";
-import ArrowRight from "../../assets/icons/arrow-right.svg";
+import ArrowRightIcon from "../../assets/icons/ArrowRightIcon";
 
 const RichBanner = () => {
   return (
@@ -37,7 +37,7 @@ const RichBanner = () => {
             <Link href="/auth/signup/signup-details" passHref>
               <StyledLinkWrapper>
                 <StyledLink> En savoir plus </StyledLink>
-                <Image src={ArrowRight} alt="arrow right" />
+                <ArrowRightIcon color="#448ef4" />
               </StyledLinkWrapper>
             </Link>
           </TextContentWrapper>

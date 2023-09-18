@@ -12,4 +12,7 @@ export const StyledLink = styled.div`
   &:hover {
     background: rgb(193, 17, 25);
   }
+  @media (max-width: 450px) {
+    padding: 9px 10px;
+  }
 `;

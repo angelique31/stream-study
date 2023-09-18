@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import Image from "next/image";
+
 import {
   DropdownContainer,
   DropdownButton as StyledButton,
+  IconContainer,
   DropdownContent,
   DropdownItem,
 } from "./DropdownButton.styled";
+
+import LanguageIcon from "../../../assets/icons/language.svg";
 
 const DropdownButton = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -20,7 +25,14 @@ const DropdownButton = () => {
 
   return (
     <DropdownContainer>
-      <StyledButton onClick={toggleDropdown}>{selectedLanguage}</StyledButton>
+      <StyledButton onClick={toggleDropdown}>
+        <IconContainer>
+          <Image src={LanguageIcon} alt="Icon des langues anglais/français" />
+          {/* {selectedLanguage} */}
+          <span>{selectedLanguage}</span>
+        </IconContainer>
+      </StyledButton>
+
       <DropdownContent show={showDropdown}>
         <DropdownItem
           onClick={() => handleLanguageClick("Français")}

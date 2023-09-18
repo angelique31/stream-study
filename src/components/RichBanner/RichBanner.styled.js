@@ -3,13 +3,19 @@ import styled from "styled-components";
 export const ImageContainer = styled.div`
   width: 96px;
   height: 96px;
-  position: relative; // Nécessaire pour le positionnement correct de l'image Next.js
+  position: relative;
+  @media (max-width: 600px) {
+    margin-top: -80px;
+    margin-left: -254px;
+    width: 76px;
+    height: 76px;
+  }
 `;
 
 export const OfferContainer = styled.div`
   display: flex;
   align-items: center;
-  padding-top: 20px;
+  padding: 30px;
   background: radial-gradient(
     51.39% 511.66% at 47.68% -217.91%,
     #ff9900 0%,
@@ -24,10 +30,17 @@ export const BannerContentWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: auto;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin: 0;
+  }
 `;
 
 export const TextContentWrapper = styled.div`
   padding-left: 32px;
+  @media (max-width: 600px) {
+    margin-top: 20px;
+  }
 `;
 
 export const StyledParagraph = styled.p`
