@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const UnderlineLink = styled.a`
-  text-decoration: none;
-`;
-
 export const StyledLink = styled.div`
   color: white;
   font-family: "Roboto", sans-serif;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 import {
   AuthFormContainer,
   EmailFormContainer,
@@ -31,9 +32,11 @@ function EmailBar() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Adresse e-mail"
           />
-          <StyledLinkExtended type="submit">
-            Commencer <Image src={ArrowRight} alt="arrow right" />
-          </StyledLinkExtended>
+          <Link href="/auth/signup/signup-details" passHref>
+            <StyledLinkExtended type="submit">
+              Commencer <Image src={ArrowRight} alt="arrow right" />
+            </StyledLinkExtended>
+          </Link>
         </EmailFormContainer>
       </AuthFormContainer>
     </form>

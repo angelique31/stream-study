@@ -31,10 +31,10 @@ export const EmailInput = styled.input`
 
 export const StyledLinkExtended = styled(StyledLink)`
   padding: 15px 24px;
-  width: 33%;
-  font-size: 1.4rem;
 
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
 `;
