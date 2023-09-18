@@ -38,16 +38,16 @@ export const ContentContainer = styled.div`
   margin: 90px 53px;
   text-align: center;
   @media (max-width: 900px) {
-    margin: 150px 53px;
+    margin: 83px 53px;
   }
   @media (max-width: 600px) {
-    margin: 100px 53px;
+    margin: 51px 53px;
   }
   @media (max-width: 450px) {
-    margin: 106px 10px;
+    margin: 56px 10px;
   }
   @media (max-width: 400px) {
-    margin: 73px 10px;
+    margin: 35px 10px;
   }
   @media (max-width: 367px) {
     margin: 49px 10px;
