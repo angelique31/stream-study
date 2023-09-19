@@ -17,6 +17,7 @@ import RichBanner from "@/components/RichBanner/RichBanner";
 import WatchOnTv from "@/components/WatchOnTv/WatchOnTv";
 import WatchOnDevice from "@/components/WatchOnDevice/WatchOnDevice";
 import AnimationKids from "@/components/AnimationKids/AnimationKids";
+import DownloadSeries from "@/components/DownloadSeries/DownloadSeries";
 
 function landingPage() {
   return (
@@ -45,6 +46,7 @@ function landingPage() {
       <WatchOnTv />
       <WatchOnDevice />
       <AnimationKids />
+      <DownloadSeries />
     </>
   );
 }
