@@ -14,6 +14,7 @@ import {
 } from "../components/HomeAuthLinks/landingPage.styled";
 import DropdownButton from "@/components/HomeAuthLinks/DropdownButton/DropdownButton";
 import RichBanner from "@/components/RichBanner/RichBanner";
+import WatchOnTv from "@/components/WatchOnTv/WatchOnTv";
 
 function landingPage() {
   return (
@@ -39,6 +40,7 @@ function landingPage() {
         </ContentContainer>
       </LandingContainer>
       <RichBanner />
+      <WatchOnTv />
     </>
   );
 }

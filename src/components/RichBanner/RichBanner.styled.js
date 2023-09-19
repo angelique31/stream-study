@@ -24,9 +24,7 @@ export const OfferContainer = styled.div`
     #000413 100%
   );
   box-shadow: 0px -8px 25px rgba(0, 0, 0, 0.5);
-  position: absolute;
   width: 100%;
-  top: 604px;
 `;
 
 export const BannerContentWrapper = styled.div`

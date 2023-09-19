@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LandingContainer = styled.div`
-  height: 100vh;
+  height: 600px;
   background-size: cover;
   background-position: center;
 
