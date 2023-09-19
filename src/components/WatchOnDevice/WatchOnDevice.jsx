@@ -2,35 +2,26 @@ import React from "react";
 import Image from "next/image";
 import {
   Container,
-  CenteredFlexContainer,
-  Content,
   Title,
   Text,
   VideoContainer,
   StyledImageContainer,
   VideoOverlay,
   StyledBottomDiv,
-} from "./WatchOnTv.styled";
+} from "../WatchOnTv/WatchOnTv.styled";
+import { ContentDevice, CenteredFlexContainer } from "./WatchOnDevice.styled";
 
-import TV from "../../assets/pictures/tv/tv.png";
+import DevicePicture from "../../assets/pictures/tv/device-pile.png";
 
-const WatchOnTv = () => {
+const WatchOnDevice = () => {
   return (
     <>
       <Container>
         <CenteredFlexContainer>
-          <Content>
-            <Title>Regardez Netflix sur votre TV</Title>
-            <Text>
-              Regardez Netflix sur votre Smart TV, PlayStation, Xbox,
-              Chromecast, Apple TV, lecteur Blu-ray et bien plus.
-            </Text>
-          </Content>
-
           <VideoContainer>
             <StyledImageContainer>
               <Image
-                src={TV}
+                src={DevicePicture}
                 alt="picture TV"
                 layout="responsive"
                 objectFit="cover"
@@ -39,13 +30,21 @@ const WatchOnTv = () => {
             <VideoOverlay>
               <video autoPlay muted loop>
                 <source
-                  src="/assets/videos/video-tv-0819.m4v"
+                  src="/assets/videos/video-devices.m4v"
                   type="video/x-m4v"
                 />
                 Votre navigateur ne prend pas en charge la vidéo.
               </video>
             </VideoOverlay>
           </VideoContainer>
+
+          <ContentDevice>
+            <Title>Où que vous soyez</Title>
+            <Text>
+              Regardez des films et séries en accès illimité sur votre TV,
+              smartphone, tablette et ordinateur.
+            </Text>
+          </ContentDevice>
         </CenteredFlexContainer>
       </Container>
       <StyledBottomDiv></StyledBottomDiv>
@@ -53,4 +52,4 @@ const WatchOnTv = () => {
   );
 };
 
-export default WatchOnTv;
+export default WatchOnDevice;

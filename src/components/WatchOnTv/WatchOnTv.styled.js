@@ -21,7 +21,6 @@ export const CenteredFlexContainer = styled.div`
 `;
 
 export const Content = styled.div`
-  flex: 1;
   padding-right: 20px;
   @media (max-width: 950px) {
     text-align: center;
@@ -42,6 +41,7 @@ export const Text = styled.p`
   font-size: 1.5rem;
   font-weight: 400;
   color: white;
+  margin: 1rem 0 0;
   @media (max-width: 950px) {
     margin: 1rem 0 0;
     font-size: 1.125rem;
@@ -80,4 +80,10 @@ export const VideoOverlay = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+export const StyledBottomDiv = styled.div`
+  width: 100%;
+  height: 0.5rem;
+  background-color: rgb(35, 35, 35);
 `;
