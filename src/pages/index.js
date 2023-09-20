@@ -18,6 +18,7 @@ import WatchOnTv from "@/components/WatchOnTv/WatchOnTv";
 import WatchOnDevice from "@/components/WatchOnDevice/WatchOnDevice";
 import AnimationKids from "@/components/AnimationKids/AnimationKids";
 import DownloadSeries from "@/components/DownloadSeries/DownloadSeries";
+import FAQAccordion from "@/components/FaqAccordion/FaqAccordion";
 
 function landingPage() {
   return (
@@ -47,6 +48,7 @@ function landingPage() {
       <WatchOnDevice />
       <AnimationKids />
       <DownloadSeries />
+      <FAQAccordion />
     </>
   );
 }
