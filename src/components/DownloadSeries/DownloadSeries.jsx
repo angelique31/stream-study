@@ -5,13 +5,13 @@ import {
   Content,
   Title,
   Text,
-  VideoContainer,
   StyledImageContainer,
   StyledBottomDiv,
 } from "../WatchOnTv/WatchOnTv.styled";
 
 import {
   CenteredFlexContainer,
+  VideoContainer,
   MobilePictureContainer,
   PictureBoxShot,
   MobileContainer,
@@ -35,9 +35,9 @@ const DownloadSeries = () => {
                 <Image
                   src={MobilePicture}
                   alt="picture mobile"
-                  width={450}
-                  height={350}
-                  // layout="responsive"
+                  // width={450}
+                  // height={350}
+                  layout="responsive"
                   objectFit="cover"
                 />
               </MobilePictureContainer>
@@ -46,9 +46,9 @@ const DownloadSeries = () => {
                   <Image
                     src={BoxShot}
                     alt="picture strange things"
-                    width={60}
-                    height={80}
-                    // layout="responsive"
+                    // width={60}
+                    // height={80}
+                    layout="responsive"
                     objectFit="cover"
                   />
                 </PictureBoxShot>

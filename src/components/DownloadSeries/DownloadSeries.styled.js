@@ -12,13 +12,26 @@ export const CenteredFlexContainer = styled.div`
   }
 `;
 
+export const VideoContainer = styled.div`
+  position: relative;
+  @media (max-width: 600px) {
+    position: static;
+  }
+`;
+
 export const MobilePictureContainer = styled.div`
   width: 100%;
-  //   width: 450px;
-  //   height: 350px;
+  // width: 450px;
+  // @media (max-width: 600px) {
+  //   width: 350px;
+  // }
 `;
 export const PictureBoxShot = styled.div`
-  width: 100%;
+  // width: 100%;
+  width: 80px;
+  @media (max-width: 600px) {
+    width: 45px;
+  }
 `;
 
 export const MobileContainer = styled.div`
@@ -31,22 +44,48 @@ export const MobileContainer = styled.div`
   background: rgb(0, 0, 0);
   z-index: 1;
   position: absolute;
-  left: 103px;
-  bottom: 18px;
+  left: 126px;
+  bottom: 29px;
   width: 50%;
   height: 89px;
+  @media (max-width: 570px) {
+    left: 60px;
+    bottom: 7px;
+    width: 70%;
+  }
+  @media (max-width: 460px) {
+    left: 47px;
+    bottom: 0;
+    height: 70px;
+    width: 70%;
+  }
+  @media (max-width: 370px) {
+    left: 25px;
+    bottom: 0;
+    height: 70px;
+    width: 79%;
+  }
 `;
 
 export const StyledH3 = styled.h3`
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: white;
+  @media (max-width: 370px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const StyledSpan = styled.span`
+  display: flex;
+  width: 70%;
+
   color: #0071eb;
   font-size: 0.8rem;
+  @media (max-width: 370px) {
+    font-size: 0.5rem;
+  }
 `;
 
 export const StyledDownloadTitle = styled.div`
-  margin-left: 10px;
+  margin-left: 15px;
 `;
