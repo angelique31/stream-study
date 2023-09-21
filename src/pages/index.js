@@ -19,6 +19,7 @@ import WatchOnDevice from "@/components/WatchOnDevice/WatchOnDevice";
 import AnimationKids from "@/components/AnimationKids/AnimationKids";
 import DownloadSeries from "@/components/DownloadSeries/DownloadSeries";
 import FAQAccordion from "@/components/FaqAccordion/FaqAccordion";
+import SubscriptionPrompt from "@/components/HomeAuthLinks/SubscriptionPrompt/SubscriptionPrompt";
 
 function landingPage() {
   return (
@@ -34,13 +35,14 @@ function landingPage() {
         <ContentContainer>
           <MainTitle>Films et séries en illimité, et bien plus</MainTitle>
           <Subtitle>Où que vous soyez. Annulez à tout moment.</Subtitle>
-          <CenteredContentContainer>
+          {/* <CenteredContentContainer>
             <StyledParagraph>
               Prêt à regarder Study Netifly ? Saisissez votre adresse e-mail
               pour vous abonner ou réactiver votre abonnement.
             </StyledParagraph>
             <EmailBar />
-          </CenteredContentContainer>
+          </CenteredContentContainer> */}
+          <SubscriptionPrompt />
         </ContentContainer>
       </LandingContainer>
       <RichBanner />
