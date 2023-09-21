@@ -3,11 +3,11 @@ import { StyledLink } from "./SignInButton.styled";
 
 function SignInButton() {
   return (
-    <div>
+    <>
       <Link href="/auth/login" passHref>
         <StyledLink>{`S'identifier`}</StyledLink>
       </Link>
-    </div>
+    </>
   );
 }
 
