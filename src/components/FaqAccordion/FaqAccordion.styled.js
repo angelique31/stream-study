@@ -6,6 +6,9 @@ export const StyledH2 = styled.h2`
   color: white;
   text-align: center;
   margin-bottom: 1.5rem;
+  @media (max-width: 1000px) {
+    font-size: 2rem;
+  }
 `;
 
 export const AccordionContainer = styled.div`
@@ -18,7 +21,10 @@ export const AccordionOuterWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 0 150px;
+  margin: 0 150px 50px 150px;
+  @media (max-width: 960px) {
+    margin: 50px;
+  }
 `;
 
 export const AccordionWrapper = styled.div`
@@ -37,6 +43,9 @@ export const AccordionHeader = styled.div`
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
+  @media (max-width: 960px) {
+    font-size: 1rem;
+  }
 `;
 
 export const AccordionContent = styled.div`
@@ -52,12 +61,18 @@ export const AccordionContent = styled.div`
   margin-bottom: 0.5rem;
   transition: all 0.25s cubic-bezier(0.5, 0, 0.1, 1) 0s;
   max-height: 75rem;
+  @media (max-width: 960px) {
+    font-size: 1rem;
+  }
 `;
 
 export const AccordionContentText = styled.p`
   color: white;
   font-size: 1.5rem;
   font-weight: 400;
+  @media (max-width: 960px) {
+    font-size: 1rem;
+  }
 `;
 
 export const PlusIconContainer = styled.div`

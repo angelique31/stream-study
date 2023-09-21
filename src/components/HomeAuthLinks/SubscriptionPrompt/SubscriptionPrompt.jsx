@@ -1,14 +1,15 @@
 import React from "react";
 import EmailBar from "@/components/HomeAuthLinks/EmailBar/EmailBar";
+
 import {
-  ContentContainer,
+  SubscriptionContainer,
   CenteredContentContainer,
   StyledParagraph,
-} from "../landingPage.styled";
+} from "./SubscriptionPrompt.styled";
 
 function SubscriptionPrompt() {
   return (
-    <ContentContainer>
+    <SubscriptionContainer>
       <CenteredContentContainer>
         <StyledParagraph>
           Prêt à regarder Study Netifly ? Saisissez votre adresse e-mail pour
@@ -16,7 +17,7 @@ function SubscriptionPrompt() {
         </StyledParagraph>
         <EmailBar />
       </CenteredContentContainer>
-    </ContentContainer>
+    </SubscriptionContainer>
   );
 }
 

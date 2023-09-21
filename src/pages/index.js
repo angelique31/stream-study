@@ -9,8 +9,6 @@ import {
   ContentContainer,
   MainTitle,
   Subtitle,
-  CenteredContentContainer,
-  StyledParagraph,
 } from "../components/HomeAuthLinks/landingPage.styled";
 import DropdownButton from "@/components/HomeAuthLinks/DropdownButton/DropdownButton";
 import RichBanner from "@/components/RichBanner/RichBanner";
@@ -20,6 +18,7 @@ import AnimationKids from "@/components/AnimationKids/AnimationKids";
 import DownloadSeries from "@/components/DownloadSeries/DownloadSeries";
 import FAQAccordion from "@/components/FaqAccordion/FaqAccordion";
 import SubscriptionPrompt from "@/components/HomeAuthLinks/SubscriptionPrompt/SubscriptionPrompt";
+import Footer from "@/components/Footer/Footer";
 
 function landingPage() {
   return (
@@ -35,13 +34,7 @@ function landingPage() {
         <ContentContainer>
           <MainTitle>Films et séries en illimité, et bien plus</MainTitle>
           <Subtitle>Où que vous soyez. Annulez à tout moment.</Subtitle>
-          {/* <CenteredContentContainer>
-            <StyledParagraph>
-              Prêt à regarder Study Netifly ? Saisissez votre adresse e-mail
-              pour vous abonner ou réactiver votre abonnement.
-            </StyledParagraph>
-            <EmailBar />
-          </CenteredContentContainer> */}
+
           <SubscriptionPrompt />
         </ContentContainer>
       </LandingContainer>
@@ -51,6 +44,7 @@ function landingPage() {
       <AnimationKids />
       <DownloadSeries />
       <FAQAccordion />
+      <Footer />
     </>
   );
 }

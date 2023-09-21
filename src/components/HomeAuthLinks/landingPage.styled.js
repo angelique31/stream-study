@@ -73,23 +73,3 @@ export const Subtitle = styled.h2`
     font-size: 1.125rem;
   }
 `;
-
-export const CenteredContentContainer = styled.div`
-  padding: 0 2rem;
-  width: 80%;
-  margin: auto;
-  @media (max-width: 750px) {
-    padding: 0;
-  }
-`;
-
-export const StyledParagraph = styled.p`
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: white;
-  margin: 1.5rem 0 0;
-  @media (max-width: 900px) {
-    font-size: 1.125rem;
-  }
-`;
