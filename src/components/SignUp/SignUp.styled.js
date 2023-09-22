@@ -91,3 +91,26 @@ export const Paragraph = styled.p`
   font-size: 1.1rem;
   width: 340px;
 `;
+
+export const Button = styled.button`
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding: 20.5px 2em;
+  border-radius: 4px;
+  background-color: rgb(229, 9, 20);
+  border: none;
+  margin-top: 24px;
+  transition: 0.3s ease;
+  width: 100%;
+  &:hover {
+    background: rgb(193, 17, 25);
+  }
+  @media (max-width: 520px) {
+    width: 90%;
+  }
+
+  @media (max-width: 450px) {
+    padding: 9px 10px;
+  }
+`;

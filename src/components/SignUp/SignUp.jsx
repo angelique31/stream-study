@@ -12,9 +12,8 @@ import {
   StyledInput,
   Title,
   Paragraph,
+  Button,
 } from "./SignUp.styled";
-
-import { Button } from "../SignUpDetails/SignUpDetails.styled";
 
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
 
@@ -49,7 +48,7 @@ const SignUp = () => {
             autocomplete="new-password"
           />
           <div>
-            <Link href="/auth/signup/signup" passHref>
+            <Link href="/auth/signup/success" passHref>
               <Button>Suivant</Button>
             </Link>
           </div>

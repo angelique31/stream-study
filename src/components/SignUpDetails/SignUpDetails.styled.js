@@ -68,9 +68,6 @@ export const Button = styled.button`
   &:hover {
     background: rgb(193, 17, 25);
   }
-  @media (max-width: 520px) {
-    width: 90%;
-  }
 
   @media (max-width: 450px) {
     padding: 9px 10px;
