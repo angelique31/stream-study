@@ -79,7 +79,7 @@ export const StyledInput = styled.input`
 
 export const Title = styled.h1`
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
   width: 419px;
   line-height: 2.5rem;
   @media (max-width: 520px) {
@@ -103,6 +103,7 @@ export const Button = styled.button`
   margin-top: 24px;
   transition: 0.3s ease;
   width: 100%;
+  cursor: pointer;
   &:hover {
     background: rgb(193, 17, 25);
   }

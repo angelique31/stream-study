@@ -1,10 +1,10 @@
-import Link from "next/link";
+import Success from "@/components/Success/Success";
 
-export default function Success() {
+function success() {
   return (
-    <div>
-      <h1>Bravo! Votre compte est maintenant actif.</h1>
-      <Link href="/dashboard/home">Aller au tableau de bord</Link>
-    </div>
+    <>
+      <Success />
+    </>
   );
 }
+export default success;

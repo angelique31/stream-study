@@ -65,6 +65,7 @@ export const Button = styled.button`
   margin-top: 24px;
   transition: 0.3s ease;
   width: 100%;
+  cursor: pointer;
   &:hover {
     background: rgb(193, 17, 25);
   }

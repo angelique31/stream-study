@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
 
-function SignUpForm() {
+function signUpForm() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
@@ -31,4 +31,4 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+export default signUpForm;
