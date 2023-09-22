@@ -1,23 +1,24 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import {
   NavBarContainer,
   StyledLink,
   Container,
+  MarginLeftDiv,
   CenteredContainer,
-  StyledImageContainer,
   StyledSpan,
   TextContainer,
+  StyledInput,
   Title,
   Paragraph,
-  Button,
-} from "./SignUpDetails.styled";
-import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
-import AcountLogo from "../../assets/logos/acountLogo.png";
+} from "./SignUp.styled";
 
-const SignUpDetail = () => {
+import { Button } from "../SignUpDetails/SignUpDetails.styled";
+
+import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
+
+const SignUp = () => {
   return (
     <>
       <NavBarContainer>
@@ -26,34 +27,36 @@ const SignUpDetail = () => {
       </NavBarContainer>
 
       <Container>
-        <div>
+        <MarginLeftDiv>
           <CenteredContainer>
-            <StyledImageContainer>
-              <Image
-                src={AcountLogo}
-                alt="Logo"
-                layout="responsive"
-                objectFit="cover"
-              />
-            </StyledImageContainer>
             <StyledSpan>ETAPE 1 SUR 3</StyledSpan>
           </CenteredContainer>
           <TextContainer>
-            <Title>Complétez la configuration de votre compte.</Title>
+            <Title>Créez un mot de passe pour activer votre abonnement</Title>
             <Paragraph>
-              Study Netifly est personnalisé selon vos goûts. Créez un mot de
-              passe pour commencer à regarder Study Netifly.
+              {`Plus que quelques étapes et c'est fini !
+                Plus rien à remplir.`}
             </Paragraph>
           </TextContainer>
+          <StyledInput
+            type="email"
+            placeholder="Adresse e-mail"
+            autocomplete="off"
+          />
+          <StyledInput
+            type="password"
+            placeholder="Mot de passe"
+            autocomplete="new-password"
+          />
           <div>
             <Link href="/auth/signup/signup" passHref>
               <Button>Suivant</Button>
             </Link>
           </div>
-        </div>
+        </MarginLeftDiv>
       </Container>
     </>
   );
 };
 
-export default SignUpDetail;
+export default SignUp;
