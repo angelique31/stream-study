@@ -1,4 +1,3 @@
-import EmailBar from "@/components/HomeAuthLinks/EmailBar/EmailBar";
 import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
 import SignInButton from "@/components/HomeAuthLinks/SignInButton/SignInButton";
 
