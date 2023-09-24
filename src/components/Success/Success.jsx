@@ -11,6 +11,7 @@ import {
 } from "../SignUpDetails/SignUpDetails.styled";
 
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
+import FooterSignUp from "../FooterSignUp/FooterSignUp";
 
 const Success = () => {
   return (
@@ -32,6 +33,7 @@ const Success = () => {
           </div>
         </div>
       </Container>
+      <FooterSignUp />
     </>
   );
 };
