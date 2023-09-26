@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { fetchTrendingSeries } from "@/lib/trends";
-// import useCachedData from "@/lib/useCachedData";
-// import { fetchTrendingSeries } from "../../../lib/trends";
 
 function TrendingSeries({ series }) {
   return (
