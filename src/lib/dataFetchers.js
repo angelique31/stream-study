@@ -1,7 +1,7 @@
 import { fetchTrendingSeries } from "./trends";
 
 export async function loadHomePageData() {
-  const [trendingSeries, movies] = await Promise.all([
+  const [trendingSeries] = await Promise.all([
     fetchTrendingSeries(),
 
     // ... d'autres appels à l'API
