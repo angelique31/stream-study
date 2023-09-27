@@ -1,9 +1,8 @@
-import NavLinks from "@/components/ComponentsDashboard/NavBar/NavLinks";
-import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
-import { NavWrapper } from "../../components/ComponentsDashboard/NavBar/NavLinks.styled";
-import TrendingSeries from "@/components/ComponentsDashboard/TrendingSeries/TrendingSeries";
 import { loadHomePageData } from "@/lib/dataFetchers";
-import { fetchTrendingSeriesWithVideos } from "@/lib/trends";
+import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks";
+import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
+import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks.styled";
+import TrendingSeries from "@/components/PagesDashboard/ComponentsDashboard/TrendingSeries/TrendingSeries";
 
 function home({ trendingSeries }) {
   return (
@@ -20,20 +19,14 @@ function home({ trendingSeries }) {
     </>
   );
 }
-// export async function getServerSideProps() {
-//   const data = await loadHomePageData();
-//   return {
-//     props: data,
-//   };
-// }
-
 export async function getServerSideProps() {
-  // Appeler votre fonction pour charger les données
-  const trendingSeries = await fetchTrendingSeriesWithVideos();
+  const data = await loadHomePageData();
 
-  // Renvoyer les données en tant que props
+  // Ici, vous pouvez ajouter un log pour inspecter la structure des données
+  console.log(data);
+
   return {
-    props: { trendingSeries },
+    props: data,
   };
 }
 

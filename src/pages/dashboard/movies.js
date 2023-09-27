@@ -1,11 +1,10 @@
-import NavLinks from "@/components/ComponentsDashboard/NavBar/NavLinks";
+import { loadHomePageData } from "@/lib/dataFetchers";
+import Movies from "@/components/PagesDashboard/Movies/Movies";
+import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks.styled";
 import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
+import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks";
 
-import { fetchPopularMovies } from "@/lib/movies";
-
-import { NavWrapper } from "../../components/ComponentsDashboard/NavBar/NavLinks.styled";
-
-function movies({ movies }) {
+function movies({ popularMovies }) {
   return (
     <>
       <NavWrapper>
@@ -13,25 +12,18 @@ function movies({ movies }) {
         <NavLinks />
       </NavWrapper>
 
-      <div>
-        <h1>Films</h1>
-
-        <ul>
-          {movies.map((movie) => (
-            <li key={movie.id}>{movie.title}</li>
-          ))}
-        </ul>
-      </div>
+      <Movies movies={popularMovies} />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const movies = await fetchPopularMovies();
-  // console.log("Films populaires (dans le composant):", movies);
+  const data = await loadHomePageData();
+
   return {
     props: {
-      movies,
+      popularMovies: data.popularMovies,
+      // Et toute autre donnée que vous pourriez vouloir transmettre en tant que props
     },
   };
 }

@@ -1,9 +1,12 @@
-import NavLinks from "@/components/ComponentsDashboard/NavBar/NavLinks";
-import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
-import { fetchPopularSeries } from "@/lib/series";
-import { NavWrapper } from "../../components/ComponentsDashboard/NavBar/NavLinks.styled";
+// import { fetchPopularSeries } from "@/lib/series";
 
-function series({ series }) {
+import { loadHomePageData } from "@/lib/dataFetchers";
+import Series from "@/components/PagesDashboard/Series/Series";
+import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
+import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks";
+import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks.styled";
+
+function series({ popularSeries }) {
   return (
     <>
       <NavWrapper>
@@ -11,25 +14,18 @@ function series({ series }) {
         <NavLinks />
       </NavWrapper>
 
-      <div>
-        <h1>Séries</h1>
-
-        <ul>
-          {series.map((serie) => (
-            <li key={serie.id}>{serie.name}</li>
-          ))}
-        </ul>
-      </div>
+      <Series series={popularSeries} />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const series = await fetchPopularSeries();
+  const data = await loadHomePageData();
 
   return {
     props: {
-      series,
+      popularSeries: data.popularSeries,
+      // Et toute autre donnée que vous pourriez vouloir transmettre en tant que props
     },
   };
 }

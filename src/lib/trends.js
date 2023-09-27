@@ -45,14 +45,13 @@ async function fetchVideoForSeries(seriesId) {
 }
 
 export async function fetchTrendingSeriesWithVideos() {
-  console.log("Appel de fetchTrendingSeriesWithVideos");
   try {
     const series = await fetchTrendingSeries();
 
     const seriesWithVideos = await Promise.all(
       series.map(async (serie) => {
         const videoKey = await fetchVideoForSeries(serie.id);
-        // return { ...serie, video: videoKey };
+
         return { ...serie, video: videoKey || null };
       })
     );
