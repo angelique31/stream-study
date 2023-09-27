@@ -1,6 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { fetchTrendingSeries } from "@/lib/trends";
+import {
+  fetchTrendingSeries,
+  fetchTrendingSeriesWithVideos,
+} from "@/lib/trends";
 
 function TrendingSeries({ series }) {
   return (
@@ -23,6 +26,17 @@ function TrendingSeries({ series }) {
               />
             )}
 
+            {serie.video && (
+              <iframe
+                src={`https://www.youtube.com/embed/${serie.video}`}
+                title={`Vidéo de ${serie.name}`}
+                width="560"
+                height="315"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            )}
+
             {/* Popularité */}
             <p>Popularité : {serie.popularity}</p>
 
@@ -41,13 +55,15 @@ function TrendingSeries({ series }) {
   );
 }
 
-export async function getStaticProps() {
-  const series = await fetchTrendingSeries();
+// export async function getStaticProps() {
+//   console.log("Inside getStaticProps");
+//   // const series = await fetchTrendingSeries();
+//   const series = await fetchTrendingSeriesWithVideos();
 
-  return {
-    props: { series },
-    revalidate: 60 * 60, // Cache pendant 1 heure.
-  };
-}
+//   return {
+//     props: { series },
+//     revalidate: 60 * 60, // Cache pendant 1 heure.
+//   };
+// }
 
 export default TrendingSeries;
