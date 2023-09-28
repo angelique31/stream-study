@@ -1,25 +1,18 @@
 import styled from "styled-components";
 
-export const TrendingContainer = styled.div`
+export const TrendingContainer = styled.div``;
+
+export const TrendingWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  margin: 20px;
 `;
 
-// export const TrendingList = styled.ul`
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: 16px;
-//   list-style: none;
-// `;
-
 export const TrendingList = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(450px, 1fr)
-  ); /* 450px correspond à la largeur de votre image et vidéo */
+  display: flex;
   gap: 16px;
+  list-style: none;
+  position: relative;
 `;
 
 export const TrendingItem = styled.li`
@@ -27,26 +20,15 @@ export const TrendingItem = styled.li`
   cursor: pointer;
   transition: transform 0.3s ease;
   overflow: hidden;
-  width: 450px;
-  min-height: 350px;
-  //   &:hover {
-  //     transform: scale(1.05);
-  //   }
+  width: 250px;
+  min-height: 150px;
+  &:hover {
+    transform: scale(1.05);
+  }
 
   &:hover .action-buttons {
     opacity: 1;
   }
-`;
-
-export const TrendingTitle = styled.h3`
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 2px 8px;
 `;
 
 export const ActionButtons = styled.div`
@@ -76,7 +58,8 @@ export const VideoWrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  position: relative; /* pour que le titre reste au-dessus */
+  // width: 50%;
+  // height: 300px;
 `;
 
 export const OverviewWrapper = styled.div`
@@ -96,6 +79,8 @@ export const OverviewWrapper = styled.div`
 ${TrendingItem}:focus & {
     opacity: 1;
     max-height: 300px;
-    width: 500px;
+    width: 250px;
+    background-color: #181818;
+    color: white;
   }
 `;
