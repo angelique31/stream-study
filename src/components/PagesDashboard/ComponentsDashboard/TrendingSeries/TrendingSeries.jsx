@@ -7,6 +7,7 @@ import {
   TrendingItem,
   ActionButtons,
   VideoWrapper,
+  TitleOverlay,
   ImageWrapper,
   OverviewWrapper,
 } from "./TrendingSeries.styled";
@@ -22,14 +23,15 @@ function TrendingSeries({ series }) {
               <ImageWrapper>
                 {serie.poster_path && (
                   <Image
+                    className="cover"
                     src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
                     alt={serie.name}
                     width={250}
                     height={150}
-
                     // layout="responsive"
                   />
                 )}
+                <TitleOverlay>{serie.name}</TitleOverlay>
               </ImageWrapper>
               <ActionButtons className="action-buttons">
                 {/* Vos boutons Play, + et flèche ici */}

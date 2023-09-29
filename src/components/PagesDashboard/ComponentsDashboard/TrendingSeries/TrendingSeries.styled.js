@@ -57,9 +57,25 @@ export const VideoWrapper = styled.div`
   }
 `;
 
+export const TitleOverlay = styled.p`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+`;
+
 export const ImageWrapper = styled.div`
   // width: 50%;
   // height: 300px;
+  position: relative;
+  .cover {
+    object-fit: cover;
+  }
 `;
 
 export const OverviewWrapper = styled.div`
