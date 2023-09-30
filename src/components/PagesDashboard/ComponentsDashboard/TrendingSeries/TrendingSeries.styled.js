@@ -32,15 +32,29 @@ export const TrendingItem = styled.li`
 `;
 
 export const ActionButtons = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
   display: flex;
-  gap: 8px;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
+
   opacity: 0;
   transition: opacity 0.3s ease;
+`;
+
+export const IconContainer = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin: 5px;
+  position: relative;
+  overflow: hidden; // Pour garantir que l'icône ne déborde pas du cercle
+  .arrow-down-icon {
+    transform: rotate(90deg);
+  }
 `;
 
 export const VideoWrapper = styled.div`
@@ -73,6 +87,7 @@ export const ImageWrapper = styled.div`
   // width: 50%;
   // height: 300px;
   position: relative;
+
   .cover {
     object-fit: cover;
   }
@@ -87,16 +102,17 @@ export const OverviewWrapper = styled.div`
 
   // ${TrendingItem}:hover & {
   //   opacity: 1;
-  //   max-height: 300px;
-  //   width: 500px;
+
   // }
 
   ${TrendingItem}:hover &,
 ${TrendingItem}:focus & {
     opacity: 1;
     max-height: 300px;
+    height: 70px;
     width: 250px;
     background-color: #181818;
     color: white;
+    border-radius: 0 0 5px 5px;
   }
 `;

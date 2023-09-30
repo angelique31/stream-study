@@ -6,11 +6,15 @@ import {
   TrendingList,
   TrendingItem,
   ActionButtons,
+  IconContainer,
   VideoWrapper,
   TitleOverlay,
   ImageWrapper,
   OverviewWrapper,
 } from "./TrendingSeries.styled";
+
+import IconPlus from "../../../../assets/icons/plus.svg";
+import ArrowIcon from "../../../../assets/icons/arrowIcon.svg";
 
 function TrendingSeries({ series }) {
   return (
@@ -28,14 +32,10 @@ function TrendingSeries({ series }) {
                     alt={serie.name}
                     width={250}
                     height={150}
-                    // layout="responsive"
                   />
                 )}
                 <TitleOverlay>{serie.name}</TitleOverlay>
               </ImageWrapper>
-              <ActionButtons className="action-buttons">
-                {/* Vos boutons Play, + et flèche ici */}
-              </ActionButtons>
 
               <VideoWrapper>
                 {serie.video && (
@@ -50,9 +50,28 @@ function TrendingSeries({ series }) {
                 )}
               </VideoWrapper>
 
-              {/* {serie.overview && <p>{serie.overview}</p>} */}
               <OverviewWrapper>
-                {serie.overview && <p>{serie.overview}</p>}
+                {/* {serie.overview && <p>{serie.overview}</p>} */}
+                <ActionButtons className="action-buttons">
+                  <IconContainer>
+                    <Image
+                      src={IconPlus}
+                      alt="Icon Plus"
+                      width={25}
+                      height={15}
+                    />
+                  </IconContainer>
+
+                  <IconContainer>
+                    <Image
+                      className="arrow-down-icon"
+                      src={ArrowIcon}
+                      alt="Arrow Icon"
+                      width={25}
+                      height={15}
+                    />
+                  </IconContainer>
+                </ActionButtons>
               </OverviewWrapper>
             </TrendingItem>
           ))}
