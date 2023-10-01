@@ -9,7 +9,7 @@ import {
   StyledLinkExtended,
 } from "./EmailBar.styled";
 
-import ArrowRightIcon from "../../../assets/icons/ArrowRightIcon";
+import ArrowRightIcon from "../../../assets/icons/arrowIcon/ArrowRightIcon";
 
 function EmailBar() {
   const [email, setEmail] = useState("");

@@ -12,7 +12,7 @@ import {
   StyledLink,
 } from "./RichBanner.styled";
 import PopCorn from "../../assets/pop-corn.png";
-import ArrowRightIcon from "../../assets/icons/ArrowRightIcon";
+import ArrowRightIcon from "../../assets/icons/arrowIcon/ArrowRightIcon";
 
 const RichBanner = () => {
   return (

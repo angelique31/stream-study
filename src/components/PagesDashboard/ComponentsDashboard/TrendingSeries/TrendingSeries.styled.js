@@ -51,7 +51,6 @@ export const IconContainer = styled.div`
   border: 2px solid white;
   margin: 5px;
   position: relative;
-  overflow: hidden; // Pour garantir que l'icône ne déborde pas du cercle
   .arrow-down-icon {
     transform: rotate(90deg);
   }
@@ -114,5 +113,37 @@ ${TrendingItem}:focus & {
     background-color: #181818;
     color: white;
     border-radius: 0 0 5px 5px;
+  }
+`;
+
+export const TooltipWrapper = styled.div`
+  position: relative;
+  display: inline-block; // or flex depending on your needs
+`;
+
+export const Tooltip = styled.div`
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e6e6e6;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+`;
+
+export const ScrollContainer = styled.div`
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  width: 1040px; // Largeur pour afficher environ 4 images
+  scroll-behavior: smooth;
+
+  ${TrendingList} {
+    transform: translateX(${(props) => -props.scrollPosition}px);
   }
 `;
