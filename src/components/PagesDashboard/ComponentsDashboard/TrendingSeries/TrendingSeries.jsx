@@ -43,15 +43,50 @@ function TrendingSeries({ series }) {
 
   // Caroussel pour le défilement des images horizontalement
   const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScrollLeft = () => {
-    // Modifier cette valeur si nécessaire pour ajuster le défilement
-    const widthToScroll = 260; // Largeur approximative d'une image plus les marges/gaps
-    setScrollPosition(scrollPosition - widthToScroll);
-  };
+
+  //gérer l'arrêt du défilemnt a la dernière image
+  const [showLeftArrow, setShowLeftArrow] = useState(true);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  // const handleScrollRight = () => {
+  //   const widthToScroll = 260;
+  //   const totalWidth = series.length * widthToScroll;
+
+  //   if (scrollPosition + widthToScroll >= totalWidth - widthToScroll * 4) {
+  //     // Ajustement ici pour 4 images à la fois
+  //     setShowRightArrow(false); // Cache la flèche de droite
+  //   } else {
+  //     setScrollPosition(scrollPosition + widthToScroll);
+  //     setShowLeftArrow(true); // Assurez-vous que la flèche de gauche est visible
+  //   }
+  // };
 
   const handleScrollRight = () => {
-    const widthToScroll = 260;
-    setScrollPosition(scrollPosition + widthToScroll);
+    const widthToScroll = 266;
+    const totalWidth = series.length * widthToScroll;
+
+    if (scrollPosition + 2 * widthToScroll >= totalWidth - widthToScroll * 3) {
+      // Ajustement ici
+      // Ajustez la position de défilement pour que les 4 dernières images soient entièrement visibles
+      setScrollPosition(totalWidth - widthToScroll * 4);
+      setShowRightArrow(false); // Cache la flèche de droite
+    } else {
+      setScrollPosition(scrollPosition + widthToScroll);
+      setShowLeftArrow(true); // Assurez-vous que la flèche de gauche est visible
+    }
+  };
+
+  const handleScrollLeft = () => {
+    const widthToScroll = 266;
+
+    if (scrollPosition - widthToScroll <= 0) {
+      // Si le défilement à gauche nous ramène au début
+      setScrollPosition(0); // Réinitialisez la position de défilement à 0
+      setShowLeftArrow(false); // Cachez la flèche de gauche
+    } else {
+      setScrollPosition(scrollPosition - widthToScroll);
+      setShowRightArrow(true); // Assurez-vous que la flèche de droite est visible
+    }
   };
 
   return (
@@ -65,9 +100,15 @@ function TrendingSeries({ series }) {
         />
       )}
       <TrendingWrapper>
-        <div onClick={handleScrollLeft}>
+        {/* <div onClick={handleScrollLeft}>
           <ArrowLeftIcon color="red" size="40" />
-        </div>
+        </div> */}
+
+        {showLeftArrow && (
+          <div onClick={handleScrollLeft}>
+            <ArrowLeftIcon color="red" size="40" />
+          </div>
+        )}
 
         <ScrollContainer scrollPosition={scrollPosition}>
           <TrendingList>
@@ -135,9 +176,15 @@ function TrendingSeries({ series }) {
             ))}
           </TrendingList>
         </ScrollContainer>
-        <div onClick={handleScrollRight}>
+        {/* <div onClick={handleScrollRight}>
           <ArrowRightIcon color="red" size="40" />
-        </div>
+        </div> */}
+
+        {showRightArrow && (
+          <div onClick={handleScrollRight}>
+            <ArrowRightIcon color="red" size="40" />
+          </div>
+        )}
       </TrendingWrapper>
     </TrendingContainer>
   );
