@@ -21,13 +21,22 @@ export const TrendingItem = styled.li`
   transition: transform 0.3s ease;
   overflow: hidden;
   width: 250px;
-  min-height: 150px;
+
+  min-height: calc(150px + 70px);
+  position: relative;
   &:hover {
     transform: scale(1.05);
   }
 
   &:hover .action-buttons {
     opacity: 1;
+  }
+`;
+
+export const TrendingContent = styled.div`
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
   }
 `;
 
@@ -83,8 +92,6 @@ export const TitleOverlay = styled.p`
 `;
 
 export const ImageWrapper = styled.div`
-  // width: 50%;
-  // height: 300px;
   position: relative;
 
   .cover {
@@ -93,32 +100,28 @@ export const ImageWrapper = styled.div`
 `;
 
 export const OverviewWrapper = styled.div`
-  opacity: 0; // caché par défaut
-  transition: opacity 0.3s ease;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-
-  // ${TrendingItem}:hover & {
-  //   opacity: 1;
-
-  // }
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  width: 250px;
+  background-color: #181818;
+  color: white;
+  border-radius: 0 0 5px 5px;
+  visibility: hidden; // caché par défaut
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 
   ${TrendingItem}:hover &,
-${TrendingItem}:focus & {
+  ${TrendingItem}:focus & {
+    visibility: visible;
     opacity: 1;
-    max-height: 300px;
-    height: 70px;
-    width: 250px;
-    background-color: #181818;
-    color: white;
-    border-radius: 0 0 5px 5px;
   }
 `;
 
 export const TooltipWrapper = styled.div`
   position: relative;
-  display: inline-block; // or flex depending on your needs
+  display: inline-block;
 `;
 
 export const Tooltip = styled.div`

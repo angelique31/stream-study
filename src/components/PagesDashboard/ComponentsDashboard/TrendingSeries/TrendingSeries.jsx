@@ -48,19 +48,6 @@ function TrendingSeries({ series }) {
   const [showLeftArrow, setShowLeftArrow] = useState(true);
   const [showRightArrow, setShowRightArrow] = useState(true);
 
-  // const handleScrollRight = () => {
-  //   const widthToScroll = 260;
-  //   const totalWidth = series.length * widthToScroll;
-
-  //   if (scrollPosition + widthToScroll >= totalWidth - widthToScroll * 4) {
-  //     // Ajustement ici pour 4 images à la fois
-  //     setShowRightArrow(false); // Cache la flèche de droite
-  //   } else {
-  //     setScrollPosition(scrollPosition + widthToScroll);
-  //     setShowLeftArrow(true); // Assurez-vous que la flèche de gauche est visible
-  //   }
-  // };
-
   const handleScrollRight = () => {
     const widthToScroll = 266;
     const totalWidth = series.length * widthToScroll;
@@ -89,6 +76,16 @@ function TrendingSeries({ series }) {
     }
   };
 
+  //apparition des flèches au survol sur l'image
+  const [showArrows, setShowArrows] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowArrows(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowArrows(false);
+  };
   return (
     <TrendingContainer>
       <h2>Tendances de la semaine (Séries)</h2>
@@ -100,10 +97,6 @@ function TrendingSeries({ series }) {
         />
       )}
       <TrendingWrapper>
-        {/* <div onClick={handleScrollLeft}>
-          <ArrowLeftIcon color="red" size="40" />
-        </div> */}
-
         {showLeftArrow && (
           <div onClick={handleScrollLeft}>
             <ArrowLeftIcon color="red" size="40" />
@@ -148,8 +141,8 @@ function TrendingSeries({ series }) {
                         <Image
                           src={IconPlus}
                           alt="Icon Plus"
-                          width={25}
-                          height={15}
+                          width={20}
+                          height={20}
                           onMouseEnter={() => {
                             setShowTooltip(true);
                           }}
@@ -157,6 +150,7 @@ function TrendingSeries({ series }) {
                             setShowTooltip(false);
                           }}
                         />
+
                         {showTooltip && <Tooltip>Ajouter à ma liste</Tooltip>}
                       </TooltipWrapper>
                     </IconContainer>
@@ -176,9 +170,6 @@ function TrendingSeries({ series }) {
             ))}
           </TrendingList>
         </ScrollContainer>
-        {/* <div onClick={handleScrollRight}>
-          <ArrowRightIcon color="red" size="40" />
-        </div> */}
 
         {showRightArrow && (
           <div onClick={handleScrollRight}>

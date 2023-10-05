@@ -31,7 +31,7 @@ export const Overview = styled.p`
   background-color: black;
   color: white;
   height: auto;
-  padding: 20px;
+  padding: 20px 30px;
 `;
 
 export const ModalCloseButton = styled.button`
