@@ -1,8 +1,24 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  showTooltip,
+  hideTooltip,
+  showInfosTooltip,
+  hideInfosTooltip,
+} from "../../../../store/actions/tooltipActions";
+import { openModal, closeModal } from "../../../../store/actions/modalActions";
+import {
+  setScrollPosition,
+  toggleLeftArrow,
+  toggleRightArrow,
+} from "../../../../store/actions/carousselActions";
+
 import {
   TrendingContainer,
+  ArrowContainer,
   TrendingWrapper,
+  Arrow,
   TrendingList,
   TrendingItem,
   ActionButtons,
@@ -25,41 +41,44 @@ import ArrowLeftIcon from "@/assets/icons/arrowIcon/arrowLeftIcon";
 import ArrowRightIcon from "@/assets/icons/arrowIcon/ArrowRightIcon";
 
 function TrendingSeries({ series }) {
-  const [showTooltip, setShowTooltip] = useState(false);
+  const dispatch = useDispatch();
+
+  //tooltip
+  const { tooltipVisible, infosTooltipVisible } = useSelector(
+    (state) => state.tooltip
+  );
+  // const [infosTooltipVisible, setInfosTooltipVisible] = useState(false);
+
   //modale video
-  const [showModal, setShowModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
-  const [currentOverview, setCurrentOverview] = useState("");
+  const { showModal, currentVideo, currentOverview } = useSelector(
+    (state) => state.modal
+  );
 
   const handleOpenModal = (videoId, overview) => {
-    setCurrentVideo(videoId);
-    setCurrentOverview(overview);
-    setShowModal(true);
+    dispatch(openModal(videoId, overview));
   };
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    dispatch(closeModal());
   };
 
   // Caroussel pour le défilement des images horizontalement
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  //gérer l'arrêt du défilemnt a la dernière image
-  const [showLeftArrow, setShowLeftArrow] = useState(true);
-  const [showRightArrow, setShowRightArrow] = useState(true);
+  const { scrollPosition, showLeftArrow, showRightArrow } = useSelector(
+    (state) => state.caroussel
+  );
 
   const handleScrollRight = () => {
     const widthToScroll = 266;
     const totalWidth = series.length * widthToScroll;
 
     if (scrollPosition + 2 * widthToScroll >= totalWidth - widthToScroll * 3) {
-      // Ajustement ici
-      // Ajustez la position de défilement pour que les 4 dernières images soient entièrement visibles
-      setScrollPosition(totalWidth - widthToScroll * 4);
-      setShowRightArrow(false); // Cache la flèche de droite
+      const newPosition = totalWidth - widthToScroll * 4;
+      dispatch(setScrollPosition(newPosition));
+      dispatch(toggleRightArrow(false)); // Cache la flèche de droite
     } else {
-      setScrollPosition(scrollPosition + widthToScroll);
-      setShowLeftArrow(true); // Assurez-vous que la flèche de gauche est visible
+      const newPosition = scrollPosition + widthToScroll;
+      dispatch(setScrollPosition(newPosition));
+      dispatch(toggleLeftArrow(true)); // Montre la flèche de gauche
     }
   };
 
@@ -67,12 +86,12 @@ function TrendingSeries({ series }) {
     const widthToScroll = 266;
 
     if (scrollPosition - widthToScroll <= 0) {
-      // Si le défilement à gauche nous ramène au début
-      setScrollPosition(0); // Réinitialisez la position de défilement à 0
-      setShowLeftArrow(false); // Cachez la flèche de gauche
+      dispatch(setScrollPosition(0));
+      dispatch(toggleLeftArrow(false)); // Cache la flèche de gauche
     } else {
-      setScrollPosition(scrollPosition - widthToScroll);
-      setShowRightArrow(true); // Assurez-vous que la flèche de droite est visible
+      const newPosition = scrollPosition - widthToScroll;
+      dispatch(setScrollPosition(newPosition));
+      dispatch(toggleRightArrow(true)); // Montre la flèche de droite
     }
   };
 
@@ -87,7 +106,10 @@ function TrendingSeries({ series }) {
     setShowArrows(false);
   };
   return (
-    <TrendingContainer>
+    <TrendingContainer
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <h2>Tendances de la semaine (Séries)</h2>
       {showModal && (
         <ModalVideo
@@ -96,87 +118,108 @@ function TrendingSeries({ series }) {
           onClose={handleCloseModal}
         />
       )}
-      <TrendingWrapper>
-        {showLeftArrow && (
-          <div onClick={handleScrollLeft}>
-            <ArrowLeftIcon color="red" size="40" />
-          </div>
-        )}
-
-        <ScrollContainer scrollPosition={scrollPosition}>
-          <TrendingList>
-            {series.map((serie) => (
-              <TrendingItem
-                key={serie.id}
-                onClick={() => handleOpenModal(serie.video, serie.overview)}
+      <ArrowContainer>
+        <TrendingWrapper>
+          {showArrows && showLeftArrow && (
+            <div onClick={handleScrollLeft}>
+              <Arrow
+                left
+                visible={showArrows && showLeftArrow}
+                onClick={handleScrollLeft}
               >
-                <ImageWrapper>
-                  {serie.poster_path && (
-                    <Image
-                      className="cover"
-                      src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
-                      alt={serie.name}
-                      width={250}
-                      height={150}
-                    />
-                  )}
-                  <TitleOverlay>{serie.name}</TitleOverlay>
-                </ImageWrapper>
+                <ArrowLeftIcon color="red" size="40" />
+              </Arrow>
+            </div>
+          )}
 
-                <VideoWrapper>
-                  {serie.video && (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${serie.video}`}
-                      title={`Vidéo de ${serie.name}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  )}
-                </VideoWrapper>
-
-                <OverviewWrapper>
-                  <ActionButtons className="action-buttons">
-                    <IconContainer>
-                      <TooltipWrapper>
-                        <Image
-                          src={IconPlus}
-                          alt="Icon Plus"
-                          width={20}
-                          height={20}
-                          onMouseEnter={() => {
-                            setShowTooltip(true);
-                          }}
-                          onMouseLeave={() => {
-                            setShowTooltip(false);
-                          }}
-                        />
-
-                        {showTooltip && <Tooltip>Ajouter à ma liste</Tooltip>}
-                      </TooltipWrapper>
-                    </IconContainer>
-
-                    <IconContainer>
+          <ScrollContainer scrollPosition={scrollPosition}>
+            <TrendingList>
+              {series.map((serie) => (
+                <TrendingItem
+                  key={serie.id}
+                  onClick={() => handleOpenModal(serie.video, serie.overview)}
+                >
+                  <ImageWrapper>
+                    {serie.poster_path && (
                       <Image
-                        className="arrow-down-icon"
-                        src={ArrowIcon}
-                        alt="Arrow Icon"
-                        width={25}
-                        height={15}
+                        className="cover"
+                        src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
+                        alt={serie.name}
+                        width={250}
+                        height={150}
                       />
-                    </IconContainer>
-                  </ActionButtons>
-                </OverviewWrapper>
-              </TrendingItem>
-            ))}
-          </TrendingList>
-        </ScrollContainer>
+                    )}
+                    <TitleOverlay>{serie.name}</TitleOverlay>
+                  </ImageWrapper>
 
-        {showRightArrow && (
-          <div onClick={handleScrollRight}>
-            <ArrowRightIcon color="red" size="40" />
-          </div>
-        )}
-      </TrendingWrapper>
+                  <VideoWrapper>
+                    {serie.video && (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${serie.video}`}
+                        title={`Vidéo de ${serie.name}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    )}
+                  </VideoWrapper>
+
+                  <OverviewWrapper>
+                    <ActionButtons className="action-buttons">
+                      <IconContainer>
+                        <TooltipWrapper>
+                          <Image
+                            src={IconPlus}
+                            alt="Icon Plus"
+                            width={20}
+                            height={20}
+                            onMouseEnter={() => {
+                              dispatch(showTooltip());
+                            }}
+                            onMouseLeave={() => {
+                              dispatch(hideTooltip());
+                            }}
+                          />
+
+                          {tooltipVisible && (
+                            <Tooltip>Ajouter à ma liste</Tooltip>
+                          )}
+                        </TooltipWrapper>
+                      </IconContainer>
+
+                      <IconContainer>
+                        <Image
+                          className="arrow-down-icon"
+                          src={ArrowIcon}
+                          alt="Arrow Icon"
+                          width={25}
+                          height={15}
+                          onMouseEnter={() => dispatch(showInfosTooltip())}
+                          onMouseLeave={() => dispatch(hideInfosTooltip())}
+                        />
+                        {infosTooltipVisible && (
+                          <Tooltip>{`Plus d'infos`}</Tooltip>
+                        )}
+                      </IconContainer>
+                    </ActionButtons>
+                  </OverviewWrapper>
+                </TrendingItem>
+              ))}
+            </TrendingList>
+          </ScrollContainer>
+
+          {showArrows && showRightArrow && (
+            <div onClick={handleScrollRight}>
+              <Arrow
+                right
+                visible={showArrows && showRightArrow}
+                onClick={handleScrollRight}
+              >
+                <ArrowRightIcon color="red" size="40" />
+              </Arrow>
+            </div>
+          )}
+        </TrendingWrapper>
+      </ArrowContainer>
     </TrendingContainer>
   );
 }

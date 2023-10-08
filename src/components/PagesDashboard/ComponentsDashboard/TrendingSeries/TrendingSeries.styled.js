@@ -2,10 +2,29 @@ import styled from "styled-components";
 
 export const TrendingContainer = styled.div``;
 
+export const ArrowContainer = styled.div`
+  position: relative;
+  max-width: 1200px; // ou toute autre largeur qui vous convient
+  margin: auto;
+`;
+
 export const TrendingWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 20px;
+  position: relative;
+`;
+
+export const Arrow = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2; // pour s'assurer qu'il apparaît au-dessus des autres éléments
+  left: ${(props) => (props.left ? "0" : "auto")};
+  right: ${(props) => (props.right ? "0" : "auto")};
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  transition: opacity 0.3s ease-in-out;
 `;
 
 export const TrendingList = styled.ul`
@@ -126,7 +145,7 @@ export const TooltipWrapper = styled.div`
 
 export const Tooltip = styled.div`
   position: absolute;
-  top: -25px;
+  top: -40px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #e6e6e6;
@@ -137,6 +156,20 @@ export const Tooltip = styled.div`
   white-space: nowrap;
   z-index: 10;
   pointer-events: none;
+
+  /* Ajout du triangle */
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -5px; /* Position du triangle */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #e6e6e6;
+  }
 `;
 
 export const ScrollContainer = styled.div`
