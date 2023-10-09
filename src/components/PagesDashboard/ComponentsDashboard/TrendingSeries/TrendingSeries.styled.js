@@ -117,7 +117,7 @@ export const TitleOverlay = styled.p`
 
 export const ImageWrapper = styled.div`
   position: relative;
-
+  width: 100%;
   .cover {
     object-fit: cover;
   }
@@ -183,6 +183,9 @@ export const ScrollContainer = styled.div`
   display: flex;
   width: 1040px; // Largeur pour afficher environ 4 images
   scroll-behavior: smooth;
+  @media (max-width: 800px) {
+    width: 700px;
+  }
 
   ${TrendingList} {
     transform: translateX(${(props) => -props.scrollPosition}px);
