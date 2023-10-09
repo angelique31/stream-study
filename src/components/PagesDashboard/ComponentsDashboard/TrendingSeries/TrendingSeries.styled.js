@@ -47,12 +47,7 @@ export const TrendingItem = styled.li`
   @media (max-width: 800px) {
     width: 150px;
   }
-  @media (max-width: 600px) {
-    width: 100px;
-  }
-  @media (max-width: 450px) {
-    width: 80px;
-  }
+
   &:hover {
     transform: scale(1.05);
   }
