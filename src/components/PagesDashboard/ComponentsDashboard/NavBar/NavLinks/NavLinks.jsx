@@ -2,10 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { NavContainer, StyledLink } from "./NavLinks.styled";
 
-function NavLinks() {
+function NavLinks({ isOpen }) {
   return (
     <>
-      <NavContainer>
+      <NavContainer $isOpen={isOpen}>
         <Link href="/dashboard/home" passHref>
           <StyledLink>Accueil</StyledLink>
         </Link>
