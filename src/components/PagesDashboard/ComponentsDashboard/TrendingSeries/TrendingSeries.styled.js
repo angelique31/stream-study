@@ -44,9 +44,9 @@ export const TrendingItem = styled.li`
   min-height: calc(150px + 70px);
   position: relative;
 
-  @media (max-width: 800px) {
-    width: 150px;
-  }
+  // @media (max-width: 800px) {
+  //   width: 150px;
+  // }
 
   &:hover {
     transform: scale(1.05);
