@@ -107,7 +107,8 @@ function TrendingSeries({ series }) {
   const handleMouseLeave = () => {
     setShowArrows(false);
   };
-  //déplacer les images avec le doigt
+
+  //faire défiler  les images avec le doigt
   const handleSwipeLeft = () => {
     handleScrollRight();
   };

@@ -1,8 +1,8 @@
 import { loadHomePageData } from "@/lib/dataFetchers";
 import Movies from "@/components/PagesDashboard/Movies/Movies";
-import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks.styled";
+import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks.styled";
 import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
-import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks";
+import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks";
 
 function movies({ popularMovies }) {
   return (

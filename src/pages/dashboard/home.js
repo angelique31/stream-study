@@ -1,8 +1,9 @@
 import { loadHomePageData } from "@/lib/dataFetchers";
-import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks";
+import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks";
 import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
-import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks.styled";
+import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks.styled";
 import TrendingSeries from "@/components/PagesDashboard/ComponentsDashboard/TrendingSeries/TrendingSeries";
+import SearchInput from "@/components/PagesDashboard/ComponentsDashboard/NavBar/SearchInput/SearchInput";
 
 function home({ trendingSeries }) {
   return (
@@ -10,6 +11,7 @@ function home({ trendingSeries }) {
       <NavWrapper>
         <LogoLink />
         <NavLinks />
+        <SearchInput />
       </NavWrapper>
 
       <div>
@@ -21,9 +23,6 @@ function home({ trendingSeries }) {
 }
 export async function getServerSideProps() {
   const data = await loadHomePageData();
-
-  // Ici, vous pouvez ajouter un log pour inspecter la structure des données
-  console.log(data);
 
   return {
     props: data,

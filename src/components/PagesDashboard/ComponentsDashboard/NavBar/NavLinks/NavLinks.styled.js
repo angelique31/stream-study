@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const NavWrapper = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 export const NavContainer = styled.nav`

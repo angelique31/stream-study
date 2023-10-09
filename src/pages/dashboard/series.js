@@ -3,8 +3,8 @@
 import { loadHomePageData } from "@/lib/dataFetchers";
 import Series from "@/components/PagesDashboard/Series/Series";
 import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
-import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks";
-import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks.styled";
+import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks";
+import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks.styled";
 
 function series({ popularSeries }) {
   return (

@@ -17,6 +17,7 @@ const SwipeableContainer = ({ children, onSwipeLeft, onSwipeRight }) => {
 
   const handleTouchStart = (e) => {
     setStartX(e.touches[0].clientX);
+    console.log("Touch Start:", e.touches[0].clientX);
   };
 
   const handleTouchEnd = (e) => {
