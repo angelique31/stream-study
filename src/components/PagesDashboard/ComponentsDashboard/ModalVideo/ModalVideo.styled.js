@@ -19,6 +19,12 @@ export const ModalContainer = styled.div`
   height: 600px;
   margin-top: 20px;
   border-radius: 10px;
+  @media (max-width: 1100px) {
+    width: 70%;
+  }
+  @media (max-width: 700px) {
+    width: 90%;
+  }
 `;
 
 export const VideoFrame = styled.iframe`

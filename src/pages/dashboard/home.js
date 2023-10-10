@@ -21,9 +21,6 @@ function home({ trendingSeries }) {
         </MenuAndSearchWrapper>
       </NavWrapper>
 
-      <div>
-        <h1>Bienvenue sur le site</h1>
-      </div>
       <TrendingSeries series={trendingSeries} />
     </>
   );
