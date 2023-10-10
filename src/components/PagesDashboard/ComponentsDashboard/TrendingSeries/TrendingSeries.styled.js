@@ -44,9 +44,9 @@ export const TrendingItem = styled.li`
   min-height: calc(150px + 70px);
   position: relative;
 
-  @media (max-width: 800px) {
-    width: 200px;
-  }
+  // @media (max-width: 530px) {
+  //   width: calc(50%);
+  // }
 
   &:hover {
     transform: scale(1.05);
@@ -184,14 +184,14 @@ export const ScrollContainer = styled.div`
   width: 1040px; // Largeur pour afficher environ 4 images
   scroll-behavior: smooth;
 
-  @media (max-width: 800px) {
-    width: 520px; // Largeur pour afficher environ 2 images
+  @media (max-width: 1100px) {
+    width: 796px;
   }
-  // @media (max-width: 500px) {
-  //   width: 360px;
-  // }
-  @media (max-width: 500px) {
-    width: 360px;
+  @media (max-width: 800px) {
+    width: 531px;
+  }
+  @media (max-width: 530px) {
+    width: 456px;
   }
 
   ${TrendingList} {
