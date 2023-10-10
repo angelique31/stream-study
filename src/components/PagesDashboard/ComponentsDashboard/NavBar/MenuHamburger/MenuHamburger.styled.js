@@ -52,7 +52,7 @@ export const StyledHamburger = styled.button`
     transform: translate(0) rotate(-135deg);
   }
 `}
-  @media (min-width: 1010px) {
+  @media (min-width: 1071px) {
     display: none;
   }
 `;

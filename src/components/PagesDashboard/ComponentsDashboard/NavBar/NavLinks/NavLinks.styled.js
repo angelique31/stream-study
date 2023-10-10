@@ -4,6 +4,9 @@ export const NavWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  @media (max-width: 684px) {
+    flex-direction: column;
+  }
 `;
 
 export const NavContainer = styled.nav`
@@ -11,7 +14,7 @@ export const NavContainer = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 1009px) {
+  @media (max-width: 1071px) {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -42,4 +45,10 @@ export const StyledLink = styled.div`
   &:hover {
     color: #e50914;
   }
+`;
+
+//div qui est dans /pages/dashboard/home.js :
+export const MenuAndSearchWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;

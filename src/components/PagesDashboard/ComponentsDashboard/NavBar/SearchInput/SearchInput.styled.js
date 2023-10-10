@@ -34,4 +34,6 @@ export const IconWrapper = styled.div`
   width: 22px;
   height: 22px;
   cursor: pointer;
+  @media (max-width: 650px) {
+  }
 `;
