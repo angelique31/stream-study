@@ -41,6 +41,7 @@ import ArrowIcon from "../../../../assets/icons/arrowIcon/arrowIcon.svg";
 
 import ArrowLeftIcon from "@/assets/icons/arrowIcon/arrowLeftIcon";
 import ArrowRightIcon from "@/assets/icons/arrowIcon/ArrowRightIcon";
+import BackgroundVideo from "../BackgroundVideo/BackgroundVideo";
 
 function TrendingSeries({ series }) {
   const dispatch = useDispatch();
@@ -121,6 +122,7 @@ function TrendingSeries({ series }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      <BackgroundVideo />
       <h2>Tendances de la semaine (Séries)</h2>
       {showModal && (
         <ModalVideo

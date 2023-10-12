@@ -35,8 +35,6 @@ const DownloadSeries = () => {
                 <Image
                   src={MobilePicture}
                   alt="picture mobile"
-                  // width={450}
-                  // height={350}
                   layout="responsive"
                   objectFit="cover"
                 />
@@ -46,8 +44,6 @@ const DownloadSeries = () => {
                   <Image
                     src={BoxShot}
                     alt="picture strange things"
-                    // width={60}
-                    // height={80}
                     layout="responsive"
                     objectFit="cover"
                   />
