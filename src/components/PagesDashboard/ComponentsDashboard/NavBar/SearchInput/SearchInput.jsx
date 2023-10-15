@@ -42,7 +42,7 @@ const SearchInput = () => {
           <IconWrapper className="icon-wrapper" onClick={handleSearchIconClick}>
             <Image
               src={MagnifyingGlass}
-              alt="picture strange things"
+              alt="magnifyingGlass"
               layout="responsive"
               objectFit="cover"
             />

@@ -4,6 +4,8 @@ export const NavWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: fixed;
+  top: 0;
   @media (max-width: 684px) {
     flex-direction: column;
   }
@@ -38,7 +40,7 @@ export const NavContainer = styled.nav`
 
 export const StyledLink = styled.div`
   margin: 0 1rem;
-  color: black;
+  color: white;
   text-decoration: none;
   transition: color 0.3s;
 

@@ -1,6 +1,18 @@
 import styled from "styled-components";
 
-export const TrendingContainer = styled.div``;
+export const TrendingContainer = styled.div`
+  margin-top: 40vh;
+`;
+
+export const TitleContainer = styled.div`
+  margin-bottom: 100px;
+  margin-left: 100px;
+`;
+
+export const SeriesTitle = styled.h2`
+  color: white;
+  margin-left: 100px;
+`;
 
 export const ArrowContainer = styled.div`
   position: relative;
@@ -101,6 +113,13 @@ export const VideoWrapper = styled.div`
   ${TrendingItem}:hover & {
     opacity: 1;
   }
+`;
+
+export const VideoTitle = styled.h1`
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  width: 540px;
 `;
 
 export const TitleOverlay = styled.p`
