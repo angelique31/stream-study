@@ -1,12 +1,7 @@
 import styled from "styled-components";
 
 export const TrendingContainer = styled.div`
-  margin-top: 40vh;
-`;
-
-export const TitleContainer = styled.div`
-  margin-bottom: 100px;
-  margin-left: 100px;
+  background-color: #1d1b1b;
 `;
 
 export const SeriesTitle = styled.h2`
@@ -16,8 +11,9 @@ export const SeriesTitle = styled.h2`
 
 export const ArrowContainer = styled.div`
   position: relative;
-  max-width: 1200px; // ou toute autre largeur qui vous convient
   margin: auto;
+
+  padding-bottom: 20px;
 `;
 
 export const TrendingWrapper = styled.div`
@@ -113,13 +109,6 @@ export const VideoWrapper = styled.div`
   ${TrendingItem}:hover & {
     opacity: 1;
   }
-`;
-
-export const VideoTitle = styled.h1`
-  color: white;
-  font-size: 3rem;
-  margin-bottom: 30px;
-  width: 540px;
 `;
 
 export const TitleOverlay = styled.p`

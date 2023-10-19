@@ -8,6 +8,7 @@ import {
 import TrendingSeries from "@/components/PagesDashboard/ComponentsDashboard/TrendingSeries/TrendingSeries";
 import SearchInput from "@/components/PagesDashboard/ComponentsDashboard/NavBar/SearchInput/SearchInput";
 import MenuHamburger from "@/components/PagesDashboard/ComponentsDashboard/NavBar/MenuHamburger/MenuHamburger";
+import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 
 function home({ trendingSeries }) {
   return (
@@ -20,7 +21,8 @@ function home({ trendingSeries }) {
           <SearchInput />
         </MenuAndSearchWrapper>
       </NavWrapper>
-
+      <BackgroundVideo />
+      <TrendingSeries series={trendingSeries} />
       <TrendingSeries series={trendingSeries} />
     </>
   );

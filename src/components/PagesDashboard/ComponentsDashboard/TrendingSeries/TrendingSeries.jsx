@@ -18,7 +18,6 @@ import SwipeableContainer from "../../../SwipeableContainer/SwipeableContainer";
 
 import {
   TrendingContainer,
-  TitleContainer,
   SeriesTitle,
   ArrowContainer,
   TrendingWrapper,
@@ -27,7 +26,6 @@ import {
   TrendingItem,
   ActionButtons,
   IconContainer,
-  VideoTitle,
   VideoWrapper,
   TitleOverlay,
   ImageWrapper,
@@ -45,7 +43,6 @@ import ArrowIcon from "../../../../assets/icons/arrowIcon/arrowIcon.svg";
 import ArrowLeftIcon from "@/assets/icons/arrowIcon/arrowLeftIcon";
 import ArrowRightIcon from "@/assets/icons/arrowIcon/ArrowRightIcon";
 import BackgroundVideo from "../BackgroundVideo/BackgroundVideo";
-import InfoButtonComponent from "../InfoButtonComponent/InfoButtonComponent";
 
 function TrendingSeries({ series }) {
   const dispatch = useDispatch();
@@ -126,11 +123,8 @@ function TrendingSeries({ series }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <BackgroundVideo />
-      <TitleContainer>
-        <VideoTitle>{`Plongée dans les profondeurs de l'océan`}</VideoTitle>
-        <InfoButtonComponent />
-      </TitleContainer>
+      {/* <BackgroundVideo /> */}
+
       <SeriesTitle>Tendances de la semaine</SeriesTitle>
       {showModal && (
         <ModalVideo

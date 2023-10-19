@@ -24,7 +24,10 @@ export const StyledInput = styled.input`
     background: white;
     position: relative;
     font-size: 1.2rem;
+    color: white;
     padding-left: 53px;
+    background-color: #1d1b1b;
+    opacity: 0.9;
 }
 `;
 
