@@ -6,9 +6,9 @@ export const NavWrapper = styled.div`
   justify-content: space-around;
   position: fixed;
   top: 0;
-  @media (max-width: 684px) {
-    flex-direction: column;
-  }
+  // @media (max-width: 684px) {
+  //   flex-direction: column;
+  // }
 `;
 
 export const NavContainer = styled.nav`
@@ -29,11 +29,13 @@ export const NavContainer = styled.nav`
     height: 100vh;
     left: -212px; /*pour cacher vers la gauche les li*/
     transition: 0.5s ease-out;
+    display: none;
     ${({ $isOpen }) =>
       $isOpen &&
       `
       left: 0;
       z-index: 2;
+      display: block;
     `}
   }
 `;

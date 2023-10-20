@@ -9,13 +9,15 @@ import TrendingSeries from "@/components/PagesDashboard/ComponentsDashboard/Tren
 import SearchInput from "@/components/PagesDashboard/ComponentsDashboard/NavBar/SearchInput/SearchInput";
 import MenuHamburger from "@/components/PagesDashboard/ComponentsDashboard/NavBar/MenuHamburger/MenuHamburger";
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
+import NavBarContainer from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavBarContainer/NavBarContainer";
 
 function home({ trendingSeries }) {
   return (
     <>
       <NavWrapper>
         <LogoLink />
-        <NavLinks />
+        {/* <NavLinks /> */}
+        <NavBarContainer />
         <MenuAndSearchWrapper>
           <MenuHamburger />
           <SearchInput />
