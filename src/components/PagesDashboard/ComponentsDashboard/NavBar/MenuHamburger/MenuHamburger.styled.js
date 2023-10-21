@@ -17,7 +17,8 @@ export const StyledHamburger = styled.button`
     display: block;
     width: 100%;
     height: 2px;
-    background: black;
+
+    background: white;
     position: absolute;
     pointer-events: none;
     transition: opacity 0.3s 0.15s ease-out;

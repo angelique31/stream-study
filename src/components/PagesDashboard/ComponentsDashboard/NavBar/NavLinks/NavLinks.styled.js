@@ -11,7 +11,7 @@ export const NavWrapper = styled.div`
   // }
 `;
 
-export const NavContainer = styled.nav`
+export const NavContainer = styled.ul`
   padding: 1rem 0;
   display: flex;
   justify-content: center;
@@ -34,9 +34,24 @@ export const NavContainer = styled.nav`
       $isOpen &&
       `
       left: 0;
-      z-index: 2;
+      z-index: 10;
       display: block;
     `}
+  }
+`;
+
+export const StyledNavItem = styled.li`
+  color: white;
+  padding: 15px 0;
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    color: #ffb957;
+    &::after {
+      width: 100%;
+    }
+  }
+  @media (max-width: 1009px) {
   }
 `;
 
@@ -49,6 +64,24 @@ export const StyledLink = styled.div`
   &:hover {
     color: #e50914;
   }
+`;
+
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none; /* Par défaut, il sera caché */
+
+  ${({ $isOpen }) =>
+    $isOpen &&
+    `
+    display: block;
+    
+  `}
 `;
 
 //div qui est dans /pages/dashboard/home.js :

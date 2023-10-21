@@ -8,7 +8,6 @@ function MenuHamburger({ onClick, isOpen }) {
       onClick={onClick}
       aria-label="Toggle navigation"
       aria-expanded={isOpen}
-      // onClick={() => console.log("StyledHamburger a été cliqué!")}
     >
       <span></span>
       <span></span>
