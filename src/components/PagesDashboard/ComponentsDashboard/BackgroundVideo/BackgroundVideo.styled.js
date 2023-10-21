@@ -60,6 +60,9 @@ export const GradientOverlay = styled.div`
 
 export const TitleContainer = styled.div`
   margin: 250px 0 250px 100px;
+  @media (max-width: 670px) {
+    margin: 250px 0 250px 10px;
+  }
 `;
 
 export const VideoTitle = styled.h1`
@@ -67,4 +70,8 @@ export const VideoTitle = styled.h1`
   font-size: 3rem;
   margin-bottom: 30px;
   width: 540px;
+  @media (max-width: 670px) {
+    font-size: 2rem;
+    width: 340px;
+  }
 `;

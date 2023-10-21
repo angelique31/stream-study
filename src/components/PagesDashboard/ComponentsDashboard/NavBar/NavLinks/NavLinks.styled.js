@@ -34,7 +34,7 @@ export const NavContainer = styled.ul`
       $isOpen &&
       `
       left: 0;
-      z-index: 2;
+      z-index: 20;
       
     `}
   }
