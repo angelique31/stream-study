@@ -7,7 +7,7 @@ import {
 } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks.styled";
 import TrendingSeries from "@/components/PagesDashboard/ComponentsDashboard/TrendingSeries/TrendingSeries";
 import SearchInput from "@/components/PagesDashboard/ComponentsDashboard/NavBar/SearchInput/SearchInput";
-import MenuHamburger from "@/components/PagesDashboard/ComponentsDashboard/NavBar/MenuHamburger/MenuHamburger";
+
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 import NavBarContainer from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavBarContainer/NavBarContainer";
 
@@ -15,11 +15,10 @@ function home({ trendingSeries }) {
   return (
     <>
       <NavWrapper>
-        <LogoLink />
-        {/* <NavLinks /> */}
+        {/* <LogoLink /> */}
+
         <NavBarContainer />
         <MenuAndSearchWrapper>
-          <MenuHamburger />
           <SearchInput />
         </MenuAndSearchWrapper>
       </NavWrapper>

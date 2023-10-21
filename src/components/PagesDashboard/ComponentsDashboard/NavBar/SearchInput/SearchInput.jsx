@@ -32,7 +32,7 @@ const SearchInput = () => {
       <StyledForm onSubmit={handleSubmit}>
         <SearchInputWrapper>
           <StyledInput
-            visible={isSearchOpen}
+            $visible={isSearchOpen}
             type="search"
             id="search_input"
             placeholder="Titres, personnes, genres..."

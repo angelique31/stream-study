@@ -150,7 +150,7 @@ function TrendingSeries({ series }) {
             onSwipeLeft={handleSwipeLeft}
             onSwipeRight={handleSwipeRight}
           >
-            <ScrollContainer scrollPosition={scrollPosition}>
+            <ScrollContainer $scrollPosition={scrollPosition}>
               <TrendingList>
                 {series.map((serie) => (
                   <TrendingItem

@@ -7,7 +7,7 @@ function IconInfo() {
       width="24"
       height="24"
       fill="none"
-      ariaHidden="true"
+      aria-hidden="true"
       className="ltr-4z3qvp e1svuwfo1"
       data-name="CircleI"
       viewBox="0 0 24 24"

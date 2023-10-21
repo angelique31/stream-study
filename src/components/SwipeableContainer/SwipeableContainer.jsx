@@ -13,7 +13,6 @@ import { useState } from "react";
  * @returns {JSX.Element} A div element which wraps the child elements and provides swipe functionality.
  */
 const SwipeableContainer = ({ children, onSwipeLeft, onSwipeRight }) => {
-  console.log("SwipeableContainer monté");
   const [startX, setStartX] = useState(0);
 
   const handleTouchStart = (e) => {

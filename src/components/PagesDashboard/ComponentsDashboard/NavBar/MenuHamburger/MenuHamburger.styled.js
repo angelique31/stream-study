@@ -17,7 +17,6 @@ export const StyledHamburger = styled.button`
     display: block;
     width: 100%;
     height: 2px;
-
     background: white;
     position: absolute;
     pointer-events: none;
@@ -53,7 +52,7 @@ export const StyledHamburger = styled.button`
     transform: translate(0) rotate(-135deg);
   }
 `}
-  @media (min-width: 1071px) {
+  @media (min-width: 1070px) {
     display: none;
   }
 `;

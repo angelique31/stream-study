@@ -23,19 +23,19 @@ export const NavContainer = styled.ul`
     gap: 33px;
     position: absolute;
     top: 100%;
-    background: #313552;
+    background: #1d1b1b;
     padding: 200px 22px 15px 20px;
     border-right: 1px solid #c5c5c6;
     height: 100vh;
     left: -212px; /*pour cacher vers la gauche les li*/
     transition: 0.5s ease-out;
-    display: none;
+
     ${({ $isOpen }) =>
       $isOpen &&
       `
       left: 0;
-      z-index: 10;
-      display: block;
+      z-index: 2;
+      
     `}
   }
 `;

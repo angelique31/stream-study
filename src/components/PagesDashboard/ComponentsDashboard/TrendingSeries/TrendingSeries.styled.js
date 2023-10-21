@@ -198,9 +198,6 @@ export const ScrollContainer = styled.div`
   @media (max-width: 800px) {
     width: 531px;
   }
-  // @media (max-width: 530px) {
-  //   width: 456px;
-  // }
   @media (max-width: 530px) {
     width: 250px;
   }

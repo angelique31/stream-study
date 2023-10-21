@@ -13,8 +13,8 @@ export const SearchInputWrapper = styled.div`
 `;
 
 export const StyledInput = styled.input`
-  opacity: ${(props) => (props.visible ? "1" : "0")};
-  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
+  opacity: ${(props) => (props.$visible ? "1" : "0")};
+  visibility: ${(props) => (props.$visible ? "visible" : "hidden")};
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
     width: 100%;
@@ -26,8 +26,12 @@ export const StyledInput = styled.input`
     font-size: 1.2rem;
     color: white;
     padding-left: 53px;
+    
     background-color: #1d1b1b;
     opacity: 0.9;
+    @media (max-width: 1070px) {
+      margin-left: 50px;
+    }
 }
 `;
 
@@ -37,6 +41,7 @@ export const IconWrapper = styled.div`
   width: 22px;
   height: 22px;
   cursor: pointer;
-  @media (max-width: 650px) {
+  @media (max-width: 1070px) {
+    left: 65px;
   }
 `;
