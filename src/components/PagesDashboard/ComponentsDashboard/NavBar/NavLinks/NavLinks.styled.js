@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const NavWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  gap: 100px;
   position: fixed;
   top: 0;
-  // @media (max-width: 684px) {
-  //   flex-direction: column;
-  // }
+  background: black;
+  width: 100%;
+  padding-left: 100px;
 `;
 
 export const NavContainer = styled.ul`
@@ -62,7 +62,7 @@ export const StyledLink = styled.div`
   transition: color 0.3s;
 
   &:hover {
-    color: #e50914;
+    color: #c0c4c8;
   }
 `;
 

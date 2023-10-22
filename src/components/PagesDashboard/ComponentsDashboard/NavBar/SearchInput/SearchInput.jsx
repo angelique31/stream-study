@@ -7,6 +7,8 @@ import {
   StyledForm,
 } from "./SearchInput.styled";
 
+import PlaceholderProvider from "../PlaceholderProvider/PlaceholderProvider";
+
 import MagnifyingGlass from "../../../../../assets/icons/magnifyingGlass.svg";
 
 const SearchInput = () => {
@@ -28,28 +30,36 @@ const SearchInput = () => {
   };
 
   return (
-    <>
-      <StyledForm onSubmit={handleSubmit}>
-        <SearchInputWrapper>
-          <StyledInput
-            $visible={isSearchOpen}
-            type="search"
-            id="search_input"
-            placeholder="Titres, personnes, genres..."
-            value={tempSearchValue}
-            onChange={handleChange}
-          />
-          <IconWrapper className="icon-wrapper" onClick={handleSearchIconClick}>
-            <Image
-              src={MagnifyingGlass}
-              alt="magnifyingGlass"
-              layout="responsive"
-              objectFit="cover"
-            />
-          </IconWrapper>
-        </SearchInputWrapper>
-      </StyledForm>
-    </>
+    <PlaceholderProvider>
+      {({ placeholderText }) => (
+        <>
+          <StyledForm onSubmit={handleSubmit}>
+            <SearchInputWrapper>
+              <StyledInput
+                $visible={isSearchOpen}
+                type="search"
+                id="search_input"
+                placeholder={placeholderText}
+                // placeholder="Titres, personnes, genres..."
+                value={tempSearchValue}
+                onChange={handleChange}
+              />
+              <IconWrapper
+                className="icon-wrapper"
+                onClick={handleSearchIconClick}
+              >
+                <Image
+                  src={MagnifyingGlass}
+                  alt="magnifyingGlass"
+                  layout="responsive"
+                  objectFit="cover"
+                />
+              </IconWrapper>
+            </SearchInputWrapper>
+          </StyledForm>
+        </>
+      )}
+    </PlaceholderProvider>
   );
 };
 

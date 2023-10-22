@@ -1,6 +1,5 @@
 import { loadHomePageData } from "@/lib/dataFetchers";
-import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks";
-import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
+
 import {
   NavWrapper,
   MenuAndSearchWrapper,
@@ -15,8 +14,6 @@ function home({ trendingSeries }) {
   return (
     <>
       <NavWrapper>
-        {/* <LogoLink /> */}
-
         <NavBarContainer />
         <MenuAndSearchWrapper>
           <SearchInput />

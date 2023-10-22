@@ -2,11 +2,18 @@ import styled from "styled-components";
 
 export const TrendingContainer = styled.div`
   background-color: #1d1b1b;
+  @media (max-width: 600px) {
+    padding-top: 60px;
+  }
 `;
 
 export const SeriesTitle = styled.h2`
-  color: white;
+  color: #e5e5e5;
   margin-left: 100px;
+  @media (max-width: 600px) {
+    margin-left: 10px;
+    color: #b8b8b7;
+  }
 `;
 
 export const ArrowContainer = styled.div`

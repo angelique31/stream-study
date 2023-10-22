@@ -40,6 +40,9 @@ export const StyledBackgroundVideo = styled.video`
   left: 0;
   min-width: 100%;
   min-height: 100%;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const GradientOverlay = styled.div`
@@ -62,6 +65,9 @@ export const TitleContainer = styled.div`
   margin: 250px 0 250px 100px;
   @media (max-width: 670px) {
     margin: 250px 0 250px 10px;
+  }
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 
