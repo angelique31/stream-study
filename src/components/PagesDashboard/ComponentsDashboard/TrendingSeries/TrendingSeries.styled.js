@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TrendingContainer = styled.div`
   background-color: #1d1b1b;
   @media (max-width: 600px) {
-    padding-top: 60px;
+    padding-top: 10px;
   }
 `;
 
@@ -11,8 +11,10 @@ export const SeriesTitle = styled.h2`
   color: #e5e5e5;
   margin-left: 100px;
   @media (max-width: 600px) {
-    margin-left: 10px;
+    margin-left: 0px;
     color: #b8b8b7;
+    padding-top: 60px;
+    background-color: black;
   }
 `;
 

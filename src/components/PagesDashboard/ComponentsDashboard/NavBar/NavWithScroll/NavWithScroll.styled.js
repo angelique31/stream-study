@@ -13,6 +13,10 @@ export const NavWrapper = styled.div`
     gap: 20px;
     padding-left: 50px;
   }
+  @media (max-width: 600px) {
+    background-color: black;
+    width: 100%;
+  }
 `;
 
 export const MenuAndSearchWrapper = styled.div`
