@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const TrendingContainer = styled.div`
   background-color: #1d1b1b;
+  opacity: 0.9;
   @media (max-width: 600px) {
     padding-top: 10px;
   }
@@ -61,16 +62,15 @@ export const TrendingItem = styled.li`
   min-height: calc(150px + 70px);
   position: relative;
 
-  // @media (max-width: 530px) {
-  //   width: calc(50%);
-  // }
-
   &:hover {
     transform: scale(1.05);
   }
 
   &:hover .action-buttons {
     opacity: 1;
+  }
+  @media (max-width: 600px) {
+    min-height: 0;
   }
 `;
 
@@ -137,6 +137,7 @@ export const ImageWrapper = styled.div`
   width: 100%;
   .cover {
     object-fit: cover;
+    border-radius: 5px;
   }
 `;
 
@@ -157,6 +158,9 @@ export const OverviewWrapper = styled.div`
   ${TrendingItem}:focus & {
     visibility: visible;
     opacity: 1;
+  }
+  @media (max-width: 600px) {
+    width: 200px;
   }
 `;
 
@@ -199,8 +203,23 @@ export const ScrollContainer = styled.div`
   overflow-y: hidden;
   display: flex;
   width: 1040px; // Largeur pour afficher environ 4 images
+
   scroll-behavior: smooth;
 
+  // Avoir plus d'images pour les écrans de largeur > 1300px :
+  @media (min-width: 1300px) {
+    width: calc(5 * 260px); // 5 images
+  }
+
+  @media (min-width: 1500px) {
+    width: calc(6 * 260px); // 6 images
+  }
+
+  @media (min-width: 1870px) {
+    width: calc(7 * 260px); // 6 images
+  }
+
+  //largeurs d'écran < 100px :
   @media (max-width: 1100px) {
     width: 796px;
   }

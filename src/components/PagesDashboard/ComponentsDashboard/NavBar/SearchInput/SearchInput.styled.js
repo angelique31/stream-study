@@ -32,11 +32,11 @@ export const StyledInput = styled.input`
   @media (max-width: 1070px) {
     margin-left: 50px;
   }
-  @media (max-width: 586px) {
+  @media (max-width: 590px) {
     opacity: 1; // Pour rendre l'input toujours visible
     visibility: visible;
     padding-left: 17px;
-    width: 178px;
+    width: 168px;
   }
   @media (max-width: 470px) {
     width: 140px;

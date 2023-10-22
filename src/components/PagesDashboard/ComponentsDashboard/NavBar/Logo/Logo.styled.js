@@ -19,6 +19,6 @@ export const StyledLink = styled.div`
     font-size: 1.7rem;
   }
   @media (max-width: 420px) {
-    margin-left: 60px;
+    margin-left: 10px;
   }
 `;
