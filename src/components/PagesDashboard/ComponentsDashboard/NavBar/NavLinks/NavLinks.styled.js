@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const NavWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 100px;
-  position: fixed;
-  top: 0;
-  background: black;
-  width: 100%;
-  padding-left: 100px;
-`;
-
 export const NavContainer = styled.ul`
   padding: 1rem 0;
   display: flex;
@@ -82,10 +71,4 @@ export const Overlay = styled.div`
     display: block;
     
   `}
-`;
-
-//div qui est dans /pages/dashboard/home.js :
-export const MenuAndSearchWrapper = styled.div`
-  display: flex;
-  align-items: center;
 `;

@@ -7,6 +7,7 @@ import { LogoContainer } from "./NavBarContainer.styled";
 import Logo from "../Logo/Logo";
 
 function NavBarContainer() {
+  // etat pour gérer le menu hamburger
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -19,10 +20,6 @@ function NavBarContainer() {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
-
-  // const toggleMenu = () => {
-  //   setIsOpen(!isOpen);
-  // };
 
   return (
     <>

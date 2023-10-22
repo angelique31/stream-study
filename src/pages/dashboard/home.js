@@ -1,24 +1,13 @@
 import { loadHomePageData } from "@/lib/dataFetchers";
 
-import {
-  NavWrapper,
-  MenuAndSearchWrapper,
-} from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks.styled";
 import TrendingSeries from "@/components/PagesDashboard/ComponentsDashboard/TrendingSeries/TrendingSeries";
-import SearchInput from "@/components/PagesDashboard/ComponentsDashboard/NavBar/SearchInput/SearchInput";
-
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
-import NavBarContainer from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavBarContainer/NavBarContainer";
+import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
 
 function home({ trendingSeries }) {
   return (
     <>
-      <NavWrapper>
-        <NavBarContainer />
-        <MenuAndSearchWrapper>
-          <SearchInput />
-        </MenuAndSearchWrapper>
-      </NavWrapper>
+      <NavWithScroll />
       <BackgroundVideo />
       <TrendingSeries series={trendingSeries} />
       <TrendingSeries series={trendingSeries} />
