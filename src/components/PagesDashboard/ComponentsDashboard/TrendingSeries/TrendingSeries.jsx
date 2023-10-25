@@ -61,8 +61,13 @@ function TrendingSeries({ series }) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const [imagesPerPage, setImagesPerPage] = useState(5);
+
   // Découpage de la liste des séries à afficher
-  const displayedSeries = series.slice(currentIndex, currentIndex + 5);
+  const displayedSeries = series.slice(
+    currentIndex,
+    currentIndex + imagesPerPage
+  );
 
   //faire défiler  les images avec le doigt
   const handleSwipeLeft = () => {
@@ -95,6 +100,7 @@ function TrendingSeries({ series }) {
               setCurrentIndex={setCurrentIndex}
               onShowArrows={true}
               showArrows={showArrows}
+              onImagesPerPageChange={(value) => setImagesPerPage(value)} // Ajout de la prop callback
             />
 
             <SwipeableContainer

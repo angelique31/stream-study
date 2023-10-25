@@ -50,10 +50,7 @@ export const TrendingItem = styled.li`
   transition: transform 0.3s ease;
   overflow: hidden;
   width: 250px;
-
   min-height: calc(150px + 70px);
-  position: relative;
-
   &:hover {
     transform: scale(1.05);
   }
@@ -194,24 +191,7 @@ export const ScrollContainer = styled.div`
   overflow-x: hidden;
   overflow-y: hidden;
   display: flex;
-  width: 1040px; // Largeur pour afficher environ 4 images
-
   scroll-behavior: smooth;
-
-  // Avoir plus d'images pour les écrans de largeur > 1300px :
-  @media (min-width: 1300px) {
-    width: calc(5 * 260px); // 5 images
-  }
-
-  @media (min-width: 1500px) {
-    width: calc(6 * 260px); // 6 images
-  }
-
-  @media (min-width: 1870px) {
-    width: calc(7 * 260px); // 7 images
-  }
-
-  //largeurs d'écran < 100px :
   @media (max-width: 1100px) {
     width: 796px;
   }
@@ -220,9 +200,5 @@ export const ScrollContainer = styled.div`
   }
   @media (max-width: 530px) {
     width: 250px;
-  }
-
-  ${TrendingList} {
-    transform: translateX(${(props) => -props.scrollPosition}px);
   }
 `;
