@@ -48,7 +48,7 @@ export const TrendingItem = styled.li`
   position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
-  // overflow: hidden;
+  overflow: hidden;
   width: 250px;
   min-height: calc(150px + 70px);
   &:hover {
@@ -192,13 +192,4 @@ export const ScrollContainer = styled.div`
   overflow-y: hidden;
   display: flex;
   scroll-behavior: smooth;
-  @media (max-width: 1100px) {
-    width: 796px;
-  }
-  @media (max-width: 800px) {
-    width: 531px;
-  }
-  @media (max-width: 530px) {
-    width: 250px;
-  }
 `;

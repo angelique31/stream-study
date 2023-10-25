@@ -17,6 +17,8 @@ const ScrollingArrows = ({
 
   const [imagesPerPage, setImagesPerPage] = useState(4);
 
+  const [isTabletOrLarger, setIsTabletOrLarger] = useState(false);
+
   // Lorsque imagesPerPage change, remontez l'information
   useEffect(() => {
     if (onImagesPerPageChange) {
@@ -28,10 +30,15 @@ const ScrollingArrows = ({
     const updateImagesPerPage = () => {
       const width = window.innerWidth;
 
+      setIsTabletOrLarger(width < 768);
+
       if (width > 1870) setImagesPerPage(7);
       else if (width > 1500) setImagesPerPage(6);
       else if (width > 1300) setImagesPerPage(5);
-      else setImagesPerPage(4);
+      else if (width > 1100) setImagesPerPage(4);
+      else if (width > 800) setImagesPerPage(3);
+      else if (width > 530) setImagesPerPage(2);
+      else setImagesPerPage(1);
     };
 
     updateImagesPerPage();
@@ -45,7 +52,7 @@ const ScrollingArrows = ({
   useEffect(() => {
     // Logic to toggle visibility of arrows
     setShowLeftArrow(currentIndex > 0);
-    setShowRightArrow(currentIndex < series.length - 1);
+    setShowRightArrow(currentIndex + imagesPerPage < series.length);
   }, [currentIndex, series.length, imagesPerPage]);
 
   const handlePrev = () => {
@@ -66,22 +73,27 @@ const ScrollingArrows = ({
     }
   };
 
+  useEffect(() => {
+    setIsTabletOrLarger(window.innerWidth >= 768);
+  }, []);
+
   return (
     <div>
-      {onShowArrows && showArrows && showLeftArrow && (
+      {(onShowArrows && showArrows && showLeftArrow) || isTabletOrLarger ? (
         <div onClick={handlePrev}>
           <Arrow left visible={showLeftArrow}>
             <ArrowLeftIcon color="red" size="40" />
           </Arrow>
         </div>
-      )}
-      {onShowArrows && showArrows && showRightArrow && (
+      ) : null}
+
+      {(onShowArrows && showArrows && showRightArrow) || isTabletOrLarger ? (
         <div onClick={handleNext}>
           <Arrow right visible={showRightArrow}>
             <ArrowRightIcon color="red" size="40" />
           </Arrow>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
