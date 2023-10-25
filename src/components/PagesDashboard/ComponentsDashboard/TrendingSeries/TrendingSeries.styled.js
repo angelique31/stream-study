@@ -11,8 +11,11 @@ export const TrendingContainer = styled.div`
 export const SeriesTitle = styled.h2`
   color: #e5e5e5;
   margin-left: 100px;
+  font-size: 1rem;
+  margin-bottom: -10px;
   @media (max-width: 600px) {
     margin-left: 0px;
+    margin-bottom: 0px;
     color: #b8b8b7;
     padding-top: 60px;
     background-color: black;
@@ -32,17 +35,6 @@ export const TrendingWrapper = styled.div`
   justify-content: center;
   margin: 20px;
   position: relative;
-`;
-
-export const Arrow = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2; // pour s'assurer qu'il apparaît au-dessus des autres éléments
-  left: ${(props) => (props.left ? "0" : "auto")};
-  right: ${(props) => (props.right ? "0" : "auto")};
-  opacity: ${(props) => (props.visible ? 1 : 0)};
-  transition: opacity 0.3s ease-in-out;
 `;
 
 export const TrendingList = styled.ul`
@@ -216,7 +208,7 @@ export const ScrollContainer = styled.div`
   }
 
   @media (min-width: 1870px) {
-    width: calc(7 * 260px); // 6 images
+    width: calc(7 * 260px); // 7 images
   }
 
   //largeurs d'écran < 100px :

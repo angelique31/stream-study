@@ -12,6 +12,7 @@ const initialState = {
 };
 
 const carousselReducer = (state = initialState, action) => {
+  console.log("Action reçue: ", action.type, "Payload: ", action.payload);
   switch (action.type) {
     case SET_SCROLL_POSITION:
       return { ...state, scrollPosition: action.payload };

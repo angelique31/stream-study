@@ -8,11 +8,6 @@ import {
   hideInfosTooltip,
 } from "../../../../store/actions/tooltipActions";
 import { openModal, closeModal } from "../../../../store/actions/modalActions";
-import {
-  setScrollPosition,
-  toggleLeftArrow,
-  toggleRightArrow,
-} from "../../../../store/actions/carousselActions";
 
 import SwipeableContainer from "../../../SwipeableContainer/SwipeableContainer";
 
@@ -21,7 +16,6 @@ import {
   SeriesTitle,
   ArrowContainer,
   TrendingWrapper,
-  Arrow,
   TrendingList,
   TrendingItem,
   ActionButtons,
@@ -39,8 +33,8 @@ import ModalVideo from "../ModalVideo/ModalVideo";
 
 import IconPlus from "../../../../assets/icons/plus.svg";
 import ArrowIcon from "../../../../assets/icons/arrowIcon/arrowIcon.svg";
-import ArrowLeftIcon from "@/assets/icons/arrowIcon/arrowLeftIcon";
-import ArrowRightIcon from "@/assets/icons/arrowIcon/ArrowRightIcon";
+
+import ScrollingArrows from "../ScrollingArrows/ScrollingArrows";
 
 function TrendingSeries({ series }) {
   const dispatch = useDispatch();
@@ -49,7 +43,6 @@ function TrendingSeries({ series }) {
   const { tooltipVisible, infosTooltipVisible } = useSelector(
     (state) => state.tooltip
   );
-  // const [infosTooltipVisible, setInfosTooltipVisible] = useState(false);
 
   //modale video
   const { showModal, currentVideo, currentOverview } = useSelector(
@@ -64,49 +57,12 @@ function TrendingSeries({ series }) {
     dispatch(closeModal());
   };
 
-  // Caroussel pour le défilement des images horizontalement
-  const { scrollPosition, showLeftArrow, showRightArrow } = useSelector(
-    (state) => state.caroussel
-  );
-
-  const handleScrollRight = () => {
-    const widthToScroll = 266;
-    const totalWidth = series.length * widthToScroll;
-
-    if (scrollPosition + 2 * widthToScroll >= totalWidth - widthToScroll * 3) {
-      const newPosition = totalWidth - widthToScroll * 4;
-      dispatch(setScrollPosition(newPosition));
-      dispatch(toggleRightArrow(false)); // Cache la flèche de droite
-    } else {
-      const newPosition = scrollPosition + widthToScroll;
-      dispatch(setScrollPosition(newPosition));
-      dispatch(toggleLeftArrow(true)); // Montre la flèche de gauche
-    }
-  };
-
-  const handleScrollLeft = () => {
-    const widthToScroll = 266;
-
-    if (scrollPosition - widthToScroll <= 0) {
-      dispatch(setScrollPosition(0));
-      dispatch(toggleLeftArrow(false)); // Cache la flèche de gauche
-    } else {
-      const newPosition = scrollPosition - widthToScroll;
-      dispatch(setScrollPosition(newPosition));
-      dispatch(toggleRightArrow(true)); // Montre la flèche de droite
-    }
-  };
-
-  //apparition des flèches au survol sur l'image
   const [showArrows, setShowArrows] = useState(false);
 
-  const handleMouseEnter = () => {
-    setShowArrows(true);
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleMouseLeave = () => {
-    setShowArrows(false);
-  };
+  // Découpage de la liste des séries à afficher
+  const displayedSeries = series.slice(currentIndex, currentIndex + 5);
 
   //faire défiler  les images avec le doigt
   const handleSwipeLeft = () => {
@@ -116,14 +72,11 @@ function TrendingSeries({ series }) {
   const handleSwipeRight = () => {
     handleScrollLeft();
   };
+
   return (
     <>
       <SeriesTitle>Tendances de la semaine</SeriesTitle>
-      <TrendingContainer
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* <SeriesTitle>Tendances de la semaine</SeriesTitle> */}
+      <TrendingContainer>
         {showModal && (
           <ModalVideo
             videoId={currentVideo}
@@ -132,25 +85,25 @@ function TrendingSeries({ series }) {
           />
         )}
         <ArrowContainer>
-          <TrendingWrapper>
-            {showArrows && showLeftArrow && (
-              <div onClick={handleScrollLeft}>
-                <Arrow
-                  left
-                  visible={showArrows && showLeftArrow}
-                  onClick={handleScrollLeft}
-                >
-                  <ArrowLeftIcon color="red" size="40" />
-                </Arrow>
-              </div>
-            )}
+          <TrendingWrapper
+            onMouseEnter={() => setShowArrows(true)}
+            onMouseLeave={() => setShowArrows(false)}
+          >
+            <ScrollingArrows
+              series={series}
+              currentIndex={currentIndex}
+              setCurrentIndex={setCurrentIndex}
+              onShowArrows={true}
+              showArrows={showArrows}
+            />
+
             <SwipeableContainer
               onSwipeLeft={handleSwipeLeft}
               onSwipeRight={handleSwipeRight}
             >
-              <ScrollContainer $scrollPosition={scrollPosition}>
+              <ScrollContainer>
                 <TrendingList>
-                  {series.map((serie) => (
+                  {displayedSeries.map((serie) => (
                     <TrendingItem
                       key={serie.id}
                       onClick={() =>
@@ -225,17 +178,6 @@ function TrendingSeries({ series }) {
                 </TrendingList>
               </ScrollContainer>
             </SwipeableContainer>
-            {showArrows && showRightArrow && (
-              <div onClick={handleScrollRight}>
-                <Arrow
-                  right
-                  visible={showArrows && showRightArrow}
-                  onClick={handleScrollRight}
-                >
-                  <ArrowRightIcon color="red" size="40" />
-                </Arrow>
-              </div>
-            )}
           </TrendingWrapper>
         </ArrowContainer>
       </TrendingContainer>

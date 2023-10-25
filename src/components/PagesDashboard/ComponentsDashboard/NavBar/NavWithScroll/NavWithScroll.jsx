@@ -22,7 +22,7 @@ const NavWithScroll = () => {
   }, []);
 
   return (
-    <NavWrapper isScrolled={isScrolled}>
+    <NavWrapper $isScrolled={isScrolled}>
       <NavBarContainer />
       <MenuAndSearchWrapper>
         <SearchInput />
