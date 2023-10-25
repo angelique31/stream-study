@@ -48,7 +48,7 @@ export const TrendingItem = styled.li`
   position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
-  overflow: hidden;
+  // overflow: hidden;
   width: 250px;
   min-height: calc(150px + 70px);
   &:hover {

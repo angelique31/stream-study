@@ -21,7 +21,7 @@ const SwipeableContainer = ({ children, onSwipeLeft, onSwipeRight }) => {
 
   const handleTouchEnd = (e) => {
     const endX = e.changedTouches[0].clientX;
-    const sensitivity = 30;
+    const sensitivity = 50;
 
     if (startX - endX > sensitivity) {
       onSwipeLeft();
