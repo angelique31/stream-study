@@ -70,11 +70,29 @@ function TrendingSeries({ series }) {
   );
 
   //faire défiler  les images avec le doigt
+  const handleScrollRight = () => {
+    // Vérifiez si on peut encore avancer à droite
+    if (currentIndex + imagesPerPage < series.length) {
+      setCurrentIndex((prevIndex) => prevIndex + imagesPerPage);
+    }
+  };
+
+  const handleScrollLeft = () => {
+    // Vérifiez si on peut encore revenir à gauche
+    if (currentIndex - imagesPerPage >= 0) {
+      setCurrentIndex((prevIndex) => prevIndex - imagesPerPage);
+    } else {
+      setCurrentIndex(0); // Si l'index devient négatif, réinitialisez-le à 0
+    }
+  };
+
   const handleSwipeLeft = () => {
+    console.log("Swiped Left!");
     handleScrollRight();
   };
 
   const handleSwipeRight = () => {
+    console.log("Swiped Right!");
     handleScrollLeft();
   };
 
