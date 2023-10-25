@@ -4,6 +4,8 @@ import { Arrow } from "./ScrollingArrows.styled";
 import ArrowLeftIcon from "@/assets/icons/arrowIcon/arrowLeftIcon";
 import ArrowRightIcon from "@/assets/icons/arrowIcon/ArrowRightIcon";
 
+import useImagesPerPage from "../adjustImagesPerPage/adjustImagesPerPage";
+
 const ScrollingArrows = ({
   series,
   currentIndex,
@@ -12,10 +14,9 @@ const ScrollingArrows = ({
   showArrows,
   onImagesPerPageChange,
 }) => {
+  const imagesPerPage = useImagesPerPage();
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
-
-  const [imagesPerPage, setImagesPerPage] = useState(4);
 
   const [isTabletOrLarger, setIsTabletOrLarger] = useState(false);
 
@@ -25,29 +26,6 @@ const ScrollingArrows = ({
       onImagesPerPageChange(imagesPerPage);
     }
   }, [imagesPerPage, onImagesPerPageChange]);
-
-  useEffect(() => {
-    const updateImagesPerPage = () => {
-      const width = window.innerWidth;
-
-      setIsTabletOrLarger(width < 768);
-
-      if (width > 1870) setImagesPerPage(7);
-      else if (width > 1500) setImagesPerPage(6);
-      else if (width > 1300) setImagesPerPage(5);
-      else if (width > 1100) setImagesPerPage(4);
-      else if (width > 800) setImagesPerPage(3);
-      else if (width > 530) setImagesPerPage(2);
-      else setImagesPerPage(1);
-    };
-
-    updateImagesPerPage();
-    // Ajoutez un écouteur d'événement pour gérer le redimensionnement de la fenêtre
-    window.addEventListener("resize", updateImagesPerPage);
-
-    // Supprimez l'écouteur lorsque le composant est démonté
-    return () => window.removeEventListener("resize", updateImagesPerPage);
-  }, []);
 
   useEffect(() => {
     // Logic to toggle visibility of arrows
@@ -72,10 +50,6 @@ const ScrollingArrows = ({
       );
     }
   };
-
-  useEffect(() => {
-    setIsTabletOrLarger(window.innerWidth >= 768);
-  }, []);
 
   return (
     <div>
