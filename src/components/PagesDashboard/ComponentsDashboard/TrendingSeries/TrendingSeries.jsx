@@ -86,14 +86,24 @@ function TrendingSeries({ series }) {
     }
   };
 
-  const handleSwipeLeft = () => {
-    console.log("Swiped Left!");
-    handleScrollRight();
+  // const handleSwipeLeft = () => {
+  //   console.log("Swiped Left!");
+  //   handleScrollRight();
+  // };
+
+  // const handleSwipeRight = () => {
+  //   console.log("Swiped Right!");
+  //   handleScrollLeft();
+  // };
+
+  const handlePrev = () => {
+    setCurrentIndex((oldIndex) => Math.max(oldIndex - 1, 0));
   };
 
-  const handleSwipeRight = () => {
-    console.log("Swiped Right!");
-    handleScrollLeft();
+  const handleNext = () => {
+    setCurrentIndex((oldIndex) =>
+      Math.min(oldIndex + 1, series.length - imagesPerPage)
+    );
   };
 
   return (
@@ -122,8 +132,10 @@ function TrendingSeries({ series }) {
             />
 
             <SwipeableContainer
-              onSwipeLeft={handleSwipeLeft}
-              onSwipeRight={handleSwipeRight}
+              // onSwipeLeft={handleSwipeLeft}
+              // onSwipeRight={handleSwipeRight}
+              onSwipeLeft={handleNext}
+              onSwipeRight={handlePrev}
             >
               <ScrollContainer>
                 <TrendingList>
