@@ -4,7 +4,8 @@ import { Arrow } from "./ScrollingArrows.styled";
 import ArrowLeftIcon from "@/assets/icons/arrowIcon/arrowLeftIcon";
 import ArrowRightIcon from "@/assets/icons/arrowIcon/ArrowRightIcon";
 
-import useImagesPerPage from "../adjustImagesPerPage/adjustImagesPerPage";
+import useImagesPerPage from "../AdjustImagesPerPage/AdjustImagesPerPage";
+import useWindowWidth from "../UseWindowWidth/UseWindowWidth";
 
 const ScrollingArrows = ({
   series,
@@ -14,11 +15,13 @@ const ScrollingArrows = ({
   showArrows,
   onImagesPerPageChange,
 }) => {
+  const { windowWidth, isTabletOrLarger } = useWindowWidth();
   const imagesPerPage = useImagesPerPage();
+
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
 
-  const [isTabletOrLarger, setIsTabletOrLarger] = useState(false);
+  // const [isTabletOrLarger, setIsTabletOrLarger] = useState(false);
 
   // Lorsque imagesPerPage change, remontez l'information
   useEffect(() => {

@@ -1,47 +1,30 @@
 // hooks/useImagesPerPage.js
 import { useState, useEffect } from "react";
 
-// const useImagesPerPage = () => {
-//   const [imagesPerPage, setImagesPerPage] = useState(4);
-
-//   const adjustImagesPerPage = () => {
-//     const width = window.innerWidth;
-
-//     if (width > 1870) setImagesPerPage(7);
-//     else if (width > 1500) setImagesPerPage(6);
-//     else if (width > 1300) setImagesPerPage(5);
-//     else if (width > 1100) setImagesPerPage(4);
-//     else if (width > 800) setImagesPerPage(3);
-//     else if (width > 530) setImagesPerPage(2);
-//     else setImagesPerPage(1);
-//   };
-
-//   useEffect(() => {
-//     adjustImagesPerPage();
-
-//     window.addEventListener("resize", adjustImagesPerPage);
-
-//     return () => window.removeEventListener("resize", adjustImagesPerPage);
-//   }, []);
-
-//   return imagesPerPage;
-// };
-
 const useImagesPerPage = () => {
-  const [imagesPerPage, setImagesPerPage] = useState(4);
+  const getWidthImagesPerPage = (width) => {
+    if (width > 1870) return 7;
+    else if (width > 1500) return 6;
+    else if (width > 1300) return 5;
+    else if (width > 1100) return 4;
+    else if (width > 800) return 3;
+    else if (width > 530) return 1;
+    else return 1;
+  };
+
+  // Utilisez une fonction pour initialiser `imagesPerPage` de manière sûre.
+  const [imagesPerPage, setImagesPerPage] = useState(() => {
+    if (typeof window !== "undefined") {
+      return getWidthImagesPerPage(window.innerWidth);
+    }
+    return 4; // Valeur par défaut pour le rendu côté serveur
+  });
+
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const updateImagesPerPage = () => {
-      const width = window.innerWidth;
-
-      if (width > 1870) setImagesPerPage(7);
-      else if (width > 1500) setImagesPerPage(6);
-      else if (width > 1300) setImagesPerPage(5);
-      else if (width > 1100) setImagesPerPage(4);
-      else if (width > 800) setImagesPerPage(3);
-      else if (width > 530) setImagesPerPage(2);
-      else setImagesPerPage(1);
+      setImagesPerPage(getWidthImagesPerPage(window.innerWidth));
     };
 
     const handleMount = () => {
