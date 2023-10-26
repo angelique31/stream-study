@@ -8,7 +8,7 @@ const useImagesPerPage = () => {
     else if (width > 1300) return 5;
     else if (width > 1100) return 4;
     else if (width > 800) return 3;
-    else if (width > 530) return 1;
+    else if (width > 630) return 2;
     else return 1;
   };
 
@@ -22,6 +22,8 @@ const useImagesPerPage = () => {
 
   const [mounted, setMounted] = useState(false);
 
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const updateImagesPerPage = () => {
       setImagesPerPage(getWidthImagesPerPage(window.innerWidth));
@@ -31,6 +33,7 @@ const useImagesPerPage = () => {
       setTimeout(() => {
         updateImagesPerPage();
         setMounted(true);
+        setIsVisible(true);
       }, 100);
     };
 
@@ -40,9 +43,11 @@ const useImagesPerPage = () => {
       window.addEventListener("resize", updateImagesPerPage);
       return () => window.removeEventListener("resize", updateImagesPerPage);
     }
-  }, [mounted]);
+  }, [mounted, isVisible]);
 
-  return imagesPerPage;
+  useEffect(() => {}, [mounted, isVisible]);
+
+  return { imagesPerPage, isVisible };
 };
 
 export default useImagesPerPage;

@@ -31,32 +31,33 @@ const SearchInput = () => {
 
   return (
     <PlaceholderProvider>
-      {({ placeholderText }) => (
+      {({ placeholderText, isVisible }) => (
         <>
-          <StyledForm onSubmit={handleSubmit}>
-            <SearchInputWrapper>
-              <StyledInput
-                $visible={isSearchOpen}
-                type="search"
-                id="search_input"
-                placeholder={placeholderText}
-                // placeholder="Titres, personnes, genres..."
-                value={tempSearchValue}
-                onChange={handleChange}
-              />
-              <IconWrapper
-                className="icon-wrapper"
-                onClick={handleSearchIconClick}
-              >
-                <Image
-                  src={MagnifyingGlass}
-                  alt="magnifyingGlass"
-                  layout="responsive"
-                  objectFit="cover"
+          {isVisible && ( // ajoutez cette ligne
+            <StyledForm onSubmit={handleSubmit}>
+              <SearchInputWrapper>
+                <StyledInput
+                  $visible={isSearchOpen}
+                  type="search"
+                  id="search_input"
+                  placeholder={placeholderText}
+                  value={tempSearchValue}
+                  onChange={handleChange}
                 />
-              </IconWrapper>
-            </SearchInputWrapper>
-          </StyledForm>
+                <IconWrapper
+                  className="icon-wrapper"
+                  onClick={handleSearchIconClick}
+                >
+                  <Image
+                    src={MagnifyingGlass}
+                    alt="magnifyingGlass"
+                    layout="responsive"
+                    objectFit="cover"
+                  />
+                </IconWrapper>
+              </SearchInputWrapper>
+            </StyledForm>
+          )}
         </>
       )}
     </PlaceholderProvider>

@@ -14,14 +14,22 @@ const ScrollingArrows = ({
   onShowArrows,
   showArrows,
   onImagesPerPageChange,
+  updateShowArrows,
 }) => {
   const { windowWidth, isTabletOrLarger } = useWindowWidth();
-  const imagesPerPage = useImagesPerPage();
+
+  const { imagesPerPage, isVisible } = useImagesPerPage();
 
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
 
-  // const [isTabletOrLarger, setIsTabletOrLarger] = useState(false);
+  useEffect(() => {
+    if (isTabletOrLarger === false) {
+      updateShowArrows(true); // Mettre à jour showArrows à true
+    } else {
+      updateShowArrows(true); // Mettre à jour showArrows à true (ou une autre logique si nécessaire)
+    }
+  }, [isTabletOrLarger, updateShowArrows]);
 
   // Lorsque imagesPerPage change, remontez l'information
   useEffect(() => {
@@ -37,10 +45,12 @@ const ScrollingArrows = ({
   }, [currentIndex, series.length, imagesPerPage]);
 
   const handlePrev = () => {
+    console.log("handlePrev called");
     setCurrentIndex((oldIndex) => Math.max(oldIndex - imagesPerPage, 0));
   };
 
   const handleNext = () => {
+    console.log("handleNext called");
     const potentialNextIndex = currentIndex + imagesPerPage;
     const remainingImages = series.length - potentialNextIndex;
 
@@ -74,5 +84,4 @@ const ScrollingArrows = ({
     </div>
   );
 };
-
 export default ScrollingArrows;
