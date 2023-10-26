@@ -4,7 +4,7 @@ import { Arrow } from "./ScrollingArrows.styled";
 import ArrowLeftIcon from "@/assets/icons/arrowIcon/arrowLeftIcon";
 import ArrowRightIcon from "@/assets/icons/arrowIcon/ArrowRightIcon";
 
-import useImagesPerPage from "../AdjustImagesPerPage/AdjustImagesPerPage";
+import useImagesPerPage from "../UseImagesPerPage/UseImagesPerPage";
 import useWindowWidth from "../UseWindowWidth/UseWindowWidth";
 
 const ScrollingArrows = ({
