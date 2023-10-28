@@ -68,7 +68,7 @@ const ScrollingArrows = ({
     <div>
       {(onShowArrows && showArrows && showLeftArrow) || isTabletOrLarger ? (
         <div onClick={handlePrev}>
-          <Arrow left visible={showLeftArrow}>
+          <Arrow left visible={showLeftArrow} showOnHover={showArrows}>
             <ArrowLeftIcon color="red" size="40" />
           </Arrow>
         </div>
@@ -76,7 +76,7 @@ const ScrollingArrows = ({
 
       {(onShowArrows && showArrows && showRightArrow) || isTabletOrLarger ? (
         <div onClick={handleNext}>
-          <Arrow right visible={showRightArrow}>
+          <Arrow right visible={showRightArrow} showOnHover={showArrows}>
             <ArrowRightIcon color="red" size="40" />
           </Arrow>
         </div>

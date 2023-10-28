@@ -27,7 +27,7 @@ import {
   TooltipWrapper,
   Tooltip,
   ScrollContainer,
-} from "./TrendingSeries.styled";
+} from "./CategorySeries.styled";
 
 import ModalVideo from "../ModalVideo/ModalVideo";
 
@@ -38,7 +38,8 @@ import ScrollingArrows from "../ScrollingArrows/ScrollingArrows";
 
 import useImagesPerPage from "../UseImagesPerPage/UseImagesPerPage";
 
-function TrendingSeries({ series }) {
+function CategorySeries({ title, data }) {
+  console.log(data);
   const dispatch = useDispatch();
 
   //tooltip
@@ -66,7 +67,7 @@ function TrendingSeries({ series }) {
   const { imagesPerPage, isVisible } = useImagesPerPage();
 
   // Découpage de la liste des séries à afficher
-  const displayedSeries = series.slice(
+  const displayedSeries = data.slice(
     currentIndex,
     currentIndex + imagesPerPage
   );
@@ -83,7 +84,7 @@ function TrendingSeries({ series }) {
 
   const handleNext = () => {
     setCurrentIndex((oldIndex) =>
-      Math.min(oldIndex + 1, series.length - imagesPerPage)
+      Math.min(oldIndex + 1, data.length - imagesPerPage)
     );
   };
 
@@ -91,7 +92,8 @@ function TrendingSeries({ series }) {
     <div>
       {isVisible ? (
         <>
-          <SeriesTitle>Tendances de la semaine</SeriesTitle>
+          {/* <SeriesTitle>Tendances de la semaine</SeriesTitle> */}
+          <SeriesTitle>{title}</SeriesTitle>
           <TrendingContainer>
             {showModal && (
               <ModalVideo
@@ -106,7 +108,7 @@ function TrendingSeries({ series }) {
                 onMouseLeave={() => setShowArrows(false)}
               >
                 <ScrollingArrows
-                  series={series}
+                  series={data}
                   currentIndex={currentIndex}
                   setCurrentIndex={setCurrentIndex}
                   onShowArrows={true}
@@ -208,4 +210,4 @@ function TrendingSeries({ series }) {
   );
 }
 
-export default TrendingSeries;
+export default CategorySeries;

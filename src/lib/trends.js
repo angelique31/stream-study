@@ -36,7 +36,7 @@ async function fetchVideoForSeries(seriesId) {
     }
 
     const data = await response.json();
-    console.log("Tendances de la semaine :", data.results);
+    // console.log("Tendances de la semaine :", data.results);
     return data.results[0]?.key; // Prend la première vidéo. Vous pouvez ajouter une logique pour sélectionner un type spécifique, comme "Trailer".
   } catch (error) {
     console.error(error);
@@ -56,7 +56,7 @@ export async function fetchTrendingSeriesWithVideos() {
       })
     );
 
-    console.log("Tendances de la semaine avec vidéos :", seriesWithVideos);
+    // console.log("Tendances de la semaine avec vidéos :", seriesWithVideos);
     return seriesWithVideos;
   } catch (error) {
     console.error(error);
