@@ -13,7 +13,7 @@ export async function fetchFrenchDramas() {
     }
 
     const data = await response.json();
-    // console.log("drames francais :", data.results);
+    console.log("drames francais :", data.results);
     return data.results;
   } catch (error) {
     console.error(error);

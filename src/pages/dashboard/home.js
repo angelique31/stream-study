@@ -20,26 +20,6 @@ function HomePage({ trendingSeries, frenchDramas }) {
     </>
   );
 }
-// export async function getServerSideProps() {
-//   const data = await loadHomePageData();
-
-//   return {
-//     props: data,
-//   };
-// }
-
-// export async function getServerSideProps() {
-//   const data = await loadHomePageData();
-
-//   const frenchDramasFiltered = filterFrenchDramas(data.trendingSeries || []);
-
-//   return {
-//     props: {
-//       ...data,
-//       frenchDramas: frenchDramasFiltered,
-//     },
-//   };
-// }
 
 export async function getServerSideProps() {
   const data = await loadHomePageData();

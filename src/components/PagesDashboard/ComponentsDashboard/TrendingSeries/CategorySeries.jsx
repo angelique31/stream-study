@@ -39,7 +39,7 @@ import ScrollingArrows from "../ScrollingArrows/ScrollingArrows";
 import useImagesPerPage from "../UseImagesPerPage/UseImagesPerPage";
 
 function CategorySeries({ title, data }) {
-  console.log(data);
+  // console.log(data);
   const dispatch = useDispatch();
 
   //tooltip
@@ -139,7 +139,10 @@ function CategorySeries({ title, data }) {
                                 height={150}
                               />
                             )}
-                            <TitleOverlay>{serie.name}</TitleOverlay>
+
+                            <TitleOverlay>
+                              {serie.name || serie.original_title}
+                            </TitleOverlay>
                           </ImageWrapper>
 
                           <VideoWrapper>
