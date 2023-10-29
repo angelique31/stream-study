@@ -21,13 +21,8 @@ export const VideoContainer = styled.div`
 
 export const MobilePictureContainer = styled.div`
   width: 100%;
-  // width: 450px;
-  // @media (max-width: 600px) {
-  //   width: 350px;
-  // }
 `;
 export const PictureBoxShot = styled.div`
-  // width: 100%;
   width: 80px;
   @media (max-width: 600px) {
     width: 45px;

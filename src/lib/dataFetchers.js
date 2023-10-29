@@ -1,16 +1,25 @@
 import { fetchPopularMovies } from "./movies";
 import { fetchPopularSeries } from "./series";
 import { fetchTrendingSeriesWithVideos } from "./trends";
-import { fetchFrenchDramas } from "./frenchDramas";
+import {
+  fetchFrenchDramas,
+  fetchTrendingMoviesWithVideos,
+} from "./frenchDramas";
 
 export async function loadHomePageData() {
-  const [trendingSeries, popularSeries, popularMovies, frenchDramas] =
-    await Promise.all([
-      fetchTrendingSeriesWithVideos(),
-      fetchPopularSeries(),
-      fetchPopularMovies(),
-      fetchFrenchDramas(),
-    ]);
+  const [
+    trendingSeries,
+    popularSeries,
+    popularMovies,
+    frenchDramas,
+    trendingMoviesWithVideos,
+  ] = await Promise.all([
+    fetchTrendingSeriesWithVideos(),
+    fetchPopularSeries(),
+    fetchPopularMovies(),
+    fetchFrenchDramas(),
+    fetchTrendingMoviesWithVideos(),
+  ]);
 
   // ... d'autres appels à l'API si nécessaire
 
@@ -19,6 +28,8 @@ export async function loadHomePageData() {
     popularSeries,
     popularMovies,
     frenchDramas,
+    trendingMoviesWithVideos,
+
     // ... d'autres données
   };
 }

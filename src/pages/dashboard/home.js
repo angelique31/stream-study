@@ -6,9 +6,10 @@ import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBa
 import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/TrendingSeries/CategorySeries";
 import filterFrenchDramas from "@/components/PagesDashboard/ComponentsDashboard/FilterFrenchDramas/FilterFrenchDramas";
 
-function HomePage({ trendingSeries, frenchDramas }) {
+function HomePage({ trendingSeries, frenchDramas, similarVideos }) {
   const [trendingData, setTrendingData] = useState(trendingSeries);
   const [dramaData, setDramaData] = useState(frenchDramas || []);
+  // const [similarData, setSimilarData] = useState(similarVideos || []);
 
   return (
     <>
@@ -17,6 +18,7 @@ function HomePage({ trendingSeries, frenchDramas }) {
 
       <CategorySeries title="Tendances de la semaine" data={trendingData} />
       <CategorySeries title="Drames en français" data={dramaData} />
+      {/* <CategorySeries title="Vidéos similaires" data={similarData} /> */}
     </>
   );
 }

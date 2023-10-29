@@ -39,31 +39,48 @@ import ScrollingArrows from "../ScrollingArrows/ScrollingArrows";
 import useImagesPerPage from "../UseImagesPerPage/UseImagesPerPage";
 
 function CategorySeries({ title, data }) {
-  // console.log(data);
   const dispatch = useDispatch();
 
-  //tooltip
+  // ------- Tooltip -------
+  // Récupération de l'état des tooltips depuis le store Redux
   const { tooltipVisible, infosTooltipVisible } = useSelector(
     (state) => state.tooltip
   );
 
-  //modale video
+  // ------- Modale Vidéo -------
+  // Récupération de l'état de la modale depuis le store Redux
   const { showModal, currentVideo, currentOverview } = useSelector(
     (state) => state.modal
   );
 
-  const handleOpenModal = (videoId, overview) => {
-    dispatch(openModal(videoId, overview));
+  // Gestion de l'état local pour le chemin de l'affiche (poster) actuelle
+  const [currentPoster, setCurrentPoster] = useState(null);
+
+  // Ouverture de la modale et mise à jour de l'affiche actuelle
+  const handleOpenModal = (videoId, overview, posterPath) => {
+    setCurrentPoster(posterPath);
+    dispatch(openModal(videoId, overview, posterPath));
   };
 
+  // Fermeture de la modale et réinitialisation de l'affiche
   const handleCloseModal = () => {
+    setCurrentPoster(null);
     dispatch(closeModal());
   };
 
+  // ------- Affichage des flèches -------
+  // Gestion de l'état local pour l'affichage des flèches
   const [showArrows, setShowArrows] = useState(false);
+  // Met à jour l'état d'affichage des flèches
+  const updateShowArrows = (value) => {
+    setShowArrows(value);
+  };
 
+  // ------- Pagination des Séries -------
+  // Gestion de l'index actuel des séries affichées
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Récupération du nombre d'images par page et de la visibilité
   const { imagesPerPage, isVisible } = useImagesPerPage();
 
   // Découpage de la liste des séries à afficher
@@ -72,12 +89,7 @@ function CategorySeries({ title, data }) {
     currentIndex + imagesPerPage
   );
 
-  const updateShowArrows = (value) => {
-    setShowArrows(value);
-  };
-
   //faire défiler  les images avec le doigt
-
   const handlePrev = () => {
     setCurrentIndex((oldIndex) => Math.max(oldIndex - 1, 0));
   };
@@ -92,7 +104,6 @@ function CategorySeries({ title, data }) {
     <div>
       {isVisible ? (
         <>
-          {/* <SeriesTitle>Tendances de la semaine</SeriesTitle> */}
           <SeriesTitle>{title}</SeriesTitle>
           <TrendingContainer>
             {showModal && (
@@ -100,6 +111,7 @@ function CategorySeries({ title, data }) {
                 videoId={currentVideo}
                 overview={currentOverview}
                 onClose={handleCloseModal}
+                posterImage={`https://image.tmdb.org/t/p/w500${currentPoster}`}
               />
             )}
             <ArrowContainer>
@@ -126,7 +138,11 @@ function CategorySeries({ title, data }) {
                         <TrendingItem
                           key={serie.id}
                           onClick={() =>
-                            handleOpenModal(serie.video, serie.overview)
+                            handleOpenModal(
+                              serie.video,
+                              serie.overview,
+                              serie.poster_path
+                            )
                           }
                         >
                           <ImageWrapper>
@@ -146,13 +162,24 @@ function CategorySeries({ title, data }) {
                           </ImageWrapper>
 
                           <VideoWrapper>
-                            {serie.video && (
+                            {/* {serie.video && (
                               <iframe
                                 src={`https://www.youtube.com/embed/${serie.video}`}
                                 title={`Vidéo de ${serie.name}`}
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
                               />
+                            )} */}
+
+                            {serie.video ? (
+                              <iframe
+                                src={`https://www.youtube.com/embed/${serie.video}`}
+                                title={`Vidéo de ${serie.name}`}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              />
+                            ) : (
+                              <p>Pas de vidéo disponible</p>
                             )}
                           </VideoWrapper>
 

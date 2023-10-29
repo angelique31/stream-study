@@ -14,6 +14,7 @@ const modalReducer = (state = initialState, action) => {
         showModal: true,
         currentVideo: action.payload.videoId,
         currentOverview: action.payload.overview,
+        currentPoster: action.payload.posterPath,
       };
     case CLOSE_MODAL:
       return {
@@ -21,6 +22,7 @@ const modalReducer = (state = initialState, action) => {
         showModal: false,
         currentVideo: null,
         currentOverview: "",
+        currentPoster: null,
       };
     default:
       return state;
