@@ -38,6 +38,10 @@ import ScrollingArrows from "../ScrollingArrows/ScrollingArrows";
 
 import useImagesPerPage from "../UseImagesPerPage/UseImagesPerPage";
 
+import defautImage from "../../../../assets/pictures/boxshot.png";
+
+import ImageLoader from "../ImageLoader/ImageLoader";
+
 function CategorySeries({ title, data }) {
   const dispatch = useDispatch();
 
@@ -67,6 +71,11 @@ function CategorySeries({ title, data }) {
     setCurrentPoster(null);
     dispatch(closeModal());
   };
+
+  const useLocalImage = !currentPoster;
+  const posterPath = useLocalImage
+    ? "/assets/boxshot.png"
+    : `https://image.tmdb.org/t/p/w500${currentPoster}`;
 
   // ------- Affichage des flèches -------
   // Gestion de l'état local pour l'affichage des flèches
@@ -111,7 +120,7 @@ function CategorySeries({ title, data }) {
                 videoId={currentVideo}
                 overview={currentOverview}
                 onClose={handleCloseModal}
-                posterImage={`https://image.tmdb.org/t/p/w500${currentPoster}`}
+                posterImage={posterPath}
               />
             )}
             <ArrowContainer>
@@ -146,15 +155,17 @@ function CategorySeries({ title, data }) {
                           }
                         >
                           <ImageWrapper>
-                            {serie.poster_path && (
-                              <Image
-                                className="cover"
-                                src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
-                                alt={serie.name}
-                                width={250}
-                                height={150}
-                              />
-                            )}
+                            <ImageLoader
+                              className="cover"
+                              src={
+                                serie.poster_path
+                                  ? `https://image.tmdb.org/t/p/w500${serie.poster_path}`
+                                  : defautImage
+                              }
+                              alt={serie.name}
+                              width={250}
+                              height={150}
+                            />
 
                             <TitleOverlay>
                               {serie.name || serie.original_title}
@@ -162,15 +173,6 @@ function CategorySeries({ title, data }) {
                           </ImageWrapper>
 
                           <VideoWrapper>
-                            {/* {serie.video && (
-                              <iframe
-                                src={`https://www.youtube.com/embed/${serie.video}`}
-                                title={`Vidéo de ${serie.name}`}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                              />
-                            )} */}
-
                             {serie.video ? (
                               <iframe
                                 src={`https://www.youtube.com/embed/${serie.video}`}

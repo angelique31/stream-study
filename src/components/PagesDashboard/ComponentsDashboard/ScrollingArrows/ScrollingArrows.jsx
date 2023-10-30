@@ -45,12 +45,10 @@ const ScrollingArrows = ({
   }, [currentIndex, series.length, imagesPerPage]);
 
   const handlePrev = () => {
-    console.log("handlePrev called");
     setCurrentIndex((oldIndex) => Math.max(oldIndex - imagesPerPage, 0));
   };
 
   const handleNext = () => {
-    console.log("handleNext called");
     const potentialNextIndex = currentIndex + imagesPerPage;
     const remainingImages = series.length - potentialNextIndex;
 
