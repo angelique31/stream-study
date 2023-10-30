@@ -5,10 +5,18 @@ import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/Bac
 import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
 import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/CategorySeries/CategorySeries";
 
-function HomePage({ trendingSeries, frenchDramas, comedySeries }) {
+function HomePage({
+  trendingSeries,
+  frenchDramas,
+  comedySeries,
+  mostSearchedSeries,
+}) {
   const [trendingData, setTrendingData] = useState(trendingSeries);
   const [dramaData, setDramaData] = useState(frenchDramas || []);
   const [comedyData, setComedyData] = useState(comedySeries || []);
+  const [mostSearchedData, setMostSearchedData] = useState(
+    mostSearchedSeries || []
+  );
 
   return (
     <>
@@ -18,6 +26,7 @@ function HomePage({ trendingSeries, frenchDramas, comedySeries }) {
       <CategorySeries title="Tendances de la semaine" data={trendingData} />
       <CategorySeries title="Drames en français" data={dramaData} />
       <CategorySeries title="Séries comiques" data={comedyData} />
+      <CategorySeries title="Les plus recherchés" data={mostSearchedData} />
     </>
   );
 }

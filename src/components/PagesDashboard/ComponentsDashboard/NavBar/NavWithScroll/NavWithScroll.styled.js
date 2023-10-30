@@ -7,7 +7,7 @@ export const NavWrapper = styled.div`
   position: fixed;
   top: 0;
   padding-left: 100px;
-
+  z-index: 30;
   background: ${({ $isScrolled }) => ($isScrolled ? "black" : "transparent")};
   width: ${({ $isScrolled }) => ($isScrolled ? "100%" : "auto")};
   @media (max-width: 1238px) {
