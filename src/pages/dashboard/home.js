@@ -10,12 +10,16 @@ function HomePage({
   frenchDramas,
   comedySeries,
   mostSearchedSeries,
+  seriesAddedLast12Months,
 }) {
   const [trendingData, setTrendingData] = useState(trendingSeries);
   const [dramaData, setDramaData] = useState(frenchDramas || []);
   const [comedyData, setComedyData] = useState(comedySeries || []);
   const [mostSearchedData, setMostSearchedData] = useState(
     mostSearchedSeries || []
+  );
+  const [last12MonthsData, setLast12MonthsData] = useState(
+    seriesAddedLast12Months || []
   );
 
   return (
@@ -27,6 +31,10 @@ function HomePage({
       <CategorySeries title="Drames en français" data={dramaData} />
       <CategorySeries title="Séries comiques" data={comedyData} />
       <CategorySeries title="Les plus recherchés" data={mostSearchedData} />
+      <CategorySeries
+        title="Ajouté ces 12 derniers mois"
+        data={last12MonthsData}
+      />
     </>
   );
 }

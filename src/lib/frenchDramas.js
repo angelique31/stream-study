@@ -22,7 +22,7 @@ export async function fetchFrenchDramas() {
 }
 
 async function fetchVideoForMovie(movieId) {
-  console.log("Appel de fetchVideoForMovie");
+  // console.log("Appel de fetchVideoForMovie");
   try {
     const response = await fetch(
       `${API_BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}`
@@ -35,7 +35,7 @@ async function fetchVideoForMovie(movieId) {
     }
 
     const data = await response.json();
-    console.log("videos drames francais :", data.results);
+    // console.log("videos drames francais :", data.results);
     return data.results[0]?.key;
   } catch (error) {
     console.error(error);
