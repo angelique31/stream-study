@@ -21,6 +21,7 @@ import {
   ActionButtons,
   IconContainer,
   VideoWrapper,
+  NoVideoText,
   TitleOverlay,
   ImageWrapper,
   OverviewWrapper,
@@ -72,6 +73,7 @@ function CategorySeries({ title, data }) {
     dispatch(closeModal());
   };
 
+  // Détermine si on utilise l'image par défaut locale ou la récupérer depuis l'API en fonction de la présence de `currentPoster`
   const useLocalImage = !currentPoster;
   const posterPath = useLocalImage
     ? "/assets/boxshot.png"
@@ -181,7 +183,7 @@ function CategorySeries({ title, data }) {
                                 allowFullScreen
                               />
                             ) : (
-                              <p>Pas de vidéo disponible</p>
+                              <NoVideoText>Pas de vidéo disponible</NoVideoText>
                             )}
                           </VideoWrapper>
 

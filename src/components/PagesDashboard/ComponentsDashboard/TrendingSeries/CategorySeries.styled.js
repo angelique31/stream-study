@@ -109,6 +109,27 @@ export const VideoWrapper = styled.div`
   }
 `;
 
+export const NoVideoText = styled.div`
+  position: absolute;
+  top: 70px;
+  left: 119px;
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 2;
+  font-size: 1rem;
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  // @media (max-width: 700px) {
+  //   font-size: 1.5rem;
+  // }
+  // @media (max-width: 400px) {
+  //   font-size: 1rem;
+  // }
+`;
+
 export const TitleOverlay = styled.p`
   position: absolute;
   bottom: 10px;
