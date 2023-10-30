@@ -122,12 +122,6 @@ export const NoVideoText = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 8px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  // @media (max-width: 700px) {
-  //   font-size: 1.5rem;
-  // }
-  // @media (max-width: 400px) {
-  //   font-size: 1rem;
-  // }
 `;
 
 export const TitleOverlay = styled.p`

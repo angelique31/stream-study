@@ -5,6 +5,7 @@ import {
   fetchFrenchDramas,
   fetchTrendingMoviesWithVideos,
 } from "./frenchDramas";
+import { fetchComedySeriesWithVideos } from "./comedySeries";
 
 export async function loadHomePageData() {
   const [
@@ -13,12 +14,14 @@ export async function loadHomePageData() {
     popularMovies,
     frenchDramas,
     trendingMoviesWithVideos,
+    comedySeries,
   ] = await Promise.all([
     fetchTrendingSeriesWithVideos(),
     fetchPopularSeries(),
     fetchPopularMovies(),
     fetchFrenchDramas(),
     fetchTrendingMoviesWithVideos(),
+    fetchComedySeriesWithVideos(),
   ]);
 
   // ... d'autres appels à l'API si nécessaire
@@ -29,6 +32,7 @@ export async function loadHomePageData() {
     popularMovies,
     frenchDramas,
     trendingMoviesWithVideos,
+    comedySeries,
 
     // ... d'autres données
   };

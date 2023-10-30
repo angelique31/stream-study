@@ -3,13 +3,12 @@ import { loadHomePageData } from "@/lib/dataFetchers";
 
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
-import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/TrendingSeries/CategorySeries";
-import filterFrenchDramas from "@/components/PagesDashboard/ComponentsDashboard/FilterFrenchDramas/FilterFrenchDramas";
+import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/CategorySeries/CategorySeries";
 
-function HomePage({ trendingSeries, frenchDramas, similarVideos }) {
+function HomePage({ trendingSeries, frenchDramas, comedySeries }) {
   const [trendingData, setTrendingData] = useState(trendingSeries);
   const [dramaData, setDramaData] = useState(frenchDramas || []);
-  // const [similarData, setSimilarData] = useState(similarVideos || []);
+  const [comedyData, setComedyData] = useState(comedySeries || []);
 
   return (
     <>
@@ -18,7 +17,7 @@ function HomePage({ trendingSeries, frenchDramas, similarVideos }) {
 
       <CategorySeries title="Tendances de la semaine" data={trendingData} />
       <CategorySeries title="Drames en français" data={dramaData} />
-      {/* <CategorySeries title="Vidéos similaires" data={similarData} /> */}
+      <CategorySeries title="Séries comiques" data={comedyData} />
     </>
   );
 }

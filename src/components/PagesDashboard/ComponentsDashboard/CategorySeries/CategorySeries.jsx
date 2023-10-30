@@ -164,7 +164,7 @@ function CategorySeries({ title, data }) {
                                   ? `https://image.tmdb.org/t/p/w500${serie.poster_path}`
                                   : defautImage
                               }
-                              alt={serie.name}
+                              alt={"picture series"}
                               width={250}
                               height={150}
                             />
