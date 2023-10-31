@@ -1,4 +1,4 @@
-import { API_BASE_URL, API_KEY } from "./config";
+import { API_BASE_URL, API_KEY } from "../config";
 
 export async function fetchComedySeries() {
   try {

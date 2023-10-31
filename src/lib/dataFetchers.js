@@ -1,13 +1,17 @@
-import { fetchPopularMoviesWithVideos } from "./movies";
+import { fetchPopularMoviesWithVideos } from "./moviesFetchers/movies";
 import { fetchPopularSeries } from "./series";
-import { fetchTrendingSeriesWithVideos } from "./trends";
+import { fetchTrendingSeriesWithVideos } from "./homePageFetchers/trends";
 import {
   fetchFrenchDramas,
   fetchTrendingMoviesWithVideos,
-} from "./frenchDramas";
-import { fetchComedySeriesWithVideos } from "./comedySeries";
-import { fetchMostSearchedSeriesWithVideos } from "./mostSearchedSeries";
-import { fetchSeriesAddedLast12MonthsWithVideos } from "./seriesAddedLast12Months";
+} from "./homePageFetchers/frenchDramas";
+import { fetchComedySeriesWithVideos } from "./homePageFetchers/comedySeries";
+import { fetchMostSearchedSeriesWithVideos } from "./homePageFetchers/mostSearchedSeries";
+import { fetchSeriesAddedLast12MonthsWithVideos } from "./homePageFetchers/seriesAddedLast12Months";
+import { fetchPopularMoviesInFrenchWithVideos } from "./moviesFetchers/popularMoviesInFrench";
+import { fetchRomanticMoviesWithVideos } from "./moviesFetchers/romanticMovies";
+import { fetchActionMoviesWithVideos } from "./moviesFetchers/actionMovies";
+import { fetchSuspenseMoviesWithVideos } from "./moviesFetchers/suspensMovies";
 
 export async function loadHomePageData() {
   const [
@@ -19,6 +23,10 @@ export async function loadHomePageData() {
     comedySeries,
     mostSearchedSeries,
     seriesAddedLast12Months,
+    popularMoviesInFrench,
+    romanticMoviesWithVideos,
+    actionMoviesWithVideos,
+    suspenseMoviesWithVideos,
   ] = await Promise.all([
     fetchTrendingSeriesWithVideos(),
     fetchPopularSeries(),
@@ -28,6 +36,10 @@ export async function loadHomePageData() {
     fetchComedySeriesWithVideos(),
     fetchMostSearchedSeriesWithVideos(),
     fetchSeriesAddedLast12MonthsWithVideos(),
+    fetchPopularMoviesInFrenchWithVideos(),
+    fetchRomanticMoviesWithVideos(),
+    fetchActionMoviesWithVideos(),
+    fetchSuspenseMoviesWithVideos(),
   ]);
 
   // ... d'autres appels à l'API si nécessaire
@@ -41,5 +53,9 @@ export async function loadHomePageData() {
     comedySeries,
     mostSearchedSeries,
     seriesAddedLast12Months,
+    popularMoviesInFrench,
+    romanticMoviesWithVideos,
+    actionMoviesWithVideos,
+    suspenseMoviesWithVideos,
   };
 }

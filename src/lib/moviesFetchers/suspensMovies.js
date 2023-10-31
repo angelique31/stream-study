@@ -1,19 +1,18 @@
-import { API_BASE_URL, API_KEY } from "./config";
+import { API_BASE_URL, API_KEY } from "../config";
 
-export async function fetchFrenchDramas() {
+export async function fetchSuspenseMovies() {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=18&language=fr-FR&region=FR&sort_by=vote_average.desc&with_original_language=fr&with_video=true`
+      `${API_BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=53`
     );
 
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch French dramas. Status: ${response.status}`
+        `Failed to fetch suspense movies. Status: ${response.status}`
       );
     }
 
     const data = await response.json();
-    // console.log("drames francais :", data.results);
     return data.results;
   } catch (error) {
     console.error(error);
@@ -22,7 +21,6 @@ export async function fetchFrenchDramas() {
 }
 
 async function fetchVideoForMovie(movieId) {
-  // console.log("Appel de fetchVideoForMovie");
   try {
     const response = await fetch(
       `${API_BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}`
@@ -35,7 +33,6 @@ async function fetchVideoForMovie(movieId) {
     }
 
     const data = await response.json();
-    // console.log("videos drames francais :", data.results);
     return data.results[0]?.key;
   } catch (error) {
     console.error(error);
@@ -43,25 +40,16 @@ async function fetchVideoForMovie(movieId) {
   }
 }
 
-export async function fetchTrendingMoviesWithVideos() {
+export async function fetchSuspenseMoviesWithVideos() {
   try {
-    const movies = await fetchFrenchDramas();
-    // console.log("films avec video", movies);
+    const movies = await fetchSuspenseMovies();
 
     const moviesWithVideos = await Promise.all(
       movies.map(async (movie) => {
         const videoKey = await fetchVideoForMovie(movie.id);
-        // console.log(`Clé vidéo pour le film ${movie.id}:`, videoKey);
-        // return { ...movie, video: videoKey || null };
-        return {
-          ...movie,
-          video: videoKey || null,
-          noVideo: videoKey ? false : true,
-        };
+        return { ...movie, video: videoKey || null };
       })
     );
-
-    console.log("drames avec vidéos :", moviesWithVideos);
 
     return moviesWithVideos;
   } catch (error) {

@@ -1,4 +1,4 @@
-import { API_BASE_URL, API_KEY } from "./config";
+import { API_BASE_URL, API_KEY } from "../config";
 
 // Fonction pour récupérer les séries ajoutées au cours des 12 derniers mois
 export async function fetchSeriesAddedLast12Months() {

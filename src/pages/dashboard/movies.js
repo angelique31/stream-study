@@ -1,11 +1,16 @@
 import { loadHomePageData } from "@/lib/dataFetchers";
-import Movies from "@/components/PagesDashboard/Movies/Movies";
 
 import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/CategorySeries/CategorySeries";
 
-function movies({ popularMovies }) {
+function movies({
+  popularMovies,
+  romanticMoviesWithVideos,
+  actionMoviesWithVideos,
+  popularMoviesInFrench,
+  suspenseMoviesWithVideos,
+}) {
   return (
     <>
       <NavWithScroll />
@@ -14,8 +19,25 @@ function movies({ popularMovies }) {
         videoPath="/assets/videos/moviesVideo.mp4"
         title="Épopée Dragonienne, un voyage fantastique"
       />
-      {/* <Movies movies={popularMovies} /> */}
+
       <CategorySeries title="Tendances de la semaine" data={popularMovies} />
+      <CategorySeries
+        title="Les films romantiques"
+        data={romanticMoviesWithVideos}
+      />
+      <CategorySeries
+        title="Les films d'action"
+        data={actionMoviesWithVideos}
+      />
+      <CategorySeries
+        title="Les films populaires en français"
+        data={popularMoviesInFrench}
+      />
+
+      <CategorySeries
+        title="Les films à suspense"
+        data={suspenseMoviesWithVideos}
+      />
     </>
   );
 }
@@ -26,6 +48,11 @@ export async function getServerSideProps() {
   return {
     props: {
       popularMovies: data.popularMovies,
+      romanticMoviesWithVideos: data.romanticMoviesWithVideos,
+      actionMoviesWithVideos: data.actionMoviesWithVideos,
+      popularMoviesInFrench: data.popularMoviesInFrench,
+      suspenseMoviesWithVideos: data.suspenseMoviesWithVideos,
+
       // Et toute autre donnée que vous pourriez vouloir transmettre en tant que props
     },
   };
