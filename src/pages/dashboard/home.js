@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { loadHomePageData } from "@/lib/dataFetchers";
 
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
@@ -12,28 +12,21 @@ function HomePage({
   mostSearchedSeries,
   seriesAddedLast12Months,
 }) {
-  const [trendingData, setTrendingData] = useState(trendingSeries);
-  const [dramaData, setDramaData] = useState(frenchDramas || []);
-  const [comedyData, setComedyData] = useState(comedySeries || []);
-  const [mostSearchedData, setMostSearchedData] = useState(
-    mostSearchedSeries || []
-  );
-  const [last12MonthsData, setLast12MonthsData] = useState(
-    seriesAddedLast12Months || []
-  );
-
   return (
     <>
       <NavWithScroll />
-      <BackgroundVideo />
+      <BackgroundVideo
+        videoPath="/assets/videos/backgroundVideo.mp4"
+        title="Plongée dans les profondeurs de l'océan"
+      />
 
-      <CategorySeries title="Tendances de la semaine" data={trendingData} />
-      <CategorySeries title="Drames en français" data={dramaData} />
-      <CategorySeries title="Séries comiques" data={comedyData} />
-      <CategorySeries title="Les plus recherchés" data={mostSearchedData} />
+      <CategorySeries title="Tendances de la semaine" data={trendingSeries} />
+      <CategorySeries title="Drames en français" data={frenchDramas} />
+      <CategorySeries title="Séries comiques" data={comedySeries} />
+      <CategorySeries title="Les plus recherchés" data={mostSearchedSeries} />
       <CategorySeries
         title="Ajouté ces 12 derniers mois"
-        data={last12MonthsData}
+        data={seriesAddedLast12Months}
       />
     </>
   );

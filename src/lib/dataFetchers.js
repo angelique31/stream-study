@@ -1,4 +1,4 @@
-import { fetchPopularMovies } from "./movies";
+import { fetchPopularMoviesWithVideos } from "./movies";
 import { fetchPopularSeries } from "./series";
 import { fetchTrendingSeriesWithVideos } from "./trends";
 import {
@@ -22,7 +22,7 @@ export async function loadHomePageData() {
   ] = await Promise.all([
     fetchTrendingSeriesWithVideos(),
     fetchPopularSeries(),
-    fetchPopularMovies(),
+    fetchPopularMoviesWithVideos(),
     fetchFrenchDramas(),
     fetchTrendingMoviesWithVideos(),
     fetchComedySeriesWithVideos(),

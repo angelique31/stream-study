@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TrendingContainer = styled.div`
   background-color: #1d1b1b;
-  opacity: 0.9;
+  padding-top: ${(props) => (props.noPaddingTop ? "0" : "20px")};
   @media (max-width: 600px) {
     padding-top: 10px;
   }
@@ -10,9 +10,11 @@ export const TrendingContainer = styled.div`
 
 export const SeriesTitle = styled.h2`
   color: #e5e5e5;
-  margin-left: 100px;
+  padding-left: 100px;
   font-size: 1rem;
   margin-bottom: -10px;
+  background-color: ${(props) => (props.noPadding ? "transparent" : "#1d1b1b")};
+
   @media (max-width: 600px) {
     margin-left: 0px;
     margin-bottom: 0px;
@@ -105,6 +107,10 @@ export const VideoWrapper = styled.div`
   transition: opacity 0.3s ease;
 
   ${TrendingItem}:hover & {
+    opacity: 1;
+  }
+
+  @media (max-width: 700px) {
     opacity: 1;
   }
 `;

@@ -115,8 +115,11 @@ function CategorySeries({ title, data }) {
     <div>
       {isVisible ? (
         <>
-          <SeriesTitle>{title}</SeriesTitle>
-          <TrendingContainer>
+          <SeriesTitle noPadding={title === "Tendances de la semaine"}>
+            {title}
+          </SeriesTitle>
+
+          <TrendingContainer noPaddingTop={title === "Tendances de la semaine"}>
             {showModal && (
               <ModalVideo
                 videoId={currentVideo}

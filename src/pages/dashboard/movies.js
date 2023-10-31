@@ -1,18 +1,21 @@
 import { loadHomePageData } from "@/lib/dataFetchers";
 import Movies from "@/components/PagesDashboard/Movies/Movies";
-import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks.styled";
-import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
-import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks";
+
+import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
+import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
+import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/CategorySeries/CategorySeries";
 
 function movies({ popularMovies }) {
   return (
     <>
-      <NavWrapper>
-        <LogoLink />
-        <NavLinks />
-      </NavWrapper>
+      <NavWithScroll />
 
-      <Movies movies={popularMovies} />
+      <BackgroundVideo
+        videoPath="/assets/videos/moviesVideo.mp4"
+        title="Épopée Dragonienne, un voyage fantastique"
+      />
+      {/* <Movies movies={popularMovies} /> */}
+      <CategorySeries title="Tendances de la semaine" data={popularMovies} />
     </>
   );
 }

@@ -2,19 +2,19 @@
 
 import { loadHomePageData } from "@/lib/dataFetchers";
 import Series from "@/components/PagesDashboard/Series/Series";
-import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
-import NavLinks from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks";
-import { NavWrapper } from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavLinks/NavLinks.styled";
+import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
+import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 
 function series({ popularSeries }) {
   return (
     <>
-      <NavWrapper>
-        <LogoLink />
-        <NavLinks />
-      </NavWrapper>
+      <NavWithScroll />
 
       <Series series={popularSeries} />
+      {/* <BackgroundVideo
+        videoPath="/assets/videos/seriesVideo.mp4"
+        title="Séries"
+      /> */}
     </>
   );
 }

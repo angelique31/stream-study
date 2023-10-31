@@ -1,27 +1,3 @@
-// import styled from "styled-components";
-
-// export const StyledBackgroundVideo = styled.video`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   min-width: 100%;
-//   min-height: 100%;
-//   z-index: -1;
-
-//   }
-// `;
-
-// export const TitleContainer = styled.div`
-//   margin: 250px 0 250px 100px;
-// `;
-
-// export const VideoTitle = styled.h1`
-//   color: white;
-//   font-size: 3rem;
-//   margin-bottom: 30px;
-//   width: 540px;
-// `;
-
 import styled from "styled-components";
 
 export const VideoContainer = styled.div`
