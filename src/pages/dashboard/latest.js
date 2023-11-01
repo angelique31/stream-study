@@ -1,15 +1,35 @@
-import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
+import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
+import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/CategorySeries/CategorySeries";
+import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
+import { loadHomePageData } from "@/lib/dataFetchers";
 
-function latest() {
+function latest({ onTheAirSeries }) {
   return (
     <>
-      <LogoLink />
+      <NavWithScroll />
 
-      <div>
-        <h1>Nouveautés les plus regardées</h1>
-      </div>
+      <BackgroundVideo
+        videoPath="/assets/videos/newVideo.mp4"
+        title="Au Cœur de la Forêt Enchantée"
+      />
+
+      <CategorySeries
+        title="Séries actuellement diffusées"
+        data={onTheAirSeries}
+      />
     </>
   );
 }
 
+export async function getServerSideProps() {
+  const data = await loadHomePageData();
+
+  return {
+    props: {
+      onTheAirSeries: data.onTheAirSeries,
+
+      // Et toute autre donnée que vous pourriez vouloir transmettre en tant que props
+    },
+  };
+}
 export default latest;

@@ -1,9 +1,9 @@
-import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
+import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
 
 function myList() {
   return (
     <>
-      <LogoLink />
+      <NavWithScroll />
 
       <div>
         <h1>Ma liste</h1>

@@ -1,7 +1,6 @@
 import { API_BASE_URL, API_KEY } from "../config";
 
 export async function fetchTrendingSeries() {
-  // console.log("Appel de fetchTrendingSeries");
   try {
     const response = await fetch(
       `${API_BASE_URL}/trending/tv/week?api_key=${API_KEY}`
@@ -14,7 +13,7 @@ export async function fetchTrendingSeries() {
     }
 
     const data = await response.json();
-    // console.log("Tendances de la semaine :", data.results);
+
     return data.results;
   } catch (error) {
     console.error(error);
@@ -23,7 +22,6 @@ export async function fetchTrendingSeries() {
 }
 
 async function fetchVideoForSeries(seriesId) {
-  // console.log("Appel de fetchTrendingSeries");
   try {
     const response = await fetch(
       `${API_BASE_URL}/tv/${seriesId}/videos?api_key=${API_KEY}`
@@ -36,7 +34,7 @@ async function fetchVideoForSeries(seriesId) {
     }
 
     const data = await response.json();
-    // console.log("Tendances de la semaine :", data.results);
+
     return data.results[0]?.key; // Prend la première vidéo.
   } catch (error) {
     console.error(error);
@@ -56,7 +54,6 @@ export async function fetchTrendingSeriesWithVideos() {
       })
     );
 
-    // console.log("Tendances de la semaine avec vidéos :", seriesWithVideos);
     return seriesWithVideos;
   } catch (error) {
     console.error(error);

@@ -4,7 +4,12 @@ import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBa
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/CategorySeries/CategorySeries";
 
-function series({ popularSeries, realBasedSeriesWithVideos }) {
+function series({
+  popularSeries,
+  realBasedSeriesWithVideos,
+  animatedSeries,
+  documentarySeries,
+}) {
   return (
     <>
       <NavWithScroll />
@@ -19,6 +24,9 @@ function series({ popularSeries, realBasedSeriesWithVideos }) {
         title="Séries basées sur des faits réels"
         data={realBasedSeriesWithVideos}
       />
+
+      <CategorySeries title="Séries animées" data={animatedSeries} />
+      <CategorySeries title="Séries dramatiques" data={documentarySeries} />
     </>
   );
 }
@@ -30,7 +38,8 @@ export async function getServerSideProps() {
     props: {
       popularSeries: data.popularSeries,
       realBasedSeriesWithVideos: data.realBasedSeriesWithVideos,
-      // Et toute autre donnée que vous pourriez vouloir transmettre en tant que props
+      animatedSeries: data.animatedSeries,
+      documentarySeries: data.documentarySeries,
     },
   };
 }

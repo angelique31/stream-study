@@ -13,6 +13,11 @@ import { fetchRomanticMoviesWithVideos } from "./moviesFetchers/romanticMovies";
 import { fetchActionMoviesWithVideos } from "./moviesFetchers/actionMovies";
 import { fetchSuspenseMoviesWithVideos } from "./moviesFetchers/suspensMovies";
 import { fetchRealBasedSeriesWithVideos } from "./seriesFetchers/realBasedSeries";
+import { fetchAnimatedMoviesWithVideos } from "./moviesFetchers/animatedMovies";
+import { fetchAnimatedSeriesWithVideos } from "./seriesFetchers/animatedSeries";
+import { fetchDocumentarySeriesWithVideos } from "./seriesFetchers/documentarySeries";
+
+import { fetchOnTheAirSeriesWithVideos } from "./latestFetchers/onTheAirSeries";
 
 export async function loadHomePageData() {
   const [
@@ -27,8 +32,13 @@ export async function loadHomePageData() {
     romanticMoviesWithVideos,
     actionMoviesWithVideos,
     suspenseMoviesWithVideos,
+    animatedMovies,
     realBasedSeriesWithVideos,
     popularSeries,
+    animatedSeries,
+    documentarySeries,
+
+    onTheAirSeries,
   ] = await Promise.all([
     fetchTrendingSeriesWithVideos(),
     fetchPopularMoviesWithVideos(),
@@ -41,8 +51,13 @@ export async function loadHomePageData() {
     fetchRomanticMoviesWithVideos(),
     fetchActionMoviesWithVideos(),
     fetchSuspenseMoviesWithVideos(),
+    fetchAnimatedMoviesWithVideos(),
     fetchRealBasedSeriesWithVideos(),
     fetchPopularSeriesWithVideos(),
+    fetchAnimatedSeriesWithVideos(),
+    fetchDocumentarySeriesWithVideos(),
+
+    fetchOnTheAirSeriesWithVideos(),
   ]);
 
   // ... d'autres appels à l'API si nécessaire
@@ -59,7 +74,12 @@ export async function loadHomePageData() {
     romanticMoviesWithVideos,
     actionMoviesWithVideos,
     suspenseMoviesWithVideos,
+    animatedMovies,
     realBasedSeriesWithVideos,
     popularSeries,
+    animatedSeries,
+    documentarySeries,
+
+    onTheAirSeries,
   };
 }

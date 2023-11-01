@@ -10,6 +10,7 @@ function movies({
   actionMoviesWithVideos,
   popularMoviesInFrench,
   suspenseMoviesWithVideos,
+  animatedMovies,
 }) {
   return (
     <>
@@ -38,6 +39,8 @@ function movies({
         title="Les films à suspense"
         data={suspenseMoviesWithVideos}
       />
+
+      <CategorySeries title="Les films animés" data={animatedMovies} />
     </>
   );
 }
@@ -52,7 +55,7 @@ export async function getServerSideProps() {
       actionMoviesWithVideos: data.actionMoviesWithVideos,
       popularMoviesInFrench: data.popularMoviesInFrench,
       suspenseMoviesWithVideos: data.suspenseMoviesWithVideos,
-
+      animatedMovies: data.animatedMovies,
       // Et toute autre donnée que vous pourriez vouloir transmettre en tant que props
     },
   };
