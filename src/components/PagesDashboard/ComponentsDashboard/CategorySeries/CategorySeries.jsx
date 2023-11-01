@@ -42,6 +42,7 @@ import useImagesPerPage from "../UseImagesPerPage/UseImagesPerPage";
 import defautImage from "../../../../assets/pictures/boxshot.png";
 
 import ImageLoader from "../ImageLoader/ImageLoader";
+import { addToMyList } from "@/store/actions/myList";
 
 function CategorySeries({ title, data }) {
   const dispatch = useDispatch();
@@ -109,6 +110,10 @@ function CategorySeries({ title, data }) {
     setCurrentIndex((oldIndex) =>
       Math.min(oldIndex + 1, data.length - imagesPerPage)
     );
+  };
+
+  const addMyList = (video) => {
+    dispatch(addToMyList(video));
   };
 
   return (
@@ -199,6 +204,7 @@ function CategorySeries({ title, data }) {
                                     alt="Icon Plus"
                                     width={20}
                                     height={20}
+                                    onClick={() => addMyList(serie)}
                                     onMouseEnter={() => {
                                       dispatch(showTooltip());
                                     }}
