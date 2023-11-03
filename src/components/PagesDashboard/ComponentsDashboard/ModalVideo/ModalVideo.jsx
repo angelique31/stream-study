@@ -59,7 +59,7 @@ import {
 
 const ModalVideo = ({ videoId, overview, posterImage, onClose }) => {
   const isLocalImage = !posterImage.startsWith("https://image.tmdb.org");
-  console.log(isLocalImage);
+
   const imageSrc = isLocalImage
     ? "/assets/boxshot.png"
     : `https://image.tmdb.org/t/p/w500${posterImage}`;

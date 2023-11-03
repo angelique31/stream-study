@@ -1,4 +1,4 @@
-import MyListPage from "@/components/MyList/MyList";
+import MyListPage from "@/components/ListPage/MyList/MyList";
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
 
