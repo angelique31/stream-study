@@ -1,13 +1,12 @@
-// reducers/rootReducer.js
 import { combineReducers } from "redux";
 import tooltipReducer from "./tooltipReducer";
 import modalReducer from "./modalReducer";
-import listReducer from "./listReducer";
+import notificationModalReducer from "./notificationModaleReducer";
 
 const rootReducer = combineReducers({
   tooltip: tooltipReducer,
   modal: modalReducer,
-  list: listReducer,
+  notificationModal: notificationModalReducer,
 });
 // console.log("Root reducer:", rootReducer);
 export default rootReducer;

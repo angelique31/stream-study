@@ -28,7 +28,7 @@ import {
 } from "../../store/actions/tooltipActions";
 import defautImage from "../../assets/pictures/boxshot.png";
 
-const SerieCard = ({ serie, onOpenModal, isInMyListPage }) => {
+const SerieCard = ({ serie, onOpenModal, isInMyListPage, onRemoveSerie }) => {
   const dispatch = useDispatch();
 
   // Récupération de l'état des tooltips depuis le store Redux
@@ -45,6 +45,10 @@ const SerieCard = ({ serie, onOpenModal, isInMyListPage }) => {
 
   const removeFromList = () => {
     dispatch(removeFromListAction(serie.id));
+    // Appeler le callback fourni depuis le composant parent.
+    if (onRemoveSerie) {
+      onRemoveSerie(serie);
+    }
   };
 
   let tooltipText = tooltipVisible ? "Ajouter à ma liste" : null;
@@ -86,24 +90,6 @@ const SerieCard = ({ serie, onOpenModal, isInMyListPage }) => {
       <OverviewWrapper>
         <ActionButtons className="action-buttons">
           <IconContainer>
-            {/* <TooltipWrapper>
-              <Image
-                src={IconPlus}
-                alt="Icon Plus"
-                width={20}
-                height={20}
-                onClick={isInList ? removeFromList : addToList}
-                onMouseEnter={() => {
-                  dispatch(showTooltip());
-                }}
-                onMouseLeave={() => {
-                  dispatch(hideTooltip());
-                }}
-              />
-
-              {tooltipVisible && <Tooltip>Ajouter à ma liste</Tooltip>}
-              {tooltipText && <Tooltip>{tooltipText}</Tooltip>}
-            </TooltipWrapper> */}
             <TooltipWrapper>
               {isInList ? (
                 <Image
@@ -111,7 +97,7 @@ const SerieCard = ({ serie, onOpenModal, isInMyListPage }) => {
                   alt="Icon Check"
                   width={20}
                   height={20}
-                  onClick={removeFromList}
+                  onClick={() => onRemoveSerie(serie)}
                   onMouseEnter={() => {
                     dispatch(showTooltip());
                   }}
