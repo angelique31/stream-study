@@ -170,7 +170,7 @@ export const OverviewWrapper = styled.div`
     opacity: 1;
   }
   @media (max-width: 600px) {
-    width: 200px;
+    display: none;
   }
 `;
 

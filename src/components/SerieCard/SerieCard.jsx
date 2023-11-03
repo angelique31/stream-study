@@ -37,7 +37,6 @@ const SerieCard = ({ serie, onOpenModal, isInMyListPage, onRemoveSerie }) => {
     (state) => state.tooltip
   );
 
-  // const isInList = myList.some((s) => s.id === serie.id);
   const isInList = serie && myList.some((s) => s.id === serie.id);
 
   const addToList = () => {
@@ -98,7 +97,6 @@ const SerieCard = ({ serie, onOpenModal, isInMyListPage, onRemoveSerie }) => {
                   alt="Icon Check"
                   width={20}
                   height={20}
-                  // onClick={() => onRemoveSerie(serie)}
                   onClick={() => removeFromList()}
                   onMouseEnter={() => {
                     dispatch(showTooltip());

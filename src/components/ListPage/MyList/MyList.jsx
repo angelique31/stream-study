@@ -8,6 +8,7 @@ import {
 } from "../../../store/actions/notificationModaleActions";
 import { removeFromList } from "@/store/actions/tooltipActions";
 import NotificationModal from "../NotificationModale/NotificationModale";
+import { SeriesListContainer } from "./MyList.styled";
 
 const MyListPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const MyListPage = () => {
   return (
     <div>
       {isVisible && <NotificationModal />}
-      <ul>
+      <SeriesListContainer>
         {myList.map((serie, index) => (
           <SerieCard
             key={index}
@@ -45,7 +46,7 @@ const MyListPage = () => {
             onRemoveSerie={handleRemoveSerie}
           />
         ))}
-      </ul>
+      </SeriesListContainer>
     </div>
   );
 };

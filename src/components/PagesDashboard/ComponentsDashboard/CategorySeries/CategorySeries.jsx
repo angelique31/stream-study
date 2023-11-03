@@ -135,7 +135,6 @@ function CategorySeries({ title, data }) {
                           onOpenModal={handleOpenModal}
                           addMyList={handleAddToMyList}
                           isInMyListPage={false}
-                          // onRemoveSerie={handleRemoveSerie}
                         />
                       ))}
                     </TrendingList>

@@ -1,17 +1,19 @@
 import MyListPage from "@/components/ListPage/MyList/MyList";
-import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
 
 function myList() {
   return (
     <>
       <NavWithScroll />
-      <BackgroundVideo
-        videoPath="/assets/videos/backgroundVideo1.mp4"
-        title="Plongée dans les profondeurs de l'océan"
-      />
 
-      <MyListPage />
+      <div style={{ backgroundColor: "black", height: "900px", width: "100%" }}>
+        <h1
+          style={{ color: "white", paddingTop: "100px", marginLeft: "100px" }}
+        >
+          Ma Liste
+        </h1>
+        <MyListPage />
+      </div>
     </>
   );
 }
