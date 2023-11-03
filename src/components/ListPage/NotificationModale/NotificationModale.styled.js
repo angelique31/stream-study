@@ -16,7 +16,7 @@ export const Overlay = styled.div`
 export const ModalContent = styled.div`
   background: white;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 30px;
   width: 70%;
   max-width: 600px;
   display: flex;
@@ -34,17 +34,9 @@ export const UndoSection = styled.div`
   align-items: center;
 `;
 
-export const ArrowImage = styled.img`
-  margin-right: 10px;
-  width: 24px;
-  height: 24px;
-`;
-
 export const UndoText = styled.span`
   font-size: 1em;
-  color: #007bff; /* Couleur de lien bleu */
+  color: black;
   cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
+  margin-left: 10px;
 `;

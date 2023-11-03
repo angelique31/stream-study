@@ -9,8 +9,6 @@ import {
 import { removeFromList } from "@/store/actions/tooltipActions";
 import NotificationModal from "../NotificationModale/NotificationModale";
 
-//import NotificationModal from "../../ListPage/NotificationModale/NotificationModale";
-
 const MyListPage = () => {
   const dispatch = useDispatch();
   const myList = useSelector((state) => state.tooltip.myList);
@@ -27,7 +25,6 @@ const MyListPage = () => {
 
     // Afficher la modale avec l'information de la série supprimée
     dispatch(showNotificationModal(serie));
-    // dispatch(showNotificationModal({ name: serie.name }));
 
     // Masquer la modale après 5 secondes
     // setTimeout(() => {

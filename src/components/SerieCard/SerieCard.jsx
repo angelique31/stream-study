@@ -29,6 +29,7 @@ import {
 import defautImage from "../../assets/pictures/boxshot.png";
 
 const SerieCard = ({ serie, onOpenModal, isInMyListPage, onRemoveSerie }) => {
+  console.log("Valeur de serie.poster_path:", serie.poster_path);
   const dispatch = useDispatch();
 
   // Récupération de l'état des tooltips depuis le store Redux
@@ -36,15 +37,15 @@ const SerieCard = ({ serie, onOpenModal, isInMyListPage, onRemoveSerie }) => {
     (state) => state.tooltip
   );
 
-  const isInList = myList.some((s) => s.id === serie.id);
+  // const isInList = myList.some((s) => s.id === serie.id);
+  const isInList = serie && myList.some((s) => s.id === serie.id);
 
   const addToList = () => {
-    // console.log("Ajout de la série:", serie.id);
     dispatch(addToListAction(serie));
   };
 
   const removeFromList = () => {
-    dispatch(removeFromListAction(serie.id));
+    dispatch(removeFromListAction(serie));
     // Appeler le callback fourni depuis le composant parent.
     if (onRemoveSerie) {
       onRemoveSerie(serie);
@@ -97,7 +98,8 @@ const SerieCard = ({ serie, onOpenModal, isInMyListPage, onRemoveSerie }) => {
                   alt="Icon Check"
                   width={20}
                   height={20}
-                  onClick={() => onRemoveSerie(serie)}
+                  // onClick={() => onRemoveSerie(serie)}
+                  onClick={() => removeFromList()}
                   onMouseEnter={() => {
                     dispatch(showTooltip());
                   }}

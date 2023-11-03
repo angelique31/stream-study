@@ -1,5 +1,3 @@
-// store/reducers/tooltipReducer.js
-
 import {
   SHOW_TOOLTIP,
   HIDE_TOOLTIP,
@@ -7,12 +5,14 @@ import {
   HIDE_INFOS_TOOLTIP,
   ADD_TO_LIST,
   REMOVE_FROM_LIST,
+  RESTORE_SERIE,
 } from "../actions/tooltipActions";
 
 const initialState = {
   tooltipVisible: false,
   infosTooltipVisible: false,
   myList: [],
+  removedSerie: {},
 };
 
 const tooltipReducer = (state = initialState, action) => {
@@ -26,6 +26,9 @@ const tooltipReducer = (state = initialState, action) => {
     case HIDE_INFOS_TOOLTIP:
       return { ...state, infosTooltipVisible: false };
     case ADD_TO_LIST:
+      if (state.myList.includes(action.payload)) {
+        return state;
+      }
       return {
         ...state,
         myList: [...state.myList, action.payload],
@@ -34,7 +37,19 @@ const tooltipReducer = (state = initialState, action) => {
       return {
         ...state,
 
-        myList: state.myList.filter((item) => item.id !== action.payload),
+        myList: state.myList.filter((item) => item.id !== action.payload.id),
+        removedSerie: action.payload,
+      };
+    case RESTORE_SERIE:
+      // Vérifiez si myList contient déjà la série
+      if (state.myList.some((item) => item.id === action.payload.id)) {
+        return state; // Si oui, retournez simplement l'état actuel
+      }
+      return {
+        ...state,
+        // myList: [...state.myList, state.removedSerie],
+        myList: [...state.myList, action.payload],
+        removedSerie: {}, // Réinitialisez removedSerie
       };
     default:
       return state;
