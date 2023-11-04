@@ -29,7 +29,6 @@ import {
 import defautImage from "../../assets/pictures/boxshot.png";
 
 const SerieCard = ({ serie, onOpenModal, isInMyListPage, onRemoveSerie }) => {
-  console.log("Valeur de serie.poster_path:", serie.poster_path);
   const dispatch = useDispatch();
 
   // Récupération de l'état des tooltips depuis le store Redux

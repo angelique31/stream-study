@@ -20,17 +20,30 @@ const MyListPage = () => {
     dispatch(openModal(videoId, overview, posterPath));
   };
 
-  const handleRemoveSerie = (serie) => {
-    // Supprimer la série de la liste
-    dispatch(removeFromList(serie.id));
+  // Action pour la suppression de la série
+  const removeSerie = (serieId) => {
+    dispatch(removeFromList(serieId));
+  };
 
-    // Afficher la modale avec l'information de la série supprimée
+  // Action pour afficher la notification
+  const showSerieNotification = (serie) => {
     dispatch(showNotificationModal(serie));
 
-    // Masquer la modale après 5 secondes
-    // setTimeout(() => {
-    //   dispatch(hideNotificationModal());
-    // }, 5000);
+    // Planifier le masquage de la notification
+    scheduleHideNotification();
+  };
+
+  // Fonction pour planifier le masquage de la notification
+  const scheduleHideNotification = () => {
+    setTimeout(() => {
+      dispatch(hideNotificationModal());
+    }, 5000);
+  };
+
+  // La fonction principale qui coordonne la suppression de la série et l'affichage de la notification
+  const handleRemoveSerie = (serie) => {
+    removeSerie(serie.id);
+    showSerieNotification(serie);
   };
 
   return (
