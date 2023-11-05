@@ -14,6 +14,7 @@ function HomePage({
   seriesAddedLast12Months,
 }) {
   const searchResults = useSelector((state) => state.search.searchResults);
+  const isSearchActive = searchResults && searchResults.length > 0;
   return (
     <>
       <NavWithScroll />
@@ -21,11 +22,15 @@ function HomePage({
         videoPath="/assets/videos/backgroundVideo.mp4"
         title="Plongée dans les profondeurs de l'océan"
       />
-
-      {searchResults.length > 0 ? (
+      {isSearchActive ? (
         <SearchResultsComponent results={searchResults} />
       ) : (
-        <CategorySeries title="Tendances de la semaine" data={trendingSeries} />
+        <>
+          <CategorySeries
+            title="Tendances de la semaine"
+            data={trendingSeries}
+          />
+        </>
       )}
       <CategorySeries title="Drames en français" data={frenchDramas} />
       <CategorySeries title="Séries comiques" data={comedySeries} />

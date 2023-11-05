@@ -36,6 +36,8 @@ const SearchInput = () => {
           console.error(error);
           dispatch(clearSearchResults());
         });
+    } else {
+      dispatch(clearSearchResults());
     }
   }, [debouncedSearchValue, dispatch]);
 
