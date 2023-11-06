@@ -1,15 +1,20 @@
+import React from "react";
+import { useSelector } from "react-redux";
 import { loadHomePageData } from "@/lib/dataFetchers";
 
 import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/CategorySeries/CategorySeries";
+import SearchResultsComponent from "@/components/PagesDashboard/SearchResultsComponent/SearchResultsComponent";
 
-function series({
+function Series({
   popularSeries,
   realBasedSeriesWithVideos,
   animatedSeries,
   documentarySeries,
 }) {
+  const searchResults = useSelector((state) => state.search.searchResults);
+  const isSearchActive = searchResults && searchResults.length > 0;
   return (
     <>
       <NavWithScroll />
@@ -18,8 +23,14 @@ function series({
         videoPath="/assets/videos/seriesVideo.mp4"
         title="Horizon Méditerranéen : Entre Nature et Urbanité"
       />
+      {isSearchActive ? (
+        <SearchResultsComponent results={searchResults} />
+      ) : (
+        <>
+          <CategorySeries title="Séries populaires" data={popularSeries} />
+        </>
+      )}
 
-      <CategorySeries title="Séries populaires" data={popularSeries} />
       <CategorySeries
         title="Séries basées sur des faits réels"
         data={realBasedSeriesWithVideos}
@@ -44,4 +55,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default series;
+export default Series;

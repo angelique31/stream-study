@@ -1,9 +1,14 @@
+import React from "react";
+import { useSelector } from "react-redux";
 import BackgroundVideo from "@/components/PagesDashboard/ComponentsDashboard/BackgroundVideo/BackgroundVideo";
 import CategorySeries from "@/components/PagesDashboard/ComponentsDashboard/CategorySeries/CategorySeries";
 import NavWithScroll from "@/components/PagesDashboard/ComponentsDashboard/NavBar/NavWithScroll/NavWithScroll";
 import { loadHomePageData } from "@/lib/dataFetchers";
+import SearchResultsComponent from "@/components/PagesDashboard/SearchResultsComponent/SearchResultsComponent";
 
-function latest({ onTheAirSeries }) {
+function Latest({ onTheAirSeries }) {
+  const searchResults = useSelector((state) => state.search.searchResults);
+  const isSearchActive = searchResults && searchResults.length > 0;
   return (
     <>
       <NavWithScroll />
@@ -12,11 +17,16 @@ function latest({ onTheAirSeries }) {
         videoPath="/assets/videos/newVideo.mp4"
         title="Au Cœur de la Forêt Enchantée"
       />
-
-      <CategorySeries
-        title="Séries actuellement diffusées"
-        data={onTheAirSeries}
-      />
+      {isSearchActive ? (
+        <SearchResultsComponent results={searchResults} />
+      ) : (
+        <>
+          <CategorySeries
+            title="Séries actuellement diffusées"
+            data={onTheAirSeries}
+          />
+        </>
+      )}
     </>
   );
 }
@@ -32,4 +42,4 @@ export async function getServerSideProps() {
     },
   };
 }
-export default latest;
+export default Latest;
