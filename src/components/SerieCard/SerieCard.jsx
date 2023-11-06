@@ -57,7 +57,12 @@ const SerieCard = ({ serie, onOpenModal, isInMyListPage, onRemoveSerie }) => {
 
   return (
     <TrendingItem key={serie.id}>
-      <ImageWrapper>
+      {/* <ImageWrapper> */}
+      <ImageWrapper
+        onClick={() =>
+          onOpenModal(serie.video, serie.overview, serie.poster_path)
+        }
+      >
         <ImageLoader
           className="cover"
           src={

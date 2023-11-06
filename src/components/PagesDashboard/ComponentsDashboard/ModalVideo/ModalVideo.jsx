@@ -20,7 +20,9 @@ const ModalVideo = ({ videoId, overview, posterImage, onClose }) => {
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContainer onClick={(e) => e.stopPropagation()}>
-        <ModalCloseButton onClick={onClose}>&times;</ModalCloseButton>
+        <ModalCloseButton onClick={onClose} onTouchEnd={onClose}>
+          &times;
+        </ModalCloseButton>
 
         {videoId ? (
           <VideoFrame

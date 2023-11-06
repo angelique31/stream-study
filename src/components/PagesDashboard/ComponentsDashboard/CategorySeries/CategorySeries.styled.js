@@ -111,7 +111,8 @@ export const VideoWrapper = styled.div`
   }
 
   @media (max-width: 700px) {
-    opacity: 1;
+    // opacity: 1;
+    display: none;
   }
 `;
 

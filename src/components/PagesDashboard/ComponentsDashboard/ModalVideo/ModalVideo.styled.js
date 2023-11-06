@@ -72,6 +72,10 @@ export const ModalCloseButton = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  @media (max-width: 700px) {
+    top: 10px; // Réduire l'espace au-dessus du bouton pour le rendre plus accessible sur mobile
+    right: 10px;
+  }
 `;
 
 export const ImageContainer = styled.div`
