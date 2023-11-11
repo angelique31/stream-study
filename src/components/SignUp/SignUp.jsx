@@ -24,8 +24,7 @@ const SignUp = () => {
   const router = useRouter();
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Empêcher le rechargement de la page
-
+    event.preventDefault();
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
