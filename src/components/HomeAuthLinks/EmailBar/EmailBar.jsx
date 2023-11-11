@@ -96,34 +96,30 @@ function EmailBar() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Appel de l'API d'inscription
     try {
-      const response = await fetch("/api/auth/signup", {
+      const response = await fetch("/api/auth/check-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email: email,
-          password: "unMotDePasseTemporaire", // Remplacez par la logique appropriée pour le mot de passe
-        }),
+        body: JSON.stringify({ email: email }),
       });
 
       const data = await response.json();
 
-      if (data.success) {
-        // Redirigez vers la page suivante si l'inscription est réussie
-        router.push("/auth/signup/signup-details");
+      if (data.exists) {
+        // Si l'utilisateur existe, redirigez vers la page de connexion
+        router.push("auth/login");
       } else {
-        // Gérez l'erreur ici, peut-être montrer un message à l'utilisateur
-        console.error(
-          "Une erreur est survenue lors de l’inscription:",
-          data.error
-        );
+        // Si l'utilisateur n'existe pas, redirigez vers la page de détails d'inscription
+        router.push("/auth/signup/signup-details");
       }
     } catch (error) {
-      // Gérez l'erreur ici
-      console.error("Erreur lors de la connexion au serveur:", error);
+      console.error(
+        "Une erreur est survenue lors de la vérification de l’email:",
+        error
+      );
+      // Vous pouvez également afficher une notification d'erreur à l'utilisateur ici
     }
   };
 
