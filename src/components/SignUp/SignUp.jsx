@@ -43,6 +43,13 @@ const SignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Validation côté client
+    if (password.length < 6) {
+      // Vous pouvez définir un état pour afficher l'erreur sur l'interface utilisateur
+      console.error("Le mot de passe doit contenir au moins 6 caractères.");
+      return;
+    }
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
