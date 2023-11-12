@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { clearUserEmail } from "../../store/actions/emailActions";
 
 import {
   NavBarContainer,
@@ -19,9 +21,25 @@ import {
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
 
 const SignUp = () => {
-  const [email, setEmail] = useState(""); // Ajoutez le state pour l'email
   const [password, setPassword] = useState(""); // Ajoutez le state pour le mot de passe
   const router = useRouter();
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.email.email);
+
+  // Pré-remplir le champ email si l'email est dans le store Redux
+  useEffect(() => {
+    if (!email) {
+      // S'il n'y a pas d'email dans Redux, redirigez vers la page précédente
+      router.push("/"); // ou la page que vous souhaitez
+    }
+  }, [email, router]);
+
+  // Fonction pour effacer l'email de Redux et autres nettoyages
+  useEffect(() => {
+    return () => {
+      dispatch(clearUserEmail());
+    };
+  }, [dispatch]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,16 +52,6 @@ const SignUp = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      // const data = await response.json();
-      // console.log(data);
-
-      // if (data.success) {
-      //   // Redirigez vers la page de succès après l'inscription
-      //   router.push("/auth/signup/success");
-      // } else {
-      //   // Gérez l'erreur ici, par exemple en affichant un message
-      //   console.error(data.error);
-      // }
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -71,7 +79,7 @@ const SignUp = () => {
     <>
       <NavBarContainer>
         <LogoLink />
-        <StyledLink>{`S'identifier`}</StyledLink>
+        <StyledLink as="a" href="/login">{`S'identifier`}</StyledLink>
       </NavBarContainer>
 
       <Container>
@@ -93,19 +101,17 @@ const SignUp = () => {
               placeholder="Adresse e-mail"
               autocomplete="off"
               onChange={(e) => setEmail(e.target.value)}
+              value={email || ""} // valeur récupérée de Redux est toujours une chaîne de caractères
+              readOnly // L'email ne doit pas être modifiable
             />
             <StyledInput
               type="password"
               placeholder="Mot de passe"
               autocomplete="new-password"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <Button type="submit">Suivant</Button>
-            <div>
-              <Link href="/auth/signup/success" passHref>
-                {/* <Button type="submit">Suivant</Button> */}
-              </Link>
-            </div>
           </MarginLeftDiv>
         </form>
       </Container>
