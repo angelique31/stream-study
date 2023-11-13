@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import Link from "next/link";
+
 import { clearUserEmail } from "../../store/actions/emailActions";
 
 import {
@@ -15,13 +15,17 @@ import {
   StyledInput,
   Title,
   Paragraph,
+  PasswordRequirement,
   Button,
 } from "./SignUp.styled";
 
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
 
 const SignUp = () => {
-  const [password, setPassword] = useState(""); // Ajoutez le state pour le mot de passe
+  const [password, setPassword] = useState("");
+  const isValidPassword = password.length >= 6;
+  const [showPasswordError, setShowPasswordError] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const email = useSelector((state) => state.email.email);
@@ -43,13 +47,14 @@ const SignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setFormSubmitted(true); // Indiquer que le formulaire a été soumis
     // Validation côté client
     if (password.length < 6) {
-      // Vous pouvez définir un état pour afficher l'erreur sur l'interface utilisateur
-      console.error("Le mot de passe doit contenir au moins 6 caractères.");
+      setShowPasswordError(true);
       return;
     }
+    setShowPasswordError(false);
+
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
@@ -115,9 +120,24 @@ const SignUp = () => {
               type="password"
               placeholder="Mot de passe"
               autocomplete="new-password"
-              onChange={(e) => setPassword(e.target.value)}
+              // onChange={(e) => setPassword(e.target.value)}
               required
+              // isValid={isValidPassword}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (formSubmitted) {
+                  // Réinitialiser l'état de soumission si l'utilisateur modifie le mot de passe
+                  setFormSubmitted(false);
+                }
+              }}
+              isValid={isValidPassword && !formSubmitted}
+              isInvalid={formSubmitted && !isValidPassword}
             />
+            {formSubmitted && !isValidPassword && (
+              <PasswordRequirement>
+                Le mot de passe doit contenir 6 caractères minimum.
+              </PasswordRequirement>
+            )}
             <Button type="submit">Suivant</Button>
           </MarginLeftDiv>
         </form>

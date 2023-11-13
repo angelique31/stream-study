@@ -48,7 +48,15 @@ export const StyledInput = styled.input`
   margin-top: 10px;
 
   padding: 1rem;
-  border: 1px solid black;
+
+  border: 2px solid
+    ${(props) =>
+      props.isInvalid
+        ? "rgb(229, 9, 20)"
+        : props.isValid
+        ? "rgb(19, 177, 97)"
+        : "black"};
+
   border-radius: 4px;
   font-size: 1rem;
   width: 100%;
@@ -57,7 +65,13 @@ export const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #0070f3;
+
+    border-color: ${(props) =>
+      props.isInvalid
+        ? "rgb(229, 9, 20)"
+        : props.isValid
+        ? "rgb(19, 177, 97)"
+        : "#0070f3"};
   }
 
   &::placeholder {
@@ -114,4 +128,10 @@ export const Button = styled.button`
   @media (max-width: 450px) {
     padding: 9px 10px;
   }
+`;
+
+export const PasswordRequirement = styled.p`
+  color: rgb(193, 17, 25);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
 `;
