@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-
-import { clearUserEmail } from "../../store/actions/emailActions";
+import React from "react";
+import useSignUp from "../../hooks/useSignUp";
+import usePasswordValidation from "../../hooks/usePasswordValidation";
+import useEmailRedirect from "../../hooks/useEmailRedirect";
 
 import {
   NavBarContainer,
@@ -22,63 +21,33 @@ import {
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
 
 const SignUp = () => {
-  const [password, setPassword] = useState("");
-  const isValidPassword = password.length >= 6;
-  const [showPasswordError, setShowPasswordError] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const email = useSelector((state) => state.email.email);
+  const {
+    password,
+    setPassword,
+    showPasswordError,
+    setShowPasswordError,
+    formSubmitted,
+    setFormSubmitted,
+    isValidPassword,
+  } = usePasswordValidation();
 
-  // Pré-remplir le champ email si l'email est dans le store Redux
-  useEffect(() => {
-    if (!email) {
-      // S'il n'y a pas d'email dans Redux, redirigez vers la page précédente
-      router.push("/"); // ou la page que vous souhaitez
-    }
-  }, [email, router]);
+  const register = useSignUp();
 
-  // Fonction pour effacer l'email de Redux et autres nettoyages
-  useEffect(() => {
-    return () => {
-      dispatch(clearUserEmail());
-    };
-  }, [dispatch]);
+  const email = useEmailRedirect();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true); // Indiquer que le formulaire a été soumis
     // Validation côté client
-    if (password.length < 6) {
+
+    if (!isValidPassword) {
       setShowPasswordError(true);
       return;
     }
     setShowPasswordError(false);
 
     try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        // Redirigez vers la page de succès après l'inscription
-        router.push("/auth/signup/success");
-      } else {
-        console.error(
-          "Réponse du serveur:",
-          response.status,
-          response.statusText
-        );
-        const text = await response.text(); // Pour voir le contenu de la réponse.
-        console.error(text);
-        // Ici, vous pouvez définir un état pour afficher l'erreur sur l'interface utilisateur
-      }
+      await register(email, password);
     } catch (error) {
       console.error(
         "Une erreur est survenue lors de la création du compte:",
@@ -112,7 +81,6 @@ const SignUp = () => {
               type="email"
               placeholder="Adresse e-mail"
               autocomplete="off"
-              onChange={(e) => setEmail(e.target.value)}
               value={email || ""} // valeur récupérée de Redux est toujours une chaîne de caractères
               readOnly // L'email ne doit pas être modifiable
             />
@@ -120,9 +88,7 @@ const SignUp = () => {
               type="password"
               placeholder="Mot de passe"
               autocomplete="new-password"
-              // onChange={(e) => setPassword(e.target.value)}
               required
-              // isValid={isValidPassword}
               onChange={(e) => {
                 setPassword(e.target.value);
                 if (formSubmitted) {
