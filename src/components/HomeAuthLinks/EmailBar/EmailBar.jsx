@@ -29,10 +29,10 @@ function EmailBar() {
     }
 
     // Cas 2 & 3 : Format invalide
-    if (!validateEmail(emailInput)) {
-      setEmailError("Veuillez saisir une adresse e-mail valide.");
-      return;
-    }
+    // if (!validateEmail(emailInput)) {
+    //   setEmailError("Veuillez saisir une adresse e-mail valide.");
+    //   return;
+    // }
 
     setEmailError("");
 
@@ -73,8 +73,19 @@ function EmailBar() {
           <EmailInput
             type="email"
             value={emailInput}
-            onChange={(e) => setEmail(e.target.value)}
+            // onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailError(""); // Réinitialiser le message d'erreur lors de la saisie
+            }}
             placeholder="Adresse e-mail"
+            onInvalid={(e) => {
+              if (e.target.value.trim() === "") {
+                setEmailError("L'adresse e-mail est obligatoire.");
+              } else {
+                setEmailError("Veuillez saisir une adresse e-mail valide.");
+              }
+            }}
           />
 
           <StyledLinkExtended as="button" type="submit">
