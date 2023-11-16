@@ -2,22 +2,40 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setUserEmail } from "../../../store/actions/emailActions";
-import Link from "next/link";
+import validateEmail from "./EmailValidator";
+
 import {
   AuthFormContainer,
   EmailFormContainer,
   EmailInput,
   StyledLinkExtended,
+  ErrorMessage,
 } from "./EmailBar.styled";
 import ArrowRightIcon from "../../../assets/icons/arrowIcon/ArrowRightIcon";
 
 function EmailBar() {
   const [emailInput, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const router = useRouter();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Cas 1 : Aucune saisie
+    if (emailInput.trim() === "") {
+      setEmailError("L'adresse e-mail est obligatoire.");
+      return;
+    }
+
+    // Cas 2 & 3 : Format invalide
+    if (!validateEmail(emailInput)) {
+      setEmailError("Veuillez saisir une adresse e-mail valide.");
+      return;
+    }
+
+    setEmailError("");
+
     // Dispatch l'email avant de faire l'appel API ou la redirection
     dispatch(setUserEmail(emailInput));
 
@@ -57,14 +75,15 @@ function EmailBar() {
             value={emailInput}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Adresse e-mail"
-            required // Assurez-vous que l'utilisateur ne peut pas soumettre un champ vide
           />
+
           <StyledLinkExtended as="button" type="submit">
             Commencer
             <ArrowRightIcon />
           </StyledLinkExtended>
         </EmailFormContainer>
       </AuthFormContainer>
+      {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
     </form>
   );
 }

@@ -49,3 +49,10 @@ export const StyledLinkExtended = styled(StyledLink)`
     padding: 10px 16px;
   }
 `;
+
+export const ErrorMessage = styled.div`
+  color: rgb(235, 57, 66);
+  font-size: 0.9rem;
+  margin-top: 5px;
+  margin-left: -326px;
+`;

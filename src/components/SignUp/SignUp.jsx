@@ -24,8 +24,6 @@ const SignUp = () => {
   const {
     password,
     setPassword,
-    showPasswordError,
-    setShowPasswordError,
     formSubmitted,
     setFormSubmitted,
     isValidPassword,
@@ -38,14 +36,13 @@ const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true); // Indiquer que le formulaire a été soumis
-    // Validation côté client
 
     if (!isValidPassword) {
-      setShowPasswordError(true);
+      // Si le mot de passe est invalide, ne pas continuer l'inscription
       return;
     }
-    setShowPasswordError(false);
 
+    // Si le mot de passe est valide, procéder à l'inscription
     try {
       await register(email, password);
     } catch (error) {

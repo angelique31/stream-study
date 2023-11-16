@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 
 const usePasswordValidation = () => {
   const [password, setPassword] = useState("");
-  const [showPasswordError, setShowPasswordError] = useState(false);
+
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const isValidPassword = useCallback(() => {
@@ -13,8 +13,7 @@ const usePasswordValidation = () => {
   return {
     password,
     setPassword,
-    showPasswordError,
-    setShowPasswordError,
+
     formSubmitted,
     setFormSubmitted,
     isValidPassword: isValidPassword(),
