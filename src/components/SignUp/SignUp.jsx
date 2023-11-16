@@ -101,7 +101,14 @@ const SignUp = () => {
                 Le mot de passe doit contenir 6 caractères minimum.
               </PasswordRequirement>
             )}
-            <Button type="submit">Suivant</Button>
+            {/* <Button type="submit">Suivant</Button> */}
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              onTouchEnd={handleSubmit}
+            >
+              Suivant
+            </Button>
           </MarginLeftDiv>
         </form>
       </Container>
