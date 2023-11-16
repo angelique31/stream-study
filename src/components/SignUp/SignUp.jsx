@@ -79,7 +79,8 @@ const SignUp = () => {
               placeholder="Adresse e-mail"
               autocomplete="off"
               value={email || ""} // valeur récupérée de Redux est toujours une chaîne de caractères
-              readOnly // L'email ne doit pas être modifiable
+              // readOnly // L'email ne doit pas être modifiable
+              disabled
             />
             <StyledInput
               type="password"
@@ -101,14 +102,7 @@ const SignUp = () => {
                 Le mot de passe doit contenir 6 caractères minimum.
               </PasswordRequirement>
             )}
-            {/* <Button type="submit">Suivant</Button> */}
-            <Button
-              type="submit"
-              onClick={handleSubmit}
-              onTouchEnd={handleSubmit}
-            >
-              Suivant
-            </Button>
+            <Button type="submit">Suivant</Button>
           </MarginLeftDiv>
         </form>
       </Container>
