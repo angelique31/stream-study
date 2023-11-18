@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setUserEmail } from "../../../store/actions/emailActions";
-import validateEmail from "./EmailValidator";
 
 import {
   AuthFormContainer,
@@ -22,17 +21,10 @@ function EmailBar() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Cas 1 : Aucune saisie
     if (emailInput.trim() === "") {
       setEmailError("L'adresse e-mail est obligatoire.");
       return;
     }
-
-    // Cas 2 & 3 : Format invalide
-    // if (!validateEmail(emailInput)) {
-    //   setEmailError("Veuillez saisir une adresse e-mail valide.");
-    //   return;
-    // }
 
     setEmailError("");
 
@@ -73,7 +65,6 @@ function EmailBar() {
           <EmailInput
             type="email"
             value={emailInput}
-            // onChange={(e) => setEmail(e.target.value)}
             onChange={(e) => {
               setEmail(e.target.value);
               setEmailError(""); // Réinitialiser le message d'erreur lors de la saisie
