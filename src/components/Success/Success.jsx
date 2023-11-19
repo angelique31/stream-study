@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 import {
@@ -12,8 +12,19 @@ import {
 
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
 import FooterSignUp from "../FooterSignUp/FooterSignUp";
+import Loader from "../Loader/Loader";
 
 const Success = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleValidationClick = () => {
+    setIsLoading(true);
+    // Naviguez vers la page dashboard ou effectuez d'autres actions
+  };
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <NavBarContainer>
@@ -28,7 +39,7 @@ const Success = () => {
           </TextContainer>
           <div>
             <Link href="/dashboard/home" passHref>
-              <Button>Valider</Button>
+              <Button onClick={handleValidationClick}>Valider</Button>
             </Link>
           </div>
         </div>

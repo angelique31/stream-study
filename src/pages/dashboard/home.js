@@ -15,6 +15,7 @@ function HomePage({
 }) {
   const searchResults = useSelector((state) => state.search.searchResults);
   const isSearchActive = searchResults && searchResults.length > 0;
+
   return (
     <>
       <NavWithScroll />

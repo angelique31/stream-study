@@ -83,3 +83,42 @@ export async function loadHomePageData() {
     onTheAirSeries,
   };
 }
+
+// import { fetchPopularMoviesWithVideos } from "./moviesFetchers/movies";
+// import { fetchTrendingSeriesWithVideos } from "./homePageFetchers/trends";
+// import {
+//   fetchFrenchDramas,
+//   fetchTrendingMoviesWithVideos,
+// } from "./homePageFetchers/frenchDramas";
+// import { fetchComedySeriesWithVideos } from "./homePageFetchers/comedySeries";
+// import { fetchMostSearchedSeriesWithVideos } from "./homePageFetchers/mostSearchedSeries";
+// import { fetchSeriesAddedLast12MonthsWithVideos } from "./homePageFetchers/seriesAddedLast12Months";
+// export async function loadHomePageData() {
+//   const [
+//     trendingSeries,
+//     popularMovies,
+//     frenchDramas,
+//     trendingMoviesWithVideos,
+//     comedySeries,
+//     mostSearchedSeries,
+//     seriesAddedLast12Months,
+//   ] = await Promise.all([
+//     fetchTrendingSeriesWithVideos(),
+//     fetchPopularMoviesWithVideos(),
+//     fetchFrenchDramas(),
+//     fetchTrendingMoviesWithVideos(),
+//     fetchComedySeriesWithVideos(),
+//     fetchMostSearchedSeriesWithVideos(),
+//     fetchSeriesAddedLast12MonthsWithVideos(),
+//   ]);
+
+//   return {
+//     trendingSeries,
+//     popularMovies,
+//     frenchDramas,
+//     trendingMoviesWithVideos,
+//     comedySeries,
+//     mostSearchedSeries,
+//     seriesAddedLast12Months,
+//   };
+// }
