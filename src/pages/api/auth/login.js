@@ -22,7 +22,11 @@ export default async function handler(req, res) {
         // Si l'utilisateur n'est pas trouvé ou que le mot de passe ne correspond pas
         res
           .status(401)
-          .json({ success: false, message: "Email ou mot de passe incorrect" });
+          .json({
+            success: false,
+            message:
+              "Nous n'avons pas trouvé de compte avec cette adresse e-mail. Veuillez réessayer ou créez un nouveau compte.",
+          });
       }
     } catch (error) {
       res.status(500).json({ success: false, error: error.message });

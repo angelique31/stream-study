@@ -20,6 +20,8 @@ import {
   TextSignIn,
   ReCAPTCHAText,
   TextMore,
+  SignUpLink,
+  ErrorMessage,
 } from "./Login.styled";
 
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
@@ -30,12 +32,13 @@ const Login = () => {
   // États pour l'e-mail et le mot de passe
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  // const [errorMessage, setErrorMessage] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Pour éviter le rechargement de la page
     setIsLoading(true);
+    setErrorMessage("");
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
@@ -51,7 +54,7 @@ const Login = () => {
         Router.push("/dashboard/home");
       } else {
         // Affichez un message d'erreur
-        alert(data.message);
+        setErrorMessage(data.message || "Une erreur est survenue.");
         setIsLoading(false); // Désactive le loader en cas d'échec
       }
     } catch (error) {
@@ -78,6 +81,14 @@ const Login = () => {
         <LoginForm onSubmit={handleSubmit}>
           <StyledH1>{`S'identifier`}</StyledH1>
           <Container>
+            {errorMessage && (
+              <ErrorMessage>
+                {errorMessage.split("créez un nouveau compte.")[0]}
+                <Link href="/" passHref>
+                  <SignUpLink>créez un nouveau compte.</SignUpLink>
+                </Link>
+              </ErrorMessage>
+            )}
             <StyledInput
               type="email"
               placeholder="E-mail ou numéro de téléphone"
@@ -93,10 +104,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <ButtonWrapper>
-              {/* <Link href="/dashboard/home" passHref> */}
-              {/* <Button>{`S'identifier`}</Button> */}
               <Button type="submit">{`S'identifier`}</Button>
-              {/* </Link> */}
 
               <Flex>
                 <CheckboxLabel>

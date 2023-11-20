@@ -79,7 +79,7 @@ export const TextContainer = styled.div``;
 
 export const StyledInput = styled.input`
   margin-top: 10px;
-
+  color: white;
   padding: 1rem;
   border: 1px solid black;
   border-radius: 4px;
@@ -203,4 +203,20 @@ export const ReCAPTCHAText = styled.div`
 
 export const TextMore = styled.p`
   color: #0071eb;
+`;
+
+export const SignUpLink = styled.a`
+  text-decoration: underline;
+  cursor: pointer;
+  color: white;
+`;
+
+export const ErrorMessage = styled.div`
+  background-color: #e87c03;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  border-radius: 0.25rem;
+  text-align: center;
 `;
