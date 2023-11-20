@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Router from "next/router";
 
 import {
   NavBarContainer,
@@ -23,8 +24,49 @@ import {
 
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
 import { LandingContainer } from "./Login.styled";
+import Loader from "../Loader/Loader";
 
 const Login = () => {
+  // États pour l'e-mail et le mot de passe
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  // const [errorMessage, setErrorMessage] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Pour éviter le rechargement de la page
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        // Utilisez Router.push pour rediriger après une connexion réussie
+        Router.push("/dashboard/home");
+      } else {
+        // Affichez un message d'erreur
+        alert(data.message);
+        setIsLoading(false); // Désactive le loader en cas d'échec
+      }
+    } catch (error) {
+      // Gérez les erreurs de réseau ici
+      console.error(
+        "Il y a eu un problème avec votre opération de connexion: ",
+        error
+      );
+      setIsLoading(false); // Désactive le loader en cas d'erreur
+    }
+  };
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <LandingContainer>
@@ -33,23 +75,28 @@ const Login = () => {
           <StyledLink>{`S'identifier`}</StyledLink>
         </NavBarContainer>
 
-        <LoginForm>
+        <LoginForm onSubmit={handleSubmit}>
           <StyledH1>{`S'identifier`}</StyledH1>
           <Container>
             <StyledInput
               type="email"
               placeholder="E-mail ou numéro de téléphone"
               autoComplete="off"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <StyledInput
               type="password"
               placeholder="Mot de passe"
               autoComplete="new-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <ButtonWrapper>
-              <Link href="#" passHref>
-                <Button>{`S'identifier`}</Button>
-              </Link>
+              {/* <Link href="/dashboard/home" passHref> */}
+              {/* <Button>{`S'identifier`}</Button> */}
+              <Button type="submit">{`S'identifier`}</Button>
+              {/* </Link> */}
 
               <Flex>
                 <CheckboxLabel>

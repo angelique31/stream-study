@@ -28,7 +28,7 @@ export const StyledLink = styled.div`
   font-weight: 500;
 `;
 
-export const LoginForm = styled.div`
+export const LoginForm = styled.form`
     background-color: rgba(0,0,0,.75);
     border-radius: 4px;
     width: 450px;
@@ -128,7 +128,7 @@ export const ButtonWrapper = styled.div`
   width: 100%;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   color: white;
   font-size: 1rem;
   font-weight: 400;
@@ -192,7 +192,7 @@ export const Text = styled.p`
   font-size: 1rem;
 `;
 
-export const TextSignIn = styled.div`
+export const TextSignIn = styled.button`
   color: white;
 `;
 
