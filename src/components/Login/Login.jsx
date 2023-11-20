@@ -33,6 +33,8 @@ const Login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
+
   const [isLoading, setIsLoading] = React.useState(false);
 
   const handleSubmit = async (event) => {
@@ -54,7 +56,12 @@ const Login = () => {
         Router.push("/dashboard/home");
       } else {
         // Affichez un message d'erreur
-        setErrorMessage(data.message || "Une erreur est survenue.");
+        // setErrorMessage(data.message || "Une erreur est survenue.");
+        if (data.message.includes("Mot de passe incorrect")) {
+          setPasswordErrorMessage(data.message);
+        } else {
+          setErrorMessage(data.message);
+        }
         setIsLoading(false); // Désactive le loader en cas d'échec
       }
     } catch (error) {
@@ -86,6 +93,14 @@ const Login = () => {
                 {errorMessage.split("créez un nouveau compte.")[0]}
                 <Link href="/" passHref>
                   <SignUpLink>créez un nouveau compte.</SignUpLink>
+                </Link>
+              </ErrorMessage>
+            )}
+            {passwordErrorMessage && (
+              <ErrorMessage>
+                {passwordErrorMessage}
+                <Link href="#" passHref>
+                  <SignUpLink>réinitialiser votre mot de passe.</SignUpLink>
                 </Link>
               </ErrorMessage>
             )}
