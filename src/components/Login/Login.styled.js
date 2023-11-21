@@ -192,7 +192,7 @@ export const Text = styled.p`
   font-size: 1rem;
 `;
 
-export const TextSignIn = styled.button`
+export const TextSignIn = styled.span`
   color: white;
 `;
 

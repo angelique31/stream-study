@@ -109,14 +109,24 @@ const Login = () => {
               placeholder="E-mail ou numéro de téléphone"
               autoComplete="off"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (e.target.value === "") {
+                  setErrorMessage(""); // Réinitialise le message d'erreur pour l'email
+                }
+              }}
             />
             <StyledInput
               type="password"
               placeholder="Mot de passe"
               autoComplete="new-password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (e.target.value === "") {
+                  setPasswordErrorMessage(""); // Réinitialise le message d'erreur pour le mot de passe
+                }
+              }}
             />
             <ButtonWrapper>
               <Button type="submit">{`S'identifier`}</Button>
