@@ -44,8 +44,9 @@ const Login = () => {
   // Ajoutez cet effet pour préremplir l'email si un cookie est présent
   useEffect(() => {
     const cookies = nookies.get(null);
-    if (cookies.userEmail && cookies.rememberMe === "true") {
-      setEmail(cookies.userEmail);
+    console.log("Cookies at start:", cookies); // Voir tous les cookies disponibles
+    if (cookies.rememberMe === "true") {
+      setEmail(cookies.userEmail || "");
       setRememberMe(true);
     }
   }, []);
@@ -67,8 +68,10 @@ const Login = () => {
       });
 
       const data = await response.json();
+      console.log("Server response:", data);
 
       if (response.ok) {
+        // Si "se souvenir de moi" est coché, stockez l'email dans les cookies
         if (rememberMe) {
           nookies.set(null, "userEmail", email, {
             maxAge: 30 * 24 * 60 * 60,
@@ -78,11 +81,13 @@ const Login = () => {
             maxAge: 30 * 24 * 60 * 60, // Durée de vie de 30 jours
             path: "/",
           });
+          console.log("Cookies set for remember me"); // Confirmer que les cookies sont bien définis
         } else {
           // Sinon, effacez le cookie
           nookies.destroy(null, "userEmail");
           nookies.destroy(null, "rememberMe");
         }
+        console.log("Cookies destroyed for remember me"); // Confirmer que les cookies sont bien détruits
         // Utilisez Router.push pour rediriger après une connexion réussie
         Router.push("/dashboard/home");
       } else {
