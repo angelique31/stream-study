@@ -1,6 +1,9 @@
-import React from "react";
+// src/components/login.jsx
+
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
+import nookies from "nookies";
 // import useAuth from "../../hooks/useAuth";
 
 import {
@@ -34,9 +37,18 @@ const Login = () => {
   const [password, setPassword] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
-  // const [rememberMe, setRememberMe] = React.useState(false);
+  const [rememberMe, setRememberMe] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   // const { login, isLoading } = useAuth();
+
+  // Ajoutez cet effet pour préremplir l'email si un cookie est présent
+  useEffect(() => {
+    const cookies = nookies.get(null);
+    if (cookies.userEmail) {
+      setEmail(cookies.userEmail);
+      setRememberMe(true);
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Pour éviter le rechargement de la page
@@ -57,14 +69,16 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Le cookie avec le token est défini côté serveur, pas besoin de gérer le token ici
-        console.log("Attempting to redirect to dashboard/home");
+        if (rememberMe) {
+          nookies.set(null, "userEmail", email, {
+            maxAge: 30 * 24 * 60 * 60,
+            path: "/",
+          });
+        }
         // Utilisez Router.push pour rediriger après une connexion réussie
         Router.push("/dashboard/home");
-        console.log("Redirect should have been executed");
       } else {
         // Affichez un message d'erreur
-        // setErrorMessage(data.message || "Une erreur est survenue.");
         if (data.message.includes("Mot de passe incorrect")) {
           setPasswordErrorMessage(data.message);
         } else {
@@ -82,6 +96,13 @@ const Login = () => {
     }
   };
 
+  if (rememberMe && response.ok) {
+    // Utiliser nookies pour définir le cookie
+    nookies.set(null, "userEmail", email, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: "/",
+    });
+  }
   //   try {
   //     await login(email, password, rememberMe);
   //     console.log("Login réussi");
