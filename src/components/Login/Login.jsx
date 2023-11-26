@@ -51,10 +51,45 @@ const Login = () => {
     }
   }, []);
 
+  // // Effectuer une vérification de token au chargement du composant
+  // useEffect(() => {
+  //   const cookies = nookies.get(null);
+  //   const token = cookies.token;
+
+  //   if (token) {
+  //     // Vérifier si le token est valide
+  //     fetch("/auth/validateToken", {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //       .then((response) => {
+  //         if (response.ok) {
+  //           // Si le token est valide, rediriger vers le tableau de bord
+  //           Router.push("/dashboard/home");
+  //         } else {
+  //           // Si le token n'est pas valide, on peut effacer les cookies ou prendre d'autres mesures
+  //           nookies.destroy(null, "token");
+  //           nookies.destroy(null, "userEmail");
+  //           nookies.destroy(null, "rememberMe");
+  //         }
+  //       })
+  //       .catch((error) =>
+  //         console.error("Erreur de validation du token", error)
+  //       );
+  //   }
+
+  //   // Préremplir l'email si un cookie est présent et la checkbox "Se souvenir de moi" est cochée
+  //   if (cookies.userEmail && cookies.rememberMe === "true") {
+  //     setEmail(cookies.userEmail);
+  //     setRememberMe(true);
+  //   }
+  // }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // Pour éviter le rechargement de la page
     setErrorMessage("");
-    // setPasswordErrorMessage("");
 
     setIsLoading(true);
     setErrorMessage("");
@@ -110,21 +145,6 @@ const Login = () => {
       setIsLoading(false); // Désactive le loader en cas d'erreur
     }
   };
-
-  //   try {
-  //     await login(email, password, rememberMe);
-  //     console.log("Login réussi");
-  //     // Redirection ou autre logique en cas de succès
-  //   } catch (error) {
-  //     console.error("Login error:", error);
-  //     // Affichez le message d'erreur approprié
-  //     if (error.message.includes("Mot de passe incorrect")) {
-  //       setPasswordErrorMessage(error.message);
-  //     } else {
-  //       setErrorMessage(error.message);
-  //     }
-  //   }
-  // };
 
   if (isLoading) {
     return <Loader />;

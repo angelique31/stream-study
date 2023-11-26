@@ -1,29 +1,19 @@
 // pages/api/validateToken.js
-
 import jwt from "jsonwebtoken";
 
 export default function handler(req, res) {
-  console.log("Requête reçue pour validation du token:", req.body);
-  const { token } = req.body;
-  console.log("Token reçu pour validation:", token);
-  console.log(
-    "Clé secrète JWT utilisée pour validation:",
-    process.env.JWT_SECRET
-  );
+  // Obtenir le token de l'en-tête d'autorisation
+  const token = req.headers.authorization?.split(" ")[1]; // Bearer Token
 
   if (!token) {
-    console.log("No token received");
-    return res.status(400).json({ isValid: false });
+    return res.status(401).json({ message: "Aucun token fourni" });
   }
 
   try {
+    // Vérifier le token avec votre clé secrète
     jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Token is valid");
-    // Si la vérification est réussie, le token est valide
-    res.status(200).json({ isValid: true });
+    res.status(200).json({ message: "Token valide" });
   } catch (error) {
-    console.error("Erreur lors de la vérification du token:", error);
-    // Si une erreur survient, le token n'est pas valide
-    res.status(200).json({ isValid: false });
+    res.status(403).json({ message: "Token invalide" });
   }
 }
