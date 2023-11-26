@@ -25,7 +25,7 @@ const useAuth = () => {
       }
 
       const { token } = await response.json();
-      console.log("Token reçu:", token);
+      console.log("Token reçu de l'API:", token);
 
       // Gestion des cookies
       const cookieOptions = {

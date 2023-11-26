@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-
-import useAuth from "../../hooks/useAuth";
+import Router from "next/router";
+// import useAuth from "../../hooks/useAuth";
 
 import {
   NavBarContainer,
@@ -30,42 +30,77 @@ import { LandingContainer } from "./Login.styled";
 import Loader from "../Loader/Loader";
 
 const Login = () => {
-  // États pour l'e-mail et le mot de passe
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
-  const [rememberMe, setRememberMe] = React.useState(false);
-  // const [isLoading, setIsLoading] = React.useState(false);
-  const { login, isLoading } = useAuth();
+  // const [rememberMe, setRememberMe] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  // const { login, isLoading } = useAuth();
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Pour éviter le rechargement de la page
-    console.log("Email:", email);
-    console.log("Mot de passe:", password);
-    console.log("Se souvenir de moi:", rememberMe);
-
     setErrorMessage("");
-    setPasswordErrorMessage("");
+    // setPasswordErrorMessage("");
 
+    setIsLoading(true);
+    setErrorMessage("");
     try {
-      await login(email, password, rememberMe);
-      console.log("Login réussi");
-      // Redirection ou autre logique en cas de succès
-    } catch (error) {
-      console.error("Login error:", error);
-      // Affichez le message d'erreur approprié
-      if (error.message.includes("Mot de passe incorrect")) {
-        setPasswordErrorMessage(error.message);
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Le cookie avec le token est défini côté serveur, pas besoin de gérer le token ici
+        console.log("Attempting to redirect to dashboard/home");
+        // Utilisez Router.push pour rediriger après une connexion réussie
+        Router.push("/dashboard/home");
+        console.log("Redirect should have been executed");
       } else {
-        setErrorMessage(error.message);
+        // Affichez un message d'erreur
+        // setErrorMessage(data.message || "Une erreur est survenue.");
+        if (data.message.includes("Mot de passe incorrect")) {
+          setPasswordErrorMessage(data.message);
+        } else {
+          setErrorMessage(data.message);
+        }
+        setIsLoading(false); // Désactive le loader en cas d'échec
       }
+    } catch (error) {
+      // Gérez les erreurs de réseau ici
+      console.error(
+        "Il y a eu un problème avec votre opération de connexion: ",
+        error
+      );
+      setIsLoading(false); // Désactive le loader en cas d'erreur
     }
   };
+
+  //   try {
+  //     await login(email, password, rememberMe);
+  //     console.log("Login réussi");
+  //     // Redirection ou autre logique en cas de succès
+  //   } catch (error) {
+  //     console.error("Login error:", error);
+  //     // Affichez le message d'erreur approprié
+  //     if (error.message.includes("Mot de passe incorrect")) {
+  //       setPasswordErrorMessage(error.message);
+  //     } else {
+  //       setErrorMessage(error.message);
+  //     }
+  //   }
+  // };
 
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <>
       <LandingContainer>
@@ -121,19 +156,19 @@ const Login = () => {
               <Button type="submit">{`S'identifier`}</Button>
 
               <Flex>
-                {/* <CheckboxLabel>
-                    <Checkbox />
-                  <TextCheckbox>Se souvenir de moi</TextCheckbox>
-                </CheckboxLabel> */}
-
                 <CheckboxLabel>
+                  <Checkbox />
+                  <TextCheckbox>Se souvenir de moi</TextCheckbox>
+                </CheckboxLabel>
+
+                {/* <CheckboxLabel>
                   <Checkbox
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                   />
                   <TextCheckbox>Se souvenir de moi</TextCheckbox>
-                </CheckboxLabel>
+                </CheckboxLabel> */}
 
                 <Help>{`Besoin d'aide?`}</Help>
               </Flex>
