@@ -73,6 +73,7 @@ const Login = () => {
       if (response.ok) {
         // Si "se souvenir de moi" est coché, stockez l'email dans les cookies
         if (rememberMe) {
+          console.log("Setting cookies for remember me");
           nookies.set(null, "userEmail", email, {
             maxAge: 30 * 24 * 60 * 60,
             path: "/",
@@ -84,10 +85,11 @@ const Login = () => {
           console.log("Cookies set for remember me"); // Confirmer que les cookies sont bien définis
         } else {
           // Sinon, effacez le cookie
+          console.log("Cookies destroyed for remember me"); // Confirmer que les cookies sont bien détruits
           nookies.destroy(null, "userEmail");
           nookies.destroy(null, "rememberMe");
         }
-        console.log("Cookies destroyed for remember me"); // Confirmer que les cookies sont bien détruits
+
         // Utilisez Router.push pour rediriger après une connexion réussie
         Router.push("/dashboard/home");
       } else {
@@ -109,13 +111,6 @@ const Login = () => {
     }
   };
 
-  if (rememberMe && response.ok) {
-    // Utiliser nookies pour définir le cookie
-    nookies.set(null, "userEmail", email, {
-      maxAge: 30 * 24 * 60 * 60,
-      path: "/",
-    });
-  }
   //   try {
   //     await login(email, password, rememberMe);
   //     console.log("Login réussi");
@@ -190,19 +185,18 @@ const Login = () => {
               <Button type="submit">{`S'identifier`}</Button>
 
               <Flex>
-                <CheckboxLabel>
+                {/* <CheckboxLabel>
                   <Checkbox />
                   <TextCheckbox>Se souvenir de moi</TextCheckbox>
-                </CheckboxLabel>
-
-                {/* <CheckboxLabel>
+                </CheckboxLabel> */}
+                <CheckboxLabel>
                   <Checkbox
                     type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
+                    checked={rememberMe} // L'état actuel de 'rememberMe' détermine si la case est cochée
+                    onChange={(e) => setRememberMe(e.target.checked)} // Mettre à jour l'état lors du clic
                   />
                   <TextCheckbox>Se souvenir de moi</TextCheckbox>
-                </CheckboxLabel> */}
+                </CheckboxLabel>
 
                 <Help>{`Besoin d'aide?`}</Help>
               </Flex>
