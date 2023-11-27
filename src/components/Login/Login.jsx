@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import nookies from "nookies";
-// import useAuth from "../../hooks/useAuth";
+import { setCookie, getCookie, destroyCookie } from "../../utils/cookieManager";
 
 import {
   NavBarContainer,
@@ -39,14 +39,23 @@ const Login = () => {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  // const { login, isLoading } = useAuth();
 
   // Ajoutez cet effet pour préremplir l'email si un cookie est présent
+  // useEffect(() => {
+  //   const cookies = nookies.get(null);
+
+  //   if (cookies.rememberMe === "true") {
+  //     setEmail(cookies.userEmail || "");
+  //     setRememberMe(true);
+  //   }
+  // }, []);
+
   useEffect(() => {
-    const cookies = nookies.get(null);
-    console.log("Cookies at start:", cookies); // Voir tous les cookies disponibles
-    if (cookies.rememberMe === "true") {
-      setEmail(cookies.userEmail || "");
+    const email = getCookie("userEmail");
+    const rememberMeStatus = getCookie("rememberMe") === "true";
+
+    if (rememberMeStatus) {
+      setEmail(email);
       setRememberMe(true);
     }
   }, []);
@@ -103,26 +112,32 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log("Server response:", data);
 
       if (response.ok) {
         // Si "se souvenir de moi" est coché, stockez l'email dans les cookies
+        // if (rememberMe) {
+        //   console.log("Setting cookies for remember me");
+        //   nookies.set(null, "userEmail", email, {
+        //     maxAge: 30 * 24 * 60 * 60,
+        //     path: "/",
+        //   });
+        //   nookies.set(null, "rememberMe", "true", {
+        //     maxAge: 30 * 24 * 60 * 60, // Durée de vie de 30 jours
+        //     path: "/",
+        //   });
+        // } else {
+        //   // Sinon, effacez le cookie
+
+        //   nookies.destroy(null, "userEmail");
+        //   nookies.destroy(null, "rememberMe");
+        // }
+
         if (rememberMe) {
-          console.log("Setting cookies for remember me");
-          nookies.set(null, "userEmail", email, {
-            maxAge: 30 * 24 * 60 * 60,
-            path: "/",
-          });
-          nookies.set(null, "rememberMe", "true", {
-            maxAge: 30 * 24 * 60 * 60, // Durée de vie de 30 jours
-            path: "/",
-          });
-          console.log("Cookies set for remember me"); // Confirmer que les cookies sont bien définis
+          setCookie("userEmail", email);
+          setCookie("rememberMe", "true");
         } else {
-          // Sinon, effacez le cookie
-          console.log("Cookies destroyed for remember me"); // Confirmer que les cookies sont bien détruits
-          nookies.destroy(null, "userEmail");
-          nookies.destroy(null, "rememberMe");
+          destroyCookie("userEmail");
+          destroyCookie("rememberMe");
         }
 
         // Utilisez Router.push pour rediriger après une connexion réussie
