@@ -3,8 +3,9 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
-import nookies from "nookies";
+
 import { setCookie, getCookie, destroyCookie } from "../../utils/cookieManager";
+import { loginUser } from "../../lib/auth";
 
 import {
   NavBarContainer,
@@ -40,16 +41,6 @@ const Login = () => {
   const [rememberMe, setRememberMe] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  // Ajoutez cet effet pour préremplir l'email si un cookie est présent
-  // useEffect(() => {
-  //   const cookies = nookies.get(null);
-
-  //   if (cookies.rememberMe === "true") {
-  //     setEmail(cookies.userEmail || "");
-  //     setRememberMe(true);
-  //   }
-  // }, []);
-
   useEffect(() => {
     const email = getCookie("userEmail");
     const rememberMeStatus = getCookie("rememberMe") === "true";
@@ -60,42 +51,6 @@ const Login = () => {
     }
   }, []);
 
-  // // Effectuer une vérification de token au chargement du composant
-  // useEffect(() => {
-  //   const cookies = nookies.get(null);
-  //   const token = cookies.token;
-
-  //   if (token) {
-  //     // Vérifier si le token est valide
-  //     fetch("/auth/validateToken", {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //       .then((response) => {
-  //         if (response.ok) {
-  //           // Si le token est valide, rediriger vers le tableau de bord
-  //           Router.push("/dashboard/home");
-  //         } else {
-  //           // Si le token n'est pas valide, on peut effacer les cookies ou prendre d'autres mesures
-  //           nookies.destroy(null, "token");
-  //           nookies.destroy(null, "userEmail");
-  //           nookies.destroy(null, "rememberMe");
-  //         }
-  //       })
-  //       .catch((error) =>
-  //         console.error("Erreur de validation du token", error)
-  //       );
-  //   }
-
-  //   // Préremplir l'email si un cookie est présent et la checkbox "Se souvenir de moi" est cochée
-  //   if (cookies.userEmail && cookies.rememberMe === "true") {
-  //     setEmail(cookies.userEmail);
-  //     setRememberMe(true);
-  //   }
-  // }, []);
-
   const handleSubmit = async (event) => {
     event.preventDefault(); // Pour éviter le rechargement de la page
     setErrorMessage("");
@@ -103,35 +58,9 @@ const Login = () => {
     setIsLoading(true);
     setErrorMessage("");
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
+      const { data, response } = await loginUser(email, password);
 
       if (response.ok) {
-        // Si "se souvenir de moi" est coché, stockez l'email dans les cookies
-        // if (rememberMe) {
-        //   console.log("Setting cookies for remember me");
-        //   nookies.set(null, "userEmail", email, {
-        //     maxAge: 30 * 24 * 60 * 60,
-        //     path: "/",
-        //   });
-        //   nookies.set(null, "rememberMe", "true", {
-        //     maxAge: 30 * 24 * 60 * 60, // Durée de vie de 30 jours
-        //     path: "/",
-        //   });
-        // } else {
-        //   // Sinon, effacez le cookie
-
-        //   nookies.destroy(null, "userEmail");
-        //   nookies.destroy(null, "rememberMe");
-        // }
-
         if (rememberMe) {
           setCookie("userEmail", email);
           setCookie("rememberMe", "true");
@@ -220,10 +149,6 @@ const Login = () => {
               <Button type="submit">{`S'identifier`}</Button>
 
               <Flex>
-                {/* <CheckboxLabel>
-                  <Checkbox />
-                  <TextCheckbox>Se souvenir de moi</TextCheckbox>
-                </CheckboxLabel> */}
                 <CheckboxLabel>
                   <Checkbox
                     type="checkbox"
