@@ -2,12 +2,15 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-import Router from "next/router";
 
+import { Router, useRouter } from "next/router";
 import { setCookie, getCookie, destroyCookie } from "../../utils/cookieManager";
 import { loginUser } from "../../lib/auth";
 
+import useForgotPasswordModal from "../../hooks/useForgotPasswordModal";
+
 import {
+  LandingContainer,
   NavBarContainer,
   StyledLink,
   LoginForm,
@@ -30,8 +33,9 @@ import {
 } from "./Login.styled";
 
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
-import { LandingContainer } from "./Login.styled";
+
 import Loader from "../Loader/Loader";
+import ForgotPasswordModal from "../ForgotPasswordModal/ForgotPasswordModal";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -40,6 +44,14 @@ const Login = () => {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+
+  const { isModalOpen, toggleModal } = useForgotPasswordModal();
+
+  const router = useRouter();
+
+  const handleForgotPassword = () => {
+    router.push("/auth/loginHelp");
+  };
 
   useEffect(() => {
     const email = getCookie("userEmail");
@@ -116,9 +128,16 @@ const Login = () => {
             {passwordErrorMessage && (
               <ErrorMessage>
                 {passwordErrorMessage}
-                <Link href="#" passHref>
+
+                {/* <Link href="#" onClick={toggleModal} passHref>
                   <SignUpLink>réinitialiser votre mot de passe.</SignUpLink>
-                </Link>
+                </Link> */}
+
+                <SignUpLink onClick={handleForgotPassword}>
+                  réinitialiser votre mot de passe.
+                </SignUpLink>
+
+                {isModalOpen && <ForgotPasswordModal onClose={toggleModal} />}
               </ErrorMessage>
             )}
             <StyledInput

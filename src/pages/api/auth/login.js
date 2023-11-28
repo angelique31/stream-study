@@ -12,22 +12,23 @@ export default async function handler(req, res) {
 
   if (method === "POST") {
     try {
+      // Récupère l'e-mail et le mot de passe envoyés par le client
       const { email, password } = req.body;
-      // Recherche de l'utilisateur par email
+      // Recherche de l'utilisateur dans la bdd pour email
       const user = await User.findOne({ email: email });
       if (user) {
         // Si l'utilisateur est trouvé, vérifiez le mot de passe
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-          // Si le mot de passe correspond, créez un token JWT
+          // Si le mot de passe correspond, créez un token JWT avec jwt.sign
+          // Ce jeton contient l'ID de l'utilisateur et son e-mail
           const token = jwt.sign(
             { userId: user._id, email: user.email }, // Payload du token
             process.env.JWT_SECRET, // La clé secrète pour signer le token
-            { expiresIn: "7d" } // Option pour définir la durée de vie du token
+            { expiresIn: "30d" } // Option pour définir la durée de vie du token
           );
-          console.log("Clé secrète JWT:", process.env.JWT_SECRET);
-          console.log("Token généré:", token);
-          // Définir le cookie avec le token JWT
+
+          //Le jeton est envoyé au client sous forme de cookie
           res.setHeader(
             "Set-Cookie",
             `token=${token};  Path=/; Max-Age=${60 * 60 * 24 * 7};`

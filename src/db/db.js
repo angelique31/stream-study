@@ -9,7 +9,7 @@ async function dbConnect() {
     return;
   }
 
-  // Utilisez votre URI de connexion MongoDB
+  // Utilisez l'URL de connexion MongoDB
   const db = await mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

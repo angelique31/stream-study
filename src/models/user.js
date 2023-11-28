@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // Vous pouvez ajouter d'autres champs si nécessaire
+  // ajouter d'autres champs si nécessaire
 });
 
 export default mongoose.models.User || mongoose.model("User", userSchema);
