@@ -114,6 +114,14 @@ export const SpanContainer = styled.div`
   width: 450px;
   bottom: 130px;
   color: #999;
+  @media (max-width: 460px) {
+    width: 100%;
+    margin-bottom: -15px;
+  }
+  @media (max-width: 365px) {
+    width: 100%;
+    margin-bottom: -34px;
+  }
 `;
 
 export const TextMore = styled.p`
