@@ -8,6 +8,8 @@ export const StyledLink = styled.div`
   color: rgb(229, 9, 20);
   font-family: "Bebas Neue", sans-serif;
   font-size: 3rem;
+  position: relative;
+  z-index: 2;
   @media (max-width: 900px) {
     font-size: 2rem;
   }

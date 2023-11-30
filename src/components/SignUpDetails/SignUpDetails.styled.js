@@ -10,7 +10,6 @@ export const NavBarContainer = styled.div`
 
 export const StyledLink = styled.div`
   color: black;
-
   font-size: 1.2rem;
   font-weight: 500;
 `;

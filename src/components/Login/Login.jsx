@@ -189,7 +189,7 @@ const Login = () => {
               </div>
               <ReCAPTCHAText>
                 {`Cette page est protégée par Google reCAPTCHA pour nous assurer que
-              vous n'êtes pas un robot.`}{" "}
+              vous n'êtes pas un robot.`}
                 <br></br>
                 <a
                   href="https://www.google.com/recaptcha/about/"
