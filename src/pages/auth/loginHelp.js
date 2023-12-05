@@ -5,8 +5,8 @@ import ForgotPasswordModal from "@/components/ForgotPasswordModal/ForgotPassword
 function loginHelp() {
   return (
     <>
-      {/* <ForgotPasswordModal /> */}
-      <EmailSentModal />
+      <ForgotPasswordModal />
+      {/* <EmailSentModal /> */}
       <Footer />
     </>
   );

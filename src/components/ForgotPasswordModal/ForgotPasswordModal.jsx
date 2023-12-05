@@ -1,6 +1,7 @@
 // components/ForgotPasswordModal.js
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import usePasswordReset from "../../hooks/usePasswordReset";
 import {
   NavBarContainer,
   StyledLink,
@@ -18,25 +19,28 @@ import {
   TextMore,
 } from "./ForgotPasswordModal.styled";
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
+import EmailSentModal from "../EmailSentModal/EmailSentModal";
 
 const ForgotPasswordModal = ({ onClose }) => {
-  const [email, setEmail] = useState("");
+  const { email, setEmail, emailSent, sendPasswordResetEmail, loading, error } =
+    usePasswordReset();
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logique d'envoi de l'email
-    console.log(email);
+    await sendPasswordResetEmail();
   };
 
   return (
-    <>
-      <LandingContainer>
-        <NavBarContainer>
-          <LogoLink />
-          <StyledLink as="a" href="/auth/login">{`S'identifier`}</StyledLink>
-        </NavBarContainer>
-        <Backdrop onClick={onClose}>
+    <LandingContainer>
+      <NavBarContainer>
+        <LogoLink />
+        <StyledLink as="a" href="/auth/login">{`S'identifier`}</StyledLink>
+      </NavBarContainer>
+      <Backdrop onClick={onClose}>
+        {emailSent ? (
+          <EmailSentModal email={email} onClose={() => setEmailSent(false)} />
+        ) : (
           <ModalContainer onClick={(e) => e.stopPropagation()}>
             <ModalTitle>E-mail ou mot de passe oublié</ModalTitle>
             <InstructionText>
@@ -54,7 +58,6 @@ const ForgotPasswordModal = ({ onClose }) => {
               <Button type="submit">Envoyez-moi un e-mail</Button>
             </ModalForm>
             <OptionText>
-              {/* <OptionLink onClick={onClose}>Retour</OptionLink> */}
               <OptionLink onClick={() => router.push("/login")}>
                 Retour à la page de connexion
               </OptionLink>
@@ -72,9 +75,9 @@ const ForgotPasswordModal = ({ onClose }) => {
               </a>
             </SpanContainer>
           </ModalContainer>
-        </Backdrop>
-      </LandingContainer>
-    </>
+        )}
+      </Backdrop>
+    </LandingContainer>
   );
 };
 

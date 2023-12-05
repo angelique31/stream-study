@@ -82,7 +82,7 @@ const Login = () => {
         }
 
         // Utilisez Router.push pour rediriger après une connexion réussie
-        Router.push("/dashboard/home");
+        router.push("/dashboard/home");
       } else {
         // Affichez un message d'erreur
         if (data.message.includes("Mot de passe incorrect")) {
