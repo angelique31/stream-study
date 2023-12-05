@@ -10,7 +10,7 @@ import {
   CheckboxLabel,
   Checkbox,
   ButtonContainer,
-} from "./ResetPasswordFormStyles";
+} from "./ResetPasswordForm.styled";
 
 export default function ResetPasswordForm() {
   const router = useRouter();
