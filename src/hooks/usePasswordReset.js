@@ -14,7 +14,6 @@ const usePasswordReset = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "api-key": process.env.SENDINBLUE_API_KEY,
         },
         body: JSON.stringify({ email }),
       });

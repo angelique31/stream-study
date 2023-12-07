@@ -5,21 +5,17 @@
 import dbConnect from "../../../db/db";
 import User from "../../../models/user";
 import jwt from "jsonwebtoken";
-import { sendEmail } from "../../../utils/sendinblueService";
+import { sendEmail } from "../../../utils/mailjetService";
 
 export default async function resetPassword(req, res) {
-  console.log("Sendinblue API Key:", process.env.SENDINBLUE_API_KEY);
-  console.log("Reset password request received");
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Méthode non autorisée" });
   }
 
   await dbConnect();
-  console.log("Database connected");
 
   const { email } = req.body;
   const user = await User.findOne({ email });
-  console.log("User lookup", user); // Log après recherche de l'utilisateur
 
   if (!user) {
     return res
