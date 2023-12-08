@@ -6,6 +6,8 @@ import dbConnect from "../../../db/db";
 import User from "../../../models/user";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "../../../utils/mailjetService";
+import { renderToStaticMarkup } from "react-dom/server";
+import ResetEmail from "@/components/ResetEmail/ResetEmail";
 
 export default async function resetPassword(req, res) {
   if (req.method !== "POST") {
@@ -34,13 +36,20 @@ export default async function resetPassword(req, res) {
   console.log("JWT Token:", resetToken);
 
   // Créer le lien de réinitialisation du mot de passe
-  const resetPasswordUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${resetToken}`;
+  const resetPasswordUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password/${resetToken}`;
 
   try {
+    const emailComponent = (
+      <ResetEmail
+        username={user.name} // Assurez-vous que l'utilisateur a une propriété 'name'
+        resetLink={resetPasswordUrl}
+      />
+    );
     // Construire le contenu de l'email
-    const emailContent = `<p>Pour réinitialiser votre mot de passe, cliquez sur ce lien : <a href="${resetPasswordUrl}">${resetPasswordUrl}</a></p>`;
+    // Utilisez renderToStaticMarkup pour convertir le composant en HTML
+    const emailContent = renderToStaticMarkup(emailComponent);
 
-    // Envoyer l'email avec Sendinblue
+    // Envoyer l'email avec elescticEmail
     await sendEmail(
       user.email,
       "Réinitialisation de mot de passe",

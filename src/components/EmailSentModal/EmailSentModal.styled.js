@@ -10,21 +10,15 @@ export const LandingContainer = styled.div`
 `;
 
 export const ModalBackdrop = styled.div`
-  position: absolute;
-  top: -136px;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  margin-top: 150px;
 `;
 
 export const ModalContent = styled.div`
   background: #f3f3f3;
   padding: 40px;
-  height: 300px;
+  height: 320px;
 
   width: 90%;
   max-width: 450px;
