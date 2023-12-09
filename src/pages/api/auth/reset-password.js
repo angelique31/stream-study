@@ -18,7 +18,7 @@ export default async function resetPassword(req, res) {
 
   const { email } = req.body;
   const user = await User.findOne({ email });
-
+  console.log("Utilisateur récupéré:", user);
   if (!user) {
     return res
       .status(404)
@@ -39,11 +39,11 @@ export default async function resetPassword(req, res) {
   const resetPasswordUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password/${resetToken}`;
 
   try {
+    // Extraire le début de l'email pour l'utiliser comme nom d'utilisateur
+    const username = email.split("@")[0];
+
     const emailComponent = (
-      <ResetEmail
-        username={user.name} // Assurez-vous que l'utilisateur a une propriété 'name'
-        resetLink={resetPasswordUrl}
-      />
+      <ResetEmail username={username} resetLink={resetPasswordUrl} />
     );
     // Construire le contenu de l'email
     // Utilisez renderToStaticMarkup pour convertir le composant en HTML

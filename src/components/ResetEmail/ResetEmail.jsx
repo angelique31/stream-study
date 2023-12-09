@@ -91,6 +91,7 @@ const ResetEmail = ({ username, resetLink }) => {
                             style={{
                               paddingLeft: "40px",
                               paddingRight: "40px",
+                              fontSize: "16px",
                             }}
                           >
                             Réinitialisons votre mot de passe afin que vous
