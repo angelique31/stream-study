@@ -34,10 +34,15 @@ export const Label = styled.label`
 export const Input = styled.input`
   width: 60%;
   padding: 10px;
-
   border: 1px solid #ccc;
   border-radius: 4px;
   height: 48px;
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 `;
 
 export const Button = styled.button`

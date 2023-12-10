@@ -7,8 +7,7 @@ export const FooterWrapper = styled.footer`
 `;
 
 export const FooterContent = styled.div`
-  
-  padding: 0 3rem
+  padding: 0 3rem;
   margin: 4.5rem 100px;
   @media (max-width: 1300px) {
     margin: 4.5rem 10px;

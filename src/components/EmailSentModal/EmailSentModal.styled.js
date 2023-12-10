@@ -24,6 +24,12 @@ export const ModalContent = styled.div`
   max-width: 450px;
   width: 450px;
   margin: auto;
+  @media (max-width: 450px) {
+    width: 360px;
+  }
+  @media (max-width: 370px) {
+    width: 323px;
+  }
 `;
 
 export const Title = styled.h2`
