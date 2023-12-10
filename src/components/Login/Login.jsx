@@ -68,7 +68,7 @@ const Login = () => {
     setErrorMessage("");
 
     setIsLoading(true);
-    setErrorMessage("");
+
     try {
       const { data, response } = await loginUser(email, password);
 
