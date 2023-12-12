@@ -1,7 +1,7 @@
 // src/components/ResetPasswordForm.js
 
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   NavBar,
@@ -20,9 +20,14 @@ import {
 import LogoLink from "../HomeAuthLinks/LogoLink/LogoLink";
 import useFormErrors from "../../hooks/useFormErrors";
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm(userEmail) {
   const router = useRouter();
-  const [email, setEmail] = useState("angie1979.capucine@yahoo.fr"); // Prérempli
+  const emailFromQuery = router.query.email;
+
+  // Utilisez `emailFromQuery` pour initialiser votre état email
+  const [email, setEmail] = useState(emailFromQuery || "");
+
+  // const [email, setEmail] = useState(userEmail);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [logoutAll, setLogoutAll] = useState(false);
@@ -61,7 +66,12 @@ export default function ResetPasswordForm() {
     setFieldError("confirmPassword", errorMessage); // Mettre à jour l'état d'erreur une seule fois ici
   };
 
-  const { token } = router.query;
+  useEffect(() => {
+    // Si l'e-mail est présent dans l'URL, décodez-le et mettez à jour l'état
+    if (router.query.email) {
+      setEmail(decodeURIComponent(router.query.email));
+    }
+  }, [router.query]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

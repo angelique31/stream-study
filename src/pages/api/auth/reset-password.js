@@ -32,11 +32,17 @@ export default async function resetPassword(req, res) {
     { expiresIn: "1h" } // Le token expire après une heure
   );
 
+  // Encoder l'adresse e-mail
+  const encodedEmail = encodeURIComponent(user.email);
+
+  // Créer le lien de réinitialisation du mot de passe avec l'e-mail encodé
+  const resetPasswordUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password/${resetToken}?email=${encodedEmail}`;
+
   // Log pour vérifier le token
   console.log("JWT Token:", resetToken);
 
   // Créer le lien de réinitialisation du mot de passe
-  const resetPasswordUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password/${resetToken}`;
+  // const resetPasswordUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password/${resetToken}`;
 
   try {
     // Extraire le début de l'email pour l'utiliser comme nom d'utilisateur
