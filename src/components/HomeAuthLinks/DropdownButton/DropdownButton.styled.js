@@ -52,7 +52,7 @@ export const DropdownContent = styled.div`
 `;
 
 export const DropdownItem = styled.a`
-  color: white;
+  color: black;
   font-family: "Roboto", sans-serif;
   background-color: ${(props) => (props.selected ? "#4c9fe7" : "white")};
   padding: 5px 16px;
