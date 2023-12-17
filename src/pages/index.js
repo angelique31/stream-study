@@ -1,3 +1,4 @@
+import Head from "next/head";
 import LogoLink from "@/components/HomeAuthLinks/LogoLink/LogoLink";
 import SignInButton from "@/components/HomeAuthLinks/SignInButton/SignInButton";
 
@@ -22,6 +23,10 @@ import Footer from "@/components/Footer/Footer";
 function landingPage() {
   return (
     <>
+      <Head>
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <title>Study Netifly</title>
+      </Head>
       <LandingContainer>
         <LogoNavigation>
           <LogoLink />

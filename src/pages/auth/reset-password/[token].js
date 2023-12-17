@@ -1,4 +1,4 @@
-// src/pages/reset-password/[token].js
+// src/pages/auth/reset-password/[token].js
 
 import ResetPasswordForm from "@/components/ResetPasswordForm/ResetPasswordForm";
 import { useRouter } from "next/router";

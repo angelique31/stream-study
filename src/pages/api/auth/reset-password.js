@@ -2,6 +2,79 @@
 
 // src/pages/api/reset-password.js
 
+// import dbConnect from "../../../db/db";
+// import User from "../../../models/user";
+// import jwt from "jsonwebtoken";
+// import crypto from "crypto";
+// import { sendEmail } from "../../../utils/mailjetService";
+// import { renderToStaticMarkup } from "react-dom/server";
+// import ResetEmail from "@/components/ResetEmail/ResetEmail";
+
+// export default async function resetPassword(req, res) {
+//   if (req.method !== "POST") {
+//     return res.status(405).json({ message: "Méthode non autorisée" });
+//   }
+
+//   await dbConnect();
+
+//   const { email } = req.body;
+//   const user = await User.findOne({ email });
+//   console.log("Utilisateur récupéré:", user);
+//   if (!user) {
+//     return res
+//       .status(404)
+//       .json({ message: "Aucun utilisateur trouvé avec cet email." });
+//   }
+
+//   // Générer un token de réinitialisation unique
+//   const resetToken = crypto.randomBytes(32).toString("hex");
+//   console.log("Token généré pour réinitialisation:", resetToken);
+//   // Enregistrer le token dans la base de données avec l'utilisateur et une date d'expiration
+//   // Vous devrez ajouter un champ dans votre modèle utilisateur pour cela
+//   user.resetPasswordToken = resetToken;
+//   user.resetPasswordExpires = Date.now() + 3600000; // 1 heure
+//   await user.save();
+//   console.log(
+//     "Token enregistré dans la base de données:",
+//     user.resetPasswordToken
+//   );
+
+//   // Créer le lien de réinitialisation du mot de passe
+//   // const resetPasswordUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password?token=${resetToken}`;
+//   const resetPasswordUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password/${resetToken}`;
+
+//   // Log pour vérifier le token
+//   console.log("JWT Token:", resetToken);
+
+//   try {
+//     // Extraire le début de l'email pour l'utiliser comme nom d'utilisateur
+//     const username = email.split("@")[0];
+
+//     const emailComponent = (
+//       <ResetEmail username={username} resetLink={resetPasswordUrl} />
+//     );
+//     // Construire le contenu de l'email
+//     // Utilisez renderToStaticMarkup pour convertir le composant en HTML
+//     const emailContent = renderToStaticMarkup(emailComponent);
+//     console.log("Lien de réinitialisation envoyé:", resetPasswordUrl);
+
+//     // Envoi de l'email
+//     await sendEmail(
+//       user.email,
+//       "Réinitialisation de mot de passe",
+//       emailContent
+//     );
+//     console.log("Email envoyé avec succès à:", user.email);
+
+//     res
+//       .status(200)
+//       .json({ message: "Email de réinitialisation envoyé avec succès." });
+//   } catch (error) {
+//     console.error("Erreur lors de l'envoi de l'email:", error);
+//     res.status(500).json({ message: "Erreur lors de l'envoi de l'email." });
+//   }
+// }
+
 import dbConnect from "../../../db/db";
 import User from "../../../models/user";
 import jwt from "jsonwebtoken";

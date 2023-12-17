@@ -37,7 +37,12 @@ const WatchOnTv = () => {
               />
             </StyledImageContainer>
             <VideoOverlay>
-              <video autoPlay muted loop>
+              <video
+                autoPlay
+                muted
+                loop
+                aria-label="Mini vidéo silencieuse à des fins décoratives"
+              >
                 <source
                   src="/assets/videos/video-tv-0819.m4v"
                   type="video/x-m4v"
