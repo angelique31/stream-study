@@ -25,6 +25,10 @@ function landingPage() {
     <>
       <Head>
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <meta
+          name="description"
+          content="Clone de Netflix créé par Angélique Rosin comme projet de démonstration des compétences en développement web utilisant Next.js"
+        />
         <title>Study Netifly</title>
       </Head>
       <LandingContainer>
